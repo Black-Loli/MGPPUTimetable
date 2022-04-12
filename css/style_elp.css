@@ -1,0 +1,142 @@
+body{
+    font-family: 'Bellota Text', cursive;
+}
+
+body.light{
+    background: #FCF6FB;
+}
+
+body.dark{
+    background: #2E1B2C;
+}
+
+h1, h2{
+    margin: 0;
+}
+
+div.parent{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+div.dark, div.light{
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+div.light{
+    background: #FCF6FB;
+    box-shadow: 10px 20px 50px 10px rgba(149, 93, 142, 0.5);
+    color: #955D8E;
+}
+
+div.dark{
+    background: #2E1B2C;
+    box-shadow: 10px 20px 50px 20px rgba(229, 212, 232, 0.5);
+    color: #E5D4E8;
+}
+
+div.entrance{
+    width: 40%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 10px;
+}
+
+svg.loading{
+    width: 40%;
+    margin: auto;
+}
+
+h1.loading{
+    text-align: center;
+    margin: auto 10%;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+li{
+    list-style-type: none;
+}
+
+label.time{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 36px;
+}
+
+svg{
+    padding-left: 30px;
+    stroke: #955D8E;
+}
+
+div.color{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: left;
+    float: right;
+}
+
+div.color h2{
+    margin-right: 20px;
+}
+
+div.color input[type='checkbox'].checkbox {
+    display: none;
+}
+
+div.color input[type='checkbox'].checkbox + label {
+    display: block;
+    position: relative;
+}
+
+input[type='checkbox'].checkbox + label:after {
+    content: "";
+    width: 70px;
+    height: 35px;
+    border-radius: 15px;
+    border: 1px solid #955D8E;
+    padding: 5px 35px;
+}
+
+div.color input[type='checkbox'].checkbox + label:before {
+    display: block;
+    content: "";
+    width: 24px;
+    height: 24px;
+    border-radius: 100px;
+    background: #955D8E;
+    transition: left 100ms ease-in-out;
+    position: absolute;
+    top: -2px;
+    left: 3px;
+}
+
+div.color input[type='checkbox'].checkbox:checked + label:before {
+    left: 42px;
+    background: #FCF6FB;
+    box-shadow: 0 0 12px rgba(252, 246, 251, 0.5);
+}
