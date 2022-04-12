@@ -1,6 +1,6 @@
 body{
     font-family: 'Bellota Text', cursive;
-    background: #FCF6FB;
+    background: #2E1B2C;
 }
 
 h1, h2{
@@ -19,7 +19,7 @@ div.parent{
     justify-content: center;
 }
 
-div{
+div.div{
     width: 50%;
     height: 50%;
     margin: auto;
@@ -68,11 +68,44 @@ label.time{
     justify-content: space-between;
     align-items: center;
     font-size: 36px;
+    padding: 0 5px;
 }
 
 svg{
+    transform: matrix(1, 0, 0, 1, 0, 0);
     padding-left: 30px;
-    fill: #E5D4E8;
+    stroke: #E5D4E8;
+}
+
+ul.sub-items{
+    display: none;
+    font-size: 34px;
+    padding: 0 20px;
+    margin-left: 20px;
+    color: #AE9CB0;
+}
+
+input#time_table_01:checked ~ label svg,
+input#time_table_02:checked ~ label svg,
+input#time_table_03:checked ~ label svg,
+input#time_table_04:checked ~ label svg{
+    transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+input#time_table_01:checked ~ ul.sub-items,
+input#time_table_02:checked ~ ul.sub-items,
+input#time_table_03:checked ~ ul.sub-items,
+input#time_table_04:checked ~ ul.sub-items{
+    display: block;
+}
+
+li input[type="checkbox"] {
+    display: none;
+}
+
+label.time:hover,
+ul.sub-items li:hover {
+    background: rgba(229, 212, 232, 0.1);
 }
 
 div.color{

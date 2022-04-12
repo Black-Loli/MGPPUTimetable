@@ -12,6 +12,7 @@ body.dark{
 
 h1, h2{
     margin: 0;
+    font-weight: 700;
 }
 
 div.parent{
@@ -26,7 +27,7 @@ div.parent{
     justify-content: center;
 }
 
-div.dark, div.light{
+div.div{
     width: 50%;
     height: 50%;
     margin: auto;
@@ -35,27 +36,18 @@ div.dark, div.light{
     align-content: center;
     flex-direction: column;
     justify-content: space-evenly;
-}
-
-div.light{
     background: #FCF6FB;
     box-shadow: 10px 20px 50px 10px rgba(149, 93, 142, 0.5);
     color: #955D8E;
 }
 
-div.dark{
-    background: #2E1B2C;
-    box-shadow: 10px 20px 50px 20px rgba(229, 212, 232, 0.5);
-    color: #E5D4E8;
-}
-
 div.entrance{
     width: 40%;
-    height: 85%;
+    height: 75%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding-left: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 svg.loading{
@@ -69,7 +61,8 @@ h1.loading{
 }
 
 ul{
-    margin: 0;
+    width: 90%;
+    margin: 30px;
     padding: 0;
     text-align: left;
 }
@@ -84,11 +77,48 @@ label.time{
     justify-content: space-between;
     align-items: center;
     font-size: 36px;
+    padding: 0 5px;
 }
 
 svg{
-    padding-left: 30px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    padding-left: 2%;
     stroke: #955D8E;
+}
+
+ul.sub-items{
+    display: none;
+    font-size: 34px;
+    padding: 0 20px;
+    margin: 0 0 0 20px;
+    color: #B48BAF;
+}
+
+input#time_table_01:checked ~ label svg,
+input#time_table_02:checked ~ label svg,
+input#time_table_03:checked ~ label svg,
+input#time_table_04:checked ~ label svg{
+    transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+input#time_table_01:checked ~ ul.sub-items,
+input#time_table_02:checked ~ ul.sub-items,
+input#time_table_03:checked ~ ul.sub-items,
+input#time_table_04:checked ~ ul.sub-items{
+    display: block;
+}
+
+li input[type="checkbox"] {
+    display: none;
+}
+
+label.time:hover,
+ul.sub-items li:hover {
+    background: rgba(149, 93, 142, 0.1);
+}
+
+ul.sub-items li{
+    padding: 0 5px;
 }
 
 div.color{
@@ -96,8 +126,7 @@ div.color{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    text-align: left;
-    float: right;
+    margin: 35px;
 }
 
 div.color h2{
@@ -137,6 +166,6 @@ div.color input[type='checkbox'].checkbox + label:before {
 
 div.color input[type='checkbox'].checkbox:checked + label:before {
     left: 42px;
-    background: #FCF6FB;
+    background: #646464;
     box-shadow: 0 0 12px rgba(252, 246, 251, 0.5);
 }
