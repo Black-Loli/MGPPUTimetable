@@ -1,13 +1,6 @@
 body{
     font-family: 'Bellota Text', cursive;
-}
-
-body.light{
     background: #FCF6FB;
-}
-
-body.dark{
-    background: #2E1B2C;
 }
 
 h1, h2{
