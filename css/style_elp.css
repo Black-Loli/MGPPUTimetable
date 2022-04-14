@@ -73,7 +73,7 @@ label.time{
     padding: 0 5px;
 }
 
-svg{
+svg.click{
     transform: matrix(1, 0, 0, 1, 0, 0);
     padding-left: 2%;
     stroke: #955D8E;
