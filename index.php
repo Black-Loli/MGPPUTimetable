@@ -10,7 +10,7 @@
 </head>
 <body>
 <input type="checkbox" id="ham-menu">
-<label for="ham-menu">
+<label for="ham-menu" class="menu">
     <div class="hide-des">
         <span class="menu-line"></span>
         <span class="menu-line"></span>
@@ -24,13 +24,80 @@
 <div class="full-page-green"></div>
 <div class="ham-menu">
     <ul class="centre-text bold-text">
-        <li>Home</li>
-        <li>Categories</li>
-        <li>Services</li>
-        <li>Shop</li>
-        <li>Support</li>
-        <li>Contact us</li>
+        <li>
+            <input type="checkbox" id="time_table_01"/>
+            <label for="time_table_01" class="time">
+                Расписание
+                <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line y1="-2" x2="19.3367" y2="-2" transform="matrix(0.706464 -0.707749 0.706464 0.707749 14.1777 16.6855)" stroke-width="4"/>
+                    <line y1="-2" x2="19.3375" y2="-2" transform="matrix(0.689819 0.723982 -0.722728 0.691132 0.838379 3)" stroke-width="4"/>
+                </svg>
+            </label>
+
+            <ul class="sub-items">
+                <li> На сегодня </li>
+                <li> На неделю </li>
+                <li> Выбрать дату </li>
+            </ul>
+        </li>
+
+        <li>
+            <input type="checkbox" id="time_table_02"/>
+            <label for="time_table_02" class="time">
+                Преподаватели в корпусе
+                <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line y1="-2" x2="19.3367" y2="-2" transform="matrix(0.706464 -0.707749 0.706464 0.707749 14.1777 16.6855)" stroke-width="4"/>
+                    <line y1="-2" x2="19.3375" y2="-2" transform="matrix(0.689819 0.723982 -0.722728 0.691132 0.838379 3)" stroke-width="4"/>
+                </svg>
+            </label>
+
+            <ul class="sub-items">
+                <li> Сегодня </li>
+                <li> В течение недели </li>
+                <li> Выбрать период </li>
+            </ul>
+        </li>
+
+        <li>
+            <input type="checkbox" id="time_table_03"/>
+            <label for="time_table_03" class="time">
+                Группы в корпусе
+                <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line y1="-2" x2="19.3367" y2="-2" transform="matrix(0.706464 -0.707749 0.706464 0.707749 14.1777 16.6855)" stroke-width="4"/>
+                    <line y1="-2" x2="19.3375" y2="-2" transform="matrix(0.689819 0.723982 -0.722728 0.691132 0.838379 3)" stroke-width="4"/>
+                </svg>
+            </label>
+
+            <ul class="sub-items">
+                <li> Сегодня </li>
+                <li> В течение недели </li>
+                <li> Выбрать период </li>
+            </ul>
+        </li>
+
+        <li>
+            <input type="checkbox" id="time_table_04"/>
+            <label for="time_table_04" class="time">
+                Кабинеты
+                <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line y1="-2" x2="19.3367" y2="-2" transform="matrix(0.706464 -0.707749 0.706464 0.707749 14.1777 16.6855)" stroke-width="4"/>
+                    <line y1="-2" x2="19.3375" y2="-2" transform="matrix(0.689819 0.723982 -0.722728 0.691132 0.838379 3)" stroke-width="4"/>
+                </svg>
+            </label>
+
+            <ul class="sub-items">
+                <li> На сегодня </li>
+                <li> На неделю </li>
+                <li> Выбрать период </li>
+            </ul>
+        </li>
     </ul>
+
+    <div class="color">
+        <h2> Включить тёмную тему </h2>
+        <input type="checkbox" class="checkbox" id="checkbox"/>
+        <label for="checkbox"></label>
+    </div>
 </div>
 </body>
 </html>
