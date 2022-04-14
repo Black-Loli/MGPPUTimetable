@@ -34,6 +34,10 @@ label.menu {
     border-radius: 10px;
 }
 
+label.menu:hover{
+    cursor: pointer;
+}
+
 .ham-menu {
     width: 35vw;
     height: 100%;
@@ -200,6 +204,7 @@ li input[type="checkbox"] {
 label.time:hover,
 ul.sub-items li:hover {
     background: rgba(149, 93, 142, 0.1);
+    cursor: pointer;
 }
 
 ul.sub-items li{
