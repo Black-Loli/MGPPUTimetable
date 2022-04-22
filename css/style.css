@@ -267,21 +267,3 @@ div.color input[type='checkbox'].checkbox:checked + label:before {
     height: 100%;
     overflow: auto;
 }
-
-div.line1{
-    margin: 400px auto 0;
-    width: 90%;
-    height: 4px;
-    background: #955D8E;
-    box-shadow: 0 -145px 13px 250px rgba(114, 95, 111, 0.2);
-    filter: blur(7px);
-}
-
-div.line2{
-    margin: 900px auto 0;
-    width: 90%;
-    height: 4px;
-    background: #955D8E;
-    box-shadow: 0 145px 13px 250px rgba(114, 95, 111, 0.2);
-    filter: blur(7px);
-}

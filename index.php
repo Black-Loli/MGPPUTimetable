@@ -141,8 +141,6 @@
         </div>
     </div>
 
-    <div class="line1"></div>
-    <div class="line2"></div>
 </div>
 </body>
 </html>
