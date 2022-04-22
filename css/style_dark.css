@@ -252,3 +252,21 @@ div.color input[type='checkbox'].checkbox:checked + label:before {
     background: #FCF6FB;
     box-shadow: 0 0 12px rgba(252, 246, 251, 0.5);
 }
+
+div.overlay{
+    z-index: 5;
+    background: rgba(46, 27, 44, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+div#student_tab{
+    background: #2E1B2C;
+    box-shadow: 10px 20px 50px 10px rgba(229, 212, 232, 0.5);
+    width: 50%;
+    height: 55%;
+}

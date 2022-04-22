@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>...</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_dark.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
     </label>
 
     <div class="full-page-green"></div>
-    <div class="ham-menu">
+    <div class="ham-menu" id="menu">
         <ul class="centre-text bold-text">
             <li>
                 <input type="checkbox" id="time_table_01"/>
@@ -41,7 +41,7 @@
 
                 <ul class="sub-items">
                     <li>
-                        <a> На сегодня</a>
+                        <a id="time_today"> На сегодня</a>
                     </li>
                     <li>
                         <a> На неделю</a>
@@ -141,6 +141,42 @@
         </div>
     </div>
 
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
+
+    <div class="overlay">
+        <div id="student_tab">
+            <h1>
+                hklfrllldfgfdgbklgblhilhtgbbh
+            </h1>
+        </div>
+    </div>
 </div>
 </body>
 </html>
