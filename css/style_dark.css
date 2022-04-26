@@ -1,4 +1,4 @@
-body{
+body {
     font-family: 'Bellota Text', cursive;
     background: #2E1B2C;
     color: #E5D4E8;
@@ -17,15 +17,15 @@ body{
     display: none;
 }
 
-label.menu {
+.menu {
     display: block;
     position: fixed;
     top: 30px;
     left: 30px;
-    z-index: 999;
+    z-index: 3;
     width: 60px;
     height: 60px;
-    background: rgba(46, 28, 43, 0.5);
+    background: rgba(46, 28, 43, 0.7);
     border: 2px solid #E5D4E8;
     border-radius: 10px;
 }
@@ -37,7 +37,7 @@ label.menu {
     top: 0;
     visibility: hidden;
     transform: translate(-110%);
-    z-index: 998;
+    z-index: 2;
     background-color: #2E1B2C;
     box-shadow: 20px 0 50px 10px rgba(229, 212, 232, 0.5);
     transition: 1s;
@@ -64,7 +64,7 @@ label.menu {
     visibility: visible;
 }
 
-.full-page-green {
+#overlay_menu {
     position: fixed;
     top: 0;
     left: 0;
@@ -140,18 +140,18 @@ label.menu {
     transform: translateY(-17px) rotate(45deg);
 }
 
-ul{
+ul {
     width: 90%;
     margin: 30px;
     padding: 0;
     text-align: left;
 }
 
-li{
+li {
     list-style-type: none;
 }
 
-label.time{
+label.time {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -161,13 +161,13 @@ label.time{
     margin: 10px;
 }
 
-svg.click{
+svg.click {
     transform: matrix(1, 0, 0, 1, 0, 0);
     padding-left: 2%;
     stroke: #E5D4E8;
 }
 
-ul.sub-items{
+ul.sub-items {
     display: none;
     font-size: 30px;
     padding: 0 20px;
@@ -178,18 +178,18 @@ ul.sub-items{
 input#time_table_01:checked ~ label svg,
 input#time_table_02:checked ~ label svg,
 input#time_table_03:checked ~ label svg,
-input#time_table_04:checked ~ label svg{
+input#time_table_04:checked ~ label svg {
     transform: matrix(1, 0, 0, -1, 0, 0);
 }
 
 input#time_table_01:checked ~ ul.sub-items,
 input#time_table_02:checked ~ ul.sub-items,
 input#time_table_03:checked ~ ul.sub-items,
-input#time_table_04:checked ~ ul.sub-items{
+input#time_table_04:checked ~ ul.sub-items {
     display: block;
 }
 
-li input[type="checkbox"] {
+li input[type="radio"] {
     display: none;
 }
 
@@ -198,12 +198,12 @@ ul.sub-items li:hover {
     background: rgba(149, 93, 142, 0.1);
 }
 
-ul.sub-items li{
+ul.sub-items li {
     padding: 0 5px;
     margin: 10px;
 }
 
-div.color{
+div.color {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -211,7 +211,7 @@ div.color{
     margin: 35px;
 }
 
-div.color h2{
+div.color h2 {
     margin-right: 20px;
     font-size: 20px;
 }
@@ -253,7 +253,7 @@ div.color input[type='checkbox'].checkbox:checked + label:before {
     box-shadow: 0 0 12px rgba(252, 246, 251, 0.5);
 }
 
-div.overlay{
+div.overlay {
     z-index: 5;
     background: rgba(46, 27, 44, 0.5);
     position: fixed;
@@ -261,12 +261,51 @@ div.overlay{
     top: 0;
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
 }
 
-div#student_tab{
+div.overlay.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.modal {
     background: #2E1B2C;
     box-shadow: 10px 20px 50px 10px rgba(229, 212, 232, 0.5);
     width: 50%;
     height: 55%;
+    padding: 68px 78px;
+}
+
+.tab-list {
+    display: flex;
+    border-bottom: 1px solid #E5D4E8;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 45px;
+}
+
+.tab_selector_label {
+    text-align: center;
+    width: 50%;
+    padding: .4rem .8rem;
+}
+
+.tab-list input[type="radio"] {
+    display: none;
+}
+
+.tab_selector:checked + .tab_selector_label {
+    border-bottom: 3px solid #E5D4E8;
+}
+
+.tab-content div.active {
+    display: block;
+}
+
+.tab-content div {
+    display: none;
 }

@@ -11,7 +11,7 @@
 <body>
 <div class="main">
     <input type="checkbox" id="ham-menu">
-    <label for="ham-menu" class="menu">
+    <label for="ham-menu" class="menu" id="button_menu">
         <div class="hide-des">
             <span class="menu-line"></span>
             <span class="menu-line"></span>
@@ -22,11 +22,11 @@
         </div>
     </label>
 
-    <div class="full-page-green"></div>
+    <div id="overlay_menu"></div>
     <div class="ham-menu" id="menu">
         <ul class="centre-text bold-text">
             <li>
-                <input type="checkbox" id="time_table_01"/>
+                <input type="radio" name="left_submenu" id="time_table_01"/>
                 <label for="time_table_01" class="time">
                     Расписание
                     <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none"
@@ -44,7 +44,7 @@
                         <a id="time_today"> На сегодня</a>
                     </li>
                     <li>
-                        <a> На неделю</a>
+                        <a id="time_week"> На неделю</a>
                     </li>
                     <li>
                         <a> Выбрать дату </a>
@@ -53,7 +53,7 @@
             </li>
 
             <li>
-                <input type="checkbox" id="time_table_02"/>
+                <input type="radio" name="left_submenu" id="time_table_02"/>
                 <label for="time_table_02" class="time">
                     Преподаватели в корпусе
                     <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none"
@@ -80,7 +80,7 @@
             </li>
 
             <li>
-                <input type="checkbox" id="time_table_03"/>
+                <input type="radio" name="left_submenu" id="time_table_03"/>
                 <label for="time_table_03" class="time">
                     Группы в корпусе
                     <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none"
@@ -107,7 +107,7 @@
             </li>
 
             <li>
-                <input type="checkbox" id="time_table_04"/>
+                <input type="radio" name="left_submenu" id="time_table_04"/>
                 <label for="time_table_04" class="time">
                     Кабинеты
                     <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none"
@@ -140,43 +140,69 @@
             <label for="checkbox"></label>
         </div>
     </div>
+    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dolorum eos fuga hic labore molestias nam
+        nulla omnis placeat quia quo quod quos reiciendis temporibus ullam, vero voluptatem? Est exercitationem id nobis
+        recusandae tenetur. Enim illo, ipsam ipsum nam porro quia! Amet atque aut commodi consequuntur distinctio eius
+        enim error et, ex facilis fugiat fugit inventore laudantium, maiores maxime nesciunt nihil nisi nulla odio odit
+        possimus quaerat repudiandae, similique sint sit suscipit veniam voluptate! At delectus dolor iure pariatur,
+        tempora voluptatibus. Aliquam assumenda debitis, dicta est excepturi explicabo in incidunt, nisi nobis quae
+        quasi quidem sunt. Dolorum eos hic officiis quos sit. Aliquid consequuntur delectus excepturi modi officiis
+        pariatur possimus quas quia quis sunt! Beatae blanditiis exercitationem expedita facilis id, illum laborum
+        vitae? Beatae deleniti dolores illum inventore ipsum laudantium nam nobis quaerat quibusdam totam! Animi atque
+        consectetur dignissimos error est, ex excepturi incidunt maiores quae quas qui quia recusandae repellat
+        repellendus sequi similique, sunt tenetur, voluptas? Ab ad architecto assumenda consequatur, cum cupiditate
+        deleniti dolorem eligendi esse eveniet, exercitationem fuga, harum iusto laudantium libero minus odit. Aliquid
+        amet dolore, doloribus, ex ipsa maxime mollitia nesciunt nisi numquam obcaecati optio possimus quae quaerat
+        recusandae reprehenderit sint soluta voluptas, voluptatem. Soluta!</h1>
 
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-    <h1>bhidfbdfgblfdblfblfbfzblfbljhonfrre evrui glrrgjbf</h1>
-
-    <div class="overlay">
-        <div id="student_tab">
-            <h1>
-                hklfrllldfgfdgbklgblhilhtgbbh
-            </h1>
+    <div id="profile_selection_overlay" class="overlay active">
+        <div class="modal">
+            <div class="tab-list">
+                <input type="radio" name="profile_selector" id="student_tab" class="tab_selector" checked>
+                <label for="student_tab" class="tab_selector_label">
+                    Студент
+                </label>
+                <input type="radio" name="profile_selector" id="professor_tab" class="tab_selector">
+                <label for="professor_tab" class="tab_selector_label">
+                    Перподаватель
+                </label>
+            </div>
+            <div class="tab-content">
+                <div id="student_tab_content" class="active">
+                    <h1> Студентяка</h1>
+                </div>
+                <div id="professor_tab_content">
+                    <h1> ПрофеСРЯка </h1>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    const overlay_menu = document.getElementById('overlay_menu');
+    const menu = document.getElementById('menu');
+    const student_tab = document.getElementById('student_tab');
+    const profile_selection_overlay = $('#profile_selection_overlay');
+
+    function toggleModal(closingObject, openingObject) {
+        $(closingObject).css('display', 'none');
+        $('#ham-menu').prop('checked', false)
+        openingObject.addClass('active');
+    }
+
+    document.getElementById("time_today").onclick = function () {
+        toggleModal([menu, overlay_menu], profile_selection_overlay);
+    }
+
+    $('.tab_selector').click(function (event){
+        console.log(event.target.id)
+        $('.tab-content .active').removeClass('active');
+        $('.tab-content').children(`#${event.target.id}_content`).addClass('active');
+    })
+</script>
+
 </html>
