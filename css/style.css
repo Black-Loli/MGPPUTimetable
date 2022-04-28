@@ -270,16 +270,90 @@ div.overlay{
     top: 0;
     width: 100%;
     height: 100%;
+    display: none;
+}
+
+div.overlay.active {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-div#student_tab{
+div.modal {
     background: #FCF6FB;
-    color: #955D8E;
     box-shadow: 10px 20px 50px 10px rgba(149, 93, 142, 0.5);
     width: 50%;
-    height: 55%;
-    z-index: 7;
+    height: 60%;
+    padding: 45px 80px;
+}
+
+.tab-list {
+    display: flex;
+    border-bottom: 1px solid #955D8E;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 45px;
+    margin-bottom: 7%;
+}
+
+.tab_selector_label {
+    text-align: center;
+    width: 50%;
+    padding: .4rem .8rem;
+}
+
+.tab-list input[type="radio"] {
+    display: none;
+}
+
+.tab_selector:checked + .tab_selector_label {
+    border-bottom: 3px solid #955D8E;
+}
+
+.tab-content div.active {
+    display: block;
+}
+
+.tab-content div {
+    display: none;
+}
+
+select{
+    display: flex;
+    font-family: 'Bellota Text', cursive;
+    border: 2px solid #955D8E;
+    border-radius: 10px;
+    font-size: 28px;
+    line-height: 45px;
+    background: #FCF6FB;
+    color: #955D8E;
+    width: 100%;
+    padding: .4rem .8rem;
+    margin: 5% 0;
+}
+
+select.professor_tab{
+    margin: 13.4% 0;
+}
+
+button.btn{
+    font-family: 'Bellota Text', cursive;
+    border: 2px solid #955D8E;
+    border-radius: 10px;
+    font-size: 22px;
+    line-height: 45px;
+    background: #FCF6FB;
+    color: #955D8E;
+    width: 25%;
+    float: right;
+}
+
+button.btn:hover,
+select:hover{
+    cursor: pointer;
+    background: rgba(237, 223, 234, 0.5);
+}
+
+select:focus{
+    box-shadow: 0 0 0.9rem 0.1rem rgba(149, 93, 142, 0.5);
 }

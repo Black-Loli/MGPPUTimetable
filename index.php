@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>...</title>
-    <link rel="stylesheet" href="css/style_dark.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap" rel="stylesheet">
@@ -164,18 +164,18 @@
                 </label>
                 <input type="radio" name="profile_selector" id="professor_tab" class="tab_selector">
                 <label for="professor_tab" class="tab_selector_label">
-                    Перподаватель
+                    Преподаватель
                 </label>
             </div>
             <div class="tab-content">
                 <div id="student_tab_content" class="active">
-                    <select name="type" class="dol" required="">
+                    <select name="type" required="">
                         <option class="op" selected>Выберите факультет</option>
 
                         <!  <php> ..>
                     </select>
 
-                    <select name="type" class="dol" required="">
+                    <select name="type" required="">
                         <option class="op" selected>Выберите группу</option>
 
                         <!  <php> ..>
@@ -184,7 +184,13 @@
                     <button type="submit" class="btn"> Показать </button>
                 </div>
                 <div id="professor_tab_content">
-                    <h1> ПрофеСРЯка </h1>
+                    <select name="type" class="professor_tab" required="">
+                        <option class="op" selected>Выберите преподавателя</option>
+
+                        <!  <php> ..>
+                    </select>
+
+                    <button type="submit" class="btn"> Показать </button>
                 </div>
             </div>
         </div>
