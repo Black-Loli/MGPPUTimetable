@@ -274,18 +274,17 @@ div.modal {
     background: #2E1B2C;
     box-shadow: 10px 20px 50px 10px rgba(229, 212, 232, 0.5);
     width: 50%;
-    height: 55%;
-    padding: 68px 78px;
+    height: 60%;
+    padding: 45px 80px;
 }
 
 .tab-list {
     display: flex;
     border-bottom: 1px solid #E5D4E8;
-
-    font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 32px;
     line-height: 45px;
+    margin-bottom: 5%;
 }
 
 .tab_selector_label {
@@ -308,4 +307,30 @@ div.modal {
 
 .tab-content div {
     display: none;
+}
+
+select{
+    display: flex;
+    font-family: 'Bellota Text', cursive;
+    border: 2px solid #E5D4E8;
+    border-radius: 10px;
+    font-size: 28px;
+    line-height: 45px;
+    background: #2E1B2C;
+    color: #E5D4E8;
+    width: 100%;
+    padding: .4rem .8rem;
+    margin: 5% 0;
+}
+
+button.btn{
+    font-family: 'Bellota Text', cursive;
+    border: 2px solid #E5D4E8;
+    border-radius: 10px;
+    font-size: 22px;
+    line-height: 45px;
+    background: #2E1B2C;
+    color: #E5D4E8;
+    width: 25%;
+    float: right;
 }

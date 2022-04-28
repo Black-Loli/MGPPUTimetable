@@ -169,7 +169,19 @@
             </div>
             <div class="tab-content">
                 <div id="student_tab_content" class="active">
-                    <h1> Студентяка</h1>
+                    <select name="type" class="dol" required="">
+                        <option class="op" selected>Выберите факультет</option>
+
+                        <!  <php> ..>
+                    </select>
+
+                    <select name="type" class="dol" required="">
+                        <option class="op" selected>Выберите группу</option>
+
+                        <!  <php> ..>
+                    </select>
+
+                    <button type="submit" class="btn"> Показать </button>
                 </div>
                 <div id="professor_tab_content">
                     <h1> ПрофеСРЯка </h1>
@@ -181,7 +193,6 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <script>
     const overlay_menu = document.getElementById('overlay_menu');
     const menu = document.getElementById('menu');
