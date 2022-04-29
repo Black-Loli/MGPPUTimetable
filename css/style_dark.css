@@ -284,7 +284,7 @@ div.modal {
     font-weight: 700;
     font-size: 32px;
     line-height: 45px;
-    margin-bottom: 5%;
+    margin-bottom: 7%;
 }
 
 .tab_selector_label {
@@ -323,6 +323,10 @@ select{
     margin: 5% 0;
 }
 
+select.professor_tab{
+    margin: 13.4% 0;
+}
+
 button.btn{
     font-family: 'Bellota Text', cursive;
     border: 2px solid #E5D4E8;
@@ -333,4 +337,14 @@ button.btn{
     color: #E5D4E8;
     width: 25%;
     float: right;
+}
+
+button.btn:hover,
+select:hover{
+    cursor: pointer;
+    background: rgba(34, 24, 33, 0.5);
+}
+
+select:focus{
+    box-shadow: 0 0 0.9rem 0.1rem rgba(229, 212, 232, 0.5);
 }
