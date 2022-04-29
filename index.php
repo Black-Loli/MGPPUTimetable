@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>...</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_dark.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap" rel="stylesheet">
@@ -47,7 +48,7 @@
                         <a id="time_week"> На неделю</a>
                     </li>
                     <li>
-                        <a> На семестр </a>
+                        <a id="time_term"> На семестр </a>
                     </li>
                 </ul>
             </li>
@@ -155,7 +156,7 @@
         amet dolore, doloribus, ex ipsa maxime mollitia nesciunt nisi numquam obcaecati optio possimus quae quaerat
         recusandae reprehenderit sint soluta voluptas, voluptatem. Soluta!</h1>
 
-    <div id="profile_selection_overlay" class="overlay active">
+    <div id="profile_selection_overlay" class="overlay">
         <div class="modal">
             <div class="tab-list">
                 <input type="radio" name="profile_selector" id="student_tab" class="tab_selector" checked>
@@ -207,11 +208,19 @@
 
     function toggleModal(closingObject, openingObject) {
         $(closingObject).css('display', 'none');
-        $('#ham-menu').prop('checked', false)
+        $('#ham-menu').prop( 'checked', false )
         openingObject.addClass('active');
     }
 
     document.getElementById("time_today").onclick = function () {
+        toggleModal([menu, overlay_menu], profile_selection_overlay);
+    }
+
+    document.getElementById("time_week").onclick = function () {
+        toggleModal([menu, overlay_menu], profile_selection_overlay);
+    }
+
+    document.getElementById("time_term").onclick = function () {
         toggleModal([menu, overlay_menu], profile_selection_overlay);
     }
 

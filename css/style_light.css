@@ -1,0 +1,69 @@
+body {
+  background: #FCF6FB;
+  color: #955D8E; }
+
+label.menu {
+  background: rgba(252, 246, 251, 0.5);
+  border: 2px solid #955D8E; }
+
+.ham-menu {
+  background-color: #FCF6FB;
+  box-shadow: 20px 0 50px 10px rgba(149, 93, 142, 0.5); }
+
+.ham-menu > ul > li {
+  color: #955D8E; }
+
+#overlay_menu {
+  background: rgba(252, 246, 251, 0.5); }
+
+.menu-line {
+  background-color: #955D8E; }
+
+#ham-menu:checked + label span {
+  background-color: #955D8E; }
+
+svg.click {
+  stroke: #955D8E; }
+
+ul.sub-items {
+  color: #B48BAF; }
+
+input[type='checkbox'].checkbox + label:after {
+  border: 1px solid #955D8E; }
+
+div.color input[type='checkbox'].checkbox + label:before {
+  background: #955D8E; }
+
+div.color input[type='checkbox'].checkbox:checked + label:before {
+  background: #646464;
+  box-shadow: 0 0 12px rgba(252, 246, 251, 0.5); }
+
+div.overlay {
+  background: rgba(252, 246, 251, 0.5); }
+
+div.modal {
+  background: #FCF6FB;
+  box-shadow: 10px 20px 50px 10px rgba(149, 93, 142, 0.5); }
+
+.tab-list {
+  border-bottom: 1px solid #955D8E; }
+
+.tab_selector:checked + .tab_selector_label {
+  border-bottom: 3px solid #955D8E; }
+
+select {
+  border: 2px solid #955D8E;
+  background: #FCF6FB;
+  color: #955D8E; }
+
+button.btn {
+  border: 2px solid #955D8E;
+  background: #FCF6FB;
+  color: #955D8E; }
+
+button.btn:hover,
+select:hover {
+  background: rgba(180, 139, 175, 0.5); }
+
+select:focus {
+  box-shadow: 0 0 0.9rem 0.1rem rgba(149, 93, 142, 0.5); }

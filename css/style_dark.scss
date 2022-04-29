@@ -1,0 +1,95 @@
+$background: #2E1B2C;
+$text_border: #E5D4E8;
+$secondary_timeline: #261924;
+$highlighting: #AE9CB0;
+$overlay: rgba(46, 27, 44, 0.5);
+
+body {
+    background: $background;
+    color: $text_border;
+}
+
+.menu {
+    background: rgba($background, 0.7);
+    border: 2px solid $text_border;
+}
+
+.ham-menu {
+    background-color: $background;
+    box-shadow: 20px 0 50px 10px rgba($text_border, 0.5);
+}
+
+.ham-menu > ul > li {
+    color: $text_border;
+}
+
+#overlay_menu {
+    background: $overlay;
+}
+
+.menu-line {
+    background-color: $text_border;
+}
+
+#ham-menu:checked + label span {
+    background-color: $text_border;
+}
+
+svg.click {
+    stroke: $text_border;
+}
+
+ul.sub-items {
+    color: $highlighting;
+}
+
+input[type='checkbox'].checkbox + label:after {
+    border: 1px solid $text_border;
+}
+
+div.color input[type='checkbox'].checkbox + label:before {
+    background: gray;
+}
+
+div.color input[type='checkbox'].checkbox:checked + label:before {
+    background: $text_border;
+    box-shadow: 0 0 12px rgba($text_border, 0.5);
+}
+
+div.overlay {
+    background: $overlay;
+}
+
+div.modal {
+    background: $background;
+    box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
+}
+
+.tab-list {
+    border-bottom: 1px solid $text_border;
+}
+
+.tab_selector:checked + .tab_selector_label {
+    border-bottom: 3px solid $text_border;
+}
+
+select{
+    border: 2px solid $text_border;
+    background: $background;
+    color: $text_border;
+}
+button.btn{
+    border: 2px solid $text_border;
+    background: $background;
+    color: $text_border;
+}
+
+button.btn:hover,
+select:hover{
+    cursor: pointer;
+    background: rgba($highlighting, 0.5);
+}
+
+select:focus{
+    box-shadow: 0 0 0.9rem 0.1rem rgba($highlighting, 0.5);
+}
