@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Выбор </title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style_dark.css">
+    <link rel="stylesheet" href="css/style_light.css" id="themeLink">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="parent">
+<div class="parent" id="menu">
     <div class="div entrance">
         <ul>
             <li>
@@ -24,9 +24,15 @@
                 </label>
 
                 <ul class="sub-items">
-                    <li> На сегодня </li>
-                    <li> На неделю </li>
-                    <li> Выбрать дату </li>
+                    <li id="time_today">
+                        <a> На сегодня </a>
+                    </li>
+                    <li id="time_week">
+                        <a> На неделю </a>
+                    </li>
+                    <li id="time_term">
+                        <a> На семестр </a>
+                    </li>
                 </ul>
             </li>
 
@@ -41,9 +47,15 @@
                 </label>
 
                 <ul class="sub-items">
-                    <li> Сегодня </li>
-                    <li> В течение недели </li>
-                    <li> Выбрать период </li>
+                    <li>
+                        <a> Сегодня </a>
+                    </li>
+                    <li>
+                        <a href="loading.html"> В течение недели </a>
+                    </li>
+                    <li>
+                        <a href="loading.html"> На семестр </a>
+                    </li>
                 </ul>
             </li>
 
@@ -58,9 +70,15 @@
                 </label>
 
                 <ul class="sub-items">
-                    <li> Сегодня </li>
-                    <li> В течение недели </li>
-                    <li> Выбрать период </li>
+                    <li>
+                        <a> Сегодня </a>
+                    </li>
+                    <li>
+                        <a href="loading.html"> В течение недели </a>
+                    </li>
+                    <li>
+                        <a href="loading.html"> На семестр </a>
+                    </li>
                 </ul>
             </li>
 
@@ -75,19 +93,113 @@
                 </label>
 
                 <ul class="sub-items">
-                    <li> На сегодня </li>
-                    <li> На неделю </li>
-                    <li> Выбрать период </li>
+                    <li>
+                        <a> На сегодня </a>
+                    </li>
+                    <li>
+                        <a href="loading.html"> На неделю </a>
+                    </li>
+                    <li>
+                        <a> На семестр </a>
+                    </li>
                 </ul>
             </li>
         </ul>
 
         <div class="color">
             <h2> Включить тёмную тему </h2>
-            <input type="checkbox" class="checkbox" id="checkbox"/>
-            <label for="checkbox"></label>
+            <input type="checkbox" class="checkbox" id="themeToggleCheckbox"/>
+            <label for="themeToggleCheckbox"></label>
+        </div>
+    </div>
+</div>
+
+<div id="profile_selection_overlay" class="overlay">
+    <div class="modal">
+        <div class="tab-list">
+            <input type="radio" name="profile_selector" id="student_tab" class="tab_selector" checked>
+            <label for="student_tab" class="tab_selector_label">
+                Студент
+            </label>
+            <input type="radio" name="profile_selector" id="professor_tab" class="tab_selector">
+            <label for="professor_tab" class="tab_selector_label">
+                Преподаватель
+            </label>
+        </div>
+        <div class="tab-content">
+            <div id="student_tab_content" class="active">
+                <select name="type" required="">
+                    <option class="op" selected>Выберите факультет</option>
+
+                </select>
+
+                <select name="type" required="">
+                    <option class="op" selected>Выберите группу</option>
+
+                </select>
+
+                <button type="submit" class="btn"> Показать</button>
+            </div>
+            <div id="professor_tab_content">
+                <select name="type" class="professor_tab" required="">
+                    <option class="op" selected>Выберите преподавателя</option>
+                    <option class="op">Попков</option>
+
+                </select>
+
+                <button type="submit" class="btn"> Показать</button>
+            </div>
         </div>
     </div>
 </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="js/dark_or_light.js"></script> -->
+<script>
+    const menu = document.getElementById('menu');
+    const profile_selection_overlay = $('#profile_selection_overlay');
+
+    function toggleModal(closingObject, openingObject) {
+        $(closingObject).css('display', 'none');
+        $(openingObject).addClass('active');
+    }
+
+    document.getElementById("time_today").onclick = function () {
+        toggleModal(menu, profile_selection_overlay);
+    }
+
+    document.getElementById("time_week").onclick = function () {
+        toggleModal(menu, profile_selection_overlay);
+    }
+
+    document.getElementById("time_term").onclick = function () {
+        toggleModal(menu, profile_selection_overlay);
+    }
+
+    $('.tab_selector').click(function (event) {
+        console.log(event.target.id)
+        $('.tab-content .active').removeClass('active');
+        $('.tab-content').children(`#${event.target.id}_content`).addClass('active');
+    })
+
+    const themeLinkObject = document.getElementById('themeLink')
+
+    function setTheme(dark) {
+        localStorage.setItem('theme_link', `css/style_${dark ? 'dark' : 'light'}.css`)
+        if (dark) {
+            themeLinkObject.href = "css/style_dark.css";
+        } else {
+            themeLinkObject.href = "css/style_light.css";
+        }
+    }
+
+    $('#themeToggleCheckbox').change(function (e) {
+        setTheme(e.target.checked)
+        console.log("toggled", e.target.checked)
+    })
+
+
+</script>
+
 </html>

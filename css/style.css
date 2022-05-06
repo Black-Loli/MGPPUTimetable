@@ -37,6 +37,7 @@ div.div{
     align-content: center;
     flex-direction: column;
     justify-content: space-evenly;
+    transition: 1s;
 }
 
 div.entrance{
@@ -288,7 +289,7 @@ div.color input[type='checkbox'].checkbox:checked + label:before {
     left: 42px;
 }
 
-div.overlay{
+div.overlay, div.overlay_none{
     z-index: 5;
     position: fixed;
     left: 0;
@@ -363,4 +364,42 @@ button.btn{
 button.btn:hover,
 select:hover{
     cursor: pointer;
+}
+
+.container{
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 20px;
+    margin: 3% auto 0;
+}
+
+.slide{
+    height: 20vh;
+    border-radius: 20px;
+    margin: 3vh;
+    cursor: pointer;
+    flex: 1;
+    position: relative;
+    transition: all 500ms ease-out;
+}
+
+.slide h3{
+    position: absolute;
+    font-size: 24px;
+    padding-top: 0.8rem;
+    left: 20px;
+    margin: 0;
+    opacity: 0;
+}
+
+.slide.active{
+    flex: 5;
+}
+
+.slide.active h3{
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
 }

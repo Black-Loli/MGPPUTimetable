@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>...</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style_dark.css">
+    <link rel="stylesheet" href="css/style_light.css" id="themeLink">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap" rel="stylesheet">
@@ -72,10 +72,10 @@
                         <a> На сегодня</a>
                     </li>
                     <li>
-                        <a> На неделю</a>
+                        <a href="loading.html"> На неделю</a>
                     </li>
                     <li>
-                        <a> На семестр </a>
+                        <a href="loading.html"> На семестр </a>
                     </li>
                 </ul>
             </li>
@@ -99,10 +99,10 @@
                         <a> На сегодня</a>
                     </li>
                     <li>
-                        <a> На неделю</a>
+                        <a href="loading.html"> На неделю</a>
                     </li>
                     <li>
-                        <a> На семестр </a>
+                        <a href="loading.html"> На семестр </a>
                     </li>
                 </ul>
             </li>
@@ -126,10 +126,10 @@
                         <a> На сегодня</a>
                     </li>
                     <li>
-                        <a> На неделю</a>
+                        <a href="loading.html"> На неделю</a>
                     </li>
                     <li>
-                        <a> На семестр </a>
+                        <a href="loading.html"> На семестр </a>
                     </li>
                 </ul>
             </li>
@@ -137,24 +137,33 @@
 
         <div class="color">
             <h2> Включить тёмную тему </h2>
-            <input type="checkbox" class="checkbox" id="checkbox"/>
-            <label for="checkbox"></label>
+            <input type="checkbox" class="checkbox" id="themeToggleCheckbox"/>
+            <label for="themeToggleCheckbox"></label>
         </div>
     </div>
-    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dolorum eos fuga hic labore molestias nam
-        nulla omnis placeat quia quo quod quos reiciendis temporibus ullam, vero voluptatem? Est exercitationem id nobis
-        recusandae tenetur. Enim illo, ipsam ipsum nam porro quia! Amet atque aut commodi consequuntur distinctio eius
-        enim error et, ex facilis fugiat fugit inventore laudantium, maiores maxime nesciunt nihil nisi nulla odio odit
-        possimus quaerat repudiandae, similique sint sit suscipit veniam voluptate! At delectus dolor iure pariatur,
-        tempora voluptatibus. Aliquam assumenda debitis, dicta est excepturi explicabo in incidunt, nisi nobis quae
-        quasi quidem sunt. Dolorum eos hic officiis quos sit. Aliquid consequuntur delectus excepturi modi officiis
-        pariatur possimus quas quia quis sunt! Beatae blanditiis exercitationem expedita facilis id, illum laborum
-        vitae? Beatae deleniti dolores illum inventore ipsum laudantium nam nobis quaerat quibusdam totam! Animi atque
-        consectetur dignissimos error est, ex excepturi incidunt maiores quae quas qui quia recusandae repellat
-        repellendus sequi similique, sunt tenetur, voluptas? Ab ad architecto assumenda consequatur, cum cupiditate
-        deleniti dolorem eligendi esse eveniet, exercitationem fuga, harum iusto laudantium libero minus odit. Aliquid
-        amet dolore, doloribus, ex ipsa maxime mollitia nesciunt nisi numquam obcaecati optio possimus quae quaerat
-        recusandae reprehenderit sint soluta voluptas, voluptatem. Soluta!</h1>
+
+    <div class="container">
+
+        <div class="slide">
+            <h3> БлаБлаБла </h3>
+        </div>
+
+        <div class="slide active now">
+            <h3> Akita inu </h3>
+        </div>
+
+        <div class="slide">
+            <h3> Corgi </h3>
+        </div>
+
+        <div class="slide">
+            <h3> Shiba inu </h3>
+        </div>
+
+        <div class="slide">
+            <h3> Border collie </h3>
+        </div>
+    </div>
 
     <div id="profile_selection_overlay" class="overlay">
         <div class="modal">
@@ -173,25 +182,23 @@
                     <select name="type" required="">
                         <option class="op" selected>Выберите факультет</option>
 
-                        <!  <php> ..>
                     </select>
 
                     <select name="type" required="">
                         <option class="op" selected>Выберите группу</option>
 
-                        <!  <php> ..>
                     </select>
 
-                    <button type="submit" class="btn"> Показать </button>
+                    <button type="submit" class="btn"> Показать</button>
                 </div>
                 <div id="professor_tab_content">
                     <select name="type" class="professor_tab" required="">
                         <option class="op" selected>Выберите преподавателя</option>
+                        <option class="op">Попков</option>
 
-                        <!  <php> ..>
                     </select>
 
-                    <button type="submit" class="btn"> Показать </button>
+                    <button type="submit" class="btn"> Показать</button>
                 </div>
             </div>
         </div>
@@ -200,6 +207,7 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="js/dark_or_light.js"></script>
 <script>
     const overlay_menu = document.getElementById('overlay_menu');
     const menu = document.getElementById('menu');
@@ -208,7 +216,7 @@
 
     function toggleModal(closingObject, openingObject) {
         $(closingObject).css('display', 'none');
-        $('#ham-menu').prop( 'checked', false )
+        $('#ham-menu').prop('checked', false)
         openingObject.addClass('active');
     }
 
@@ -224,11 +232,12 @@
         toggleModal([menu, overlay_menu], profile_selection_overlay);
     }
 
-    $('.tab_selector').click(function (event){
+    $('.tab_selector').click(function (event) {
         console.log(event.target.id)
         $('.tab-content .active').removeClass('active');
         $('.tab-content').children(`#${event.target.id}_content`).addClass('active');
     })
 </script>
+<script src="js/slides.js"></script>
 
 </html>

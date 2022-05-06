@@ -2,6 +2,17 @@ body {
   background: #FCF6FB;
   color: #955D8E; }
 
+a:visited {
+  color: #B48BAF; }
+
+div.div {
+  background: #FCF6FB;
+  box-shadow: 10px 20px 50px 10px rgba(149, 93, 142, 0.5);
+  color: #955D8E; }
+
+svg.loading {
+  fill: #955D8E; }
+
 label.menu {
   background: rgba(252, 246, 251, 0.5);
   border: 2px solid #955D8E; }
@@ -66,4 +77,11 @@ select:hover {
   background: rgba(180, 139, 175, 0.5); }
 
 select:focus {
-  box-shadow: 0 0 0.9rem 0.1rem rgba(149, 93, 142, 0.5); }
+  box-shadow: 0 0 0.9rem 0.1rem rgba(180, 139, 175, 0.5); }
+
+div.slide {
+  background: #F2E6EF; }
+
+.slide.now {
+  background: #FCF6FB;
+  border: 2px solid #955D8E; }

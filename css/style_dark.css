@@ -2,6 +2,9 @@ body {
   background: #2E1B2C;
   color: #E5D4E8; }
 
+a:visited {
+  color: #AE9CB0; }
+
 div.div {
   background: #2E1B2C;
   box-shadow: 10px 20px 50px 10px rgba(229, 212, 232, 0.5);
@@ -76,3 +79,10 @@ select:hover {
 
 select:focus {
   box-shadow: 0 0 0.9rem 0.1rem rgba(174, 156, 176, 0.5); }
+
+div.slide {
+  background: #261924; }
+
+.slide.now {
+  background: #2E1B2C;
+  border: 2px solid #E5D4E8; }

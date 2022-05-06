@@ -9,6 +9,10 @@ body {
     color: $text_border;
 }
 
+a:visited{
+    color: $highlighting;
+}
+
 div.div{
     background: $background;
     box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
@@ -102,4 +106,13 @@ select:hover{
 
 select:focus{
     box-shadow: 0 0 0.9rem 0.1rem rgba($highlighting, 0.5);
+}
+
+div.slide{
+    background: $secondary_timeline;
+}
+
+.slide.now{
+    background: $background;
+    border: 2px solid $text_border;
 }
