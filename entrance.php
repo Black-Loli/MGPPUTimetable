@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Выбор </title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style_light.css" id="themeLink">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap" rel="stylesheet">
+    <?php include 'header.php'; ?>
 </head>
 <body>
 <div class="parent" id="menu">
@@ -51,10 +47,10 @@
                         <a> Сегодня </a>
                     </li>
                     <li>
-                        <a href="loading.html"> В течение недели </a>
+                        <a href="loading.php"> В течение недели </a>
                     </li>
                     <li>
-                        <a href="loading.html"> На семестр </a>
+                        <a href="loading.php"> На семестр </a>
                     </li>
                 </ul>
             </li>
@@ -74,10 +70,10 @@
                         <a> Сегодня </a>
                     </li>
                     <li>
-                        <a href="loading.html"> В течение недели </a>
+                        <a href="loading.php"> В течение недели </a>
                     </li>
                     <li>
-                        <a href="loading.html"> На семестр </a>
+                        <a href="loading.php"> На семестр </a>
                     </li>
                 </ul>
             </li>
@@ -97,7 +93,7 @@
                         <a> На сегодня </a>
                     </li>
                     <li>
-                        <a href="loading.html"> На неделю </a>
+                        <a href="loading.php"> На неделю </a>
                     </li>
                     <li>
                         <a> На семестр </a>
@@ -114,44 +110,8 @@
     </div>
 </div>
 
-<div id="profile_selection_overlay" class="overlay">
-    <div class="modal">
-        <div class="tab-list">
-            <input type="radio" name="profile_selector" id="student_tab" class="tab_selector" checked>
-            <label for="student_tab" class="tab_selector_label">
-                Студент
-            </label>
-            <input type="radio" name="profile_selector" id="professor_tab" class="tab_selector">
-            <label for="professor_tab" class="tab_selector_label">
-                Преподаватель
-            </label>
-        </div>
-        <div class="tab-content">
-            <div id="student_tab_content" class="active">
-                <select name="type" required="">
-                    <option class="op" selected>Выберите факультет</option>
+<?php include 'choice.php'; ?>
 
-                </select>
-
-                <select name="type" required="">
-                    <option class="op" selected>Выберите группу</option>
-
-                </select>
-
-                <button type="submit" class="btn"> Показать</button>
-            </div>
-            <div id="professor_tab_content">
-                <select name="type" class="professor_tab" required="">
-                    <option class="op" selected>Выберите преподавателя</option>
-                    <option class="op">Попков</option>
-
-                </select>
-
-                <button type="submit" class="btn"> Показать</button>
-            </div>
-        </div>
-    </div>
-</div>
 </body>
 
 <script src="jquery.min.js"></script>
