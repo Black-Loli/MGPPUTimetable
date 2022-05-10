@@ -10,32 +10,10 @@
     <?php include 'menu.html'; ?>
 
     <div class="container">
-        <!---->
-        <!--        <div class="slide active now">-->
-        <!--            <div class="time_lesson">-->
-        <!--                <h2 class="lesson_index"> Alko - Inu </h2>-->
-        <!--                <div class="lesson_range">-->
-        <!--                    <h2>09^00 - 10^30 </h2>-->
-        <!--                </div>-->
-        <!---->
-        <!--                <h2 class="lesson_name"> Lorem ipsum dolor sit. </h2>-->
-        <!--            </div>-->
-        <!---->
-        <!--            <div class="professor">-->
-        <!--                <h2> Преподаватель: </h2>-->
-        <!--                <h2 class="prof_name"> Исаков С.С. </h2>-->
-        <!--            </div>-->
-        <!---->
-        <!--            <div class="room">-->
-        <!--                <h2> Аудитория: </h2>-->
-        <!--                <h2 class="room_number"> 669 </h2>-->
-        <!--            </div>-->
-        <!--        </div>-->
 
     </div>
 
     <?php include 'choice.php'; ?>
-
 
 </div>
 </body>
