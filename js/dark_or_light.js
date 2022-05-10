@@ -15,5 +15,9 @@ $('#themeToggleCheckbox').change(function (e) {
 })
 
 $(document).ready(function () {
-    themeLinkObject.href = localStorage.getItem('theme_link');
+    if(localStorage.getItem('theme_link')) {
+        const themeLink = localStorage.getItem('theme_link');
+        themeLinkObject.href = themeLink;
+        $('#themeToggleCheckbox').attr('checked', themeLink==='css/style_dark.css')
+    }
 })

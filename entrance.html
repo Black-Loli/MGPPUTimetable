@@ -154,8 +154,8 @@
 </div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- <script src="js/dark_or_light.js"></script> -->
+<script src="jquery.min.js"></script>
+<script src="js/dark_or_light.js"></script>
 <script>
     const menu = document.getElementById('menu');
     const profile_selection_overlay = $('#profile_selection_overlay');
@@ -181,22 +181,6 @@
         console.log(event.target.id)
         $('.tab-content .active').removeClass('active');
         $('.tab-content').children(`#${event.target.id}_content`).addClass('active');
-    })
-
-    const themeLinkObject = document.getElementById('themeLink')
-
-    function setTheme(dark) {
-        localStorage.setItem('theme_link', `css/style_${dark ? 'dark' : 'light'}.css`)
-        if (dark) {
-            themeLinkObject.href = "css/style_dark.css";
-        } else {
-            themeLinkObject.href = "css/style_light.css";
-        }
-    }
-
-    $('#themeToggleCheckbox').change(function (e) {
-        setTheme(e.target.checked)
-        console.log("toggled", e.target.checked)
     })
 
 

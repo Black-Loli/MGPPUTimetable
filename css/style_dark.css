@@ -64,7 +64,8 @@ div.modal {
 
 select {
   border: 2px solid #E5D4E8;
-  background: #2E1B2C;
+  background-color: #2E1B2C;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   color: #E5D4E8; }
 
 button.btn {

@@ -1,4 +1,4 @@
-body{
+body {
     font-family: 'Bellota Text', cursive;
 }
 
@@ -11,12 +11,12 @@ body{
     list-style: none;
 }
 
-h1, h2{
+h1, h2 {
     margin: 0;
     font-weight: 700;
 }
 
-div.parent{
+div.parent {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -28,7 +28,7 @@ div.parent{
     justify-content: center;
 }
 
-div.div{
+div.div {
     width: 50%;
     height: 50%;
     margin: auto;
@@ -40,7 +40,7 @@ div.div{
     transition: 1s;
 }
 
-div.entrance{
+div.entrance {
     width: 40%;
     height: 75%;
     display: flex;
@@ -49,17 +49,17 @@ div.entrance{
     align-items: flex-start;
 }
 
-svg.loading{
+svg.loading {
     width: 40%;
     margin: auto;
 }
 
-h1.loading{
+h1.loading {
     text-align: center;
     margin: auto 10%;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -78,7 +78,7 @@ label.menu {
     border-radius: 10px;
 }
 
-label.menu:hover{
+label.menu:hover {
     cursor: pointer;
 }
 
@@ -180,18 +180,18 @@ label.menu:hover{
     transform: translateY(-17px) rotate(45deg);
 }
 
-ul{
+ul {
     width: 90%;
     margin: 30px;
     padding: 0;
     text-align: left;
 }
 
-li{
+li {
     list-style-type: none;
 }
 
-label.time{
+label.time {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -201,12 +201,12 @@ label.time{
     margin: 10px;
 }
 
-svg.click{
+svg.click {
     transform: matrix(1, 0, 0, 1, 0, 0);
     padding-left: 2%;
 }
 
-ul.sub-items{
+ul.sub-items {
     display: none;
     font-size: 30px;
     padding: 0 20px;
@@ -217,14 +217,14 @@ ul.sub-items{
 input#time_table_01:checked ~ label svg,
 input#time_table_02:checked ~ label svg,
 input#time_table_03:checked ~ label svg,
-input#time_table_04:checked ~ label svg{
+input#time_table_04:checked ~ label svg {
     transform: matrix(1, 0, 0, -1, 0, 0);
 }
 
 input#time_table_01:checked ~ ul.sub-items,
 input#time_table_02:checked ~ ul.sub-items,
 input#time_table_03:checked ~ ul.sub-items,
-input#time_table_04:checked ~ ul.sub-items{
+input#time_table_04:checked ~ ul.sub-items {
     display: block;
 }
 
@@ -238,12 +238,12 @@ ul.sub-items li:hover {
     cursor: pointer;
 }
 
-ul.sub-items li{
+ul.sub-items li {
     padding: 0 5px;
     margin: 10px;
 }
 
-div.color{
+div.color {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -251,7 +251,7 @@ div.color{
     margin: 35px;
 }
 
-div.color h2{
+div.color h2 {
     margin-right: 20px;
     font-size: 20px;
 }
@@ -289,7 +289,7 @@ div.color input[type='checkbox'].checkbox:checked + label:before {
     left: 42px;
 }
 
-div.overlay, div.overlay_none{
+div.overlay, div.overlay_none {
     z-index: 5;
     position: fixed;
     left: 0;
@@ -337,7 +337,7 @@ div.modal {
     display: none;
 }
 
-select{
+select {
     display: flex;
     font-family: 'Bellota Text', cursive;
     border-radius: 10px;
@@ -346,13 +346,17 @@ select{
     width: 100%;
     padding: .4rem .8rem;
     margin: 5% 0;
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 24px 21px;
+    appearance: none;
 }
 
-select.professor_tab{
+select.professor_tab {
     margin: 13.4% 0;
 }
 
-button.btn{
+button.btn {
     font-family: 'Bellota Text', cursive;
     border-radius: 10px;
     font-size: 22px;
@@ -362,11 +366,11 @@ button.btn{
 }
 
 button.btn:hover,
-select:hover{
+select:hover {
     cursor: pointer;
 }
 
-.container{
+.container {
     width: 80vw;
     height: 100vh;
     display: flex;
@@ -376,7 +380,7 @@ select:hover{
     margin: 3% auto 0;
 }
 
-.slide{
+.slide {
     height: 20vh;
     border-radius: 20px;
     margin: 3vh;
@@ -384,9 +388,15 @@ select:hover{
     flex: 1;
     position: relative;
     transition: all 500ms ease-out;
+    display: flex;
+    flex-direction: column;
 }
 
-.slide h3{
+.slide div.professor, .slide div.room{
+    display: none;
+}
+
+.slide h3 {
     position: absolute;
     font-size: 24px;
     padding-top: 0.8rem;
@@ -395,11 +405,55 @@ select:hover{
     opacity: 0;
 }
 
-.slide.active{
+.slide div.time_lesson{
+    padding: 1% 10% 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slide div.time_lesson h2{
+    font-size: 16px;
+}
+
+.slide.active {
     flex: 5;
 }
 
-.slide.active h3{
+.slide.active h3 {
     opacity: 1;
     transition: opacity 0.3s ease-in 0.4s;
+}
+
+.slide.active div.time_lesson{
+    padding: 3% 3% 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slide.active h2{
+    padding: 0 10px;
+    display: flex;
+}
+
+.slide.active div.time_lesson h2{
+    font-size: 24px;
+}
+
+.slide.active div.lesson_name{
+    margin: 0 auto;
+}
+
+.slide.active div.lesson_range{
+    margin-right: auto;
+}
+
+.slide.active div.professor, .slide.active div.room{
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 3%;
+}
+
+.slide.active h2.prof_name, .slide.active h2.room_number{
+    margin-right: auto;
+    padding: 0 3%;
 }
