@@ -372,7 +372,7 @@ select:hover {
 
 .container {
     width: 80vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -381,79 +381,65 @@ select:hover {
 }
 
 .slide {
-    height: 20vh;
+    height: 65px;
     border-radius: 20px;
     margin: 3vh;
     cursor: pointer;
     flex: 1;
     position: relative;
-    transition: all 500ms ease-out;
+    transition: all 1000ms ease-out;
     display: flex;
     flex-direction: column;
 }
 
-.slide div.professor, .slide div.room{
+.slide div.professor, .slide div.room, .slide div.groups {
     display: none;
 }
 
-.slide h3 {
-    position: absolute;
-    font-size: 24px;
-    padding-top: 0.8rem;
-    left: 20px;
-    margin: 0;
-    opacity: 0;
-}
-
-.slide div.time_lesson{
+.slide div.time_lesson, .slide h2.now_building {
     padding: 1% 10% 1%;
     display: flex;
     justify-content: space-between;
 }
 
-.slide div.time_lesson h2{
+.slide div.time_lesson h2, .slide h2.now_building {
     font-size: 16px;
 }
 
 .slide.active {
-    flex: 5;
+    height: 250px;
 }
 
-.slide.active h3 {
-    opacity: 1;
-    transition: opacity 0.3s ease-in 0.4s;
-}
-
-.slide.active div.time_lesson{
+.slide.active div.time_lesson, .slide.active h2.now_building {
     padding: 3% 3% 2%;
     display: flex;
     justify-content: space-between;
 }
 
-.slide.active h2{
+.slide.active h2 {
     padding: 0 10px;
     display: flex;
+    opacity: 1;
+    font-size: 22px;
+    transition: opacity 0.3s ease-in 0.4s;
 }
 
-.slide.active div.time_lesson h2{
-    font-size: 24px;
-}
-
-.slide.active div.lesson_name{
+.slide.active div.lesson_name {
     margin: 0 auto;
 }
 
-.slide.active div.lesson_range{
+.slide.active div.lesson_range {
     margin-right: auto;
 }
 
-.slide.active div.professor, .slide.active div.room{
+.slide.active div.professor, .slide.active div.room, .slide.active div.groups {
     display: flex;
     justify-content: space-between;
     padding: 2% 3%;
 }
 
-.slide.active h2.prof_name, .slide.active h2.room_number{
+.slide.active h2.prof_name, .slide.active h2.room_number, .slide.active h2.groups_name {
     margin-right: auto;
     padding: 0 3%;
 }
+
