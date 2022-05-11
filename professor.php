@@ -124,7 +124,8 @@
         generateSlides(currentDayLessons.length);
         currentDayLessons.forEach(function (lesson, index, lessons) {
             currentDayLessons.length;
-            fillSlideWithLesson($(`.slide:eq(0)`).find(`.prof_name:eq(${index})`).html(lesson.TeacheFIO));
+            // fillSlideWithLesson($(`.slide:eq(0)`).find(`.prof_name:eq(${index})`).html(lesson.TeacheFIO));
+            fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
             console.log(lesson);
         })
         console.log(currentDayLessons);
