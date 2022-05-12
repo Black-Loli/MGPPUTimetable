@@ -289,7 +289,7 @@ div.color input[type='checkbox'].checkbox:checked + label:before {
     left: 42px;
 }
 
-div.overlay, div.overlay_none {
+div.overlay {
     z-index: 5;
     position: fixed;
     left: 0;
@@ -396,13 +396,13 @@ select:hover {
     display: none;
 }
 
-.slide div.time_lesson, .slide h2.now_building {
+.slide div.time_lesson, .slide h2.building {
     padding: 1% 10% 1%;
     display: flex;
     justify-content: space-between;
 }
 
-.slide div.time_lesson h2, .slide h2.now_building {
+.slide div.time_lesson h2, .slide h2.building {
     font-size: 16px;
 }
 
@@ -410,13 +410,13 @@ select:hover {
     height: 250px;
 }
 
-.slide.active div.time_lesson, .slide.active h2.now_building {
+.slide.active div.time_lesson, .slide.active h2.building {
     padding: 3% 3% 2%;
     display: flex;
     justify-content: space-between;
 }
 
-.slide.active h2 {
+.slide.active h2, .slide.active div.time_lesson h2 {
     padding: 0 10px;
     display: flex;
     opacity: 1;
@@ -438,7 +438,7 @@ select:hover {
     padding: 2% 3%;
 }
 
-.slide.active h2.prof_name, .slide.active h2.room_number, .slide.active h2.groups_name {
+.slide.active h2.prof_name, .slide.active h2.room_number, .slide.active h2.group_name, .slide.active h2.groups_name {
     margin-right: auto;
     padding: 0 3%;
 }

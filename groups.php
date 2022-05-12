@@ -11,30 +11,24 @@
 
     <div class="container">
 
-        <div class="slide">
+        <div class="slide" id="already_left">
             <h2 class="building"> Могли уйти </h2>
 
-            <div class="groups">
-
-            </div>
+            <div class="groups"> </div>
 
         </div>
 
-        <div class="slide active now">
+        <div class="slide active now" id="exist_now">
             <h2 class="building"> Сейчас в корпусе </h2>
 
-            <div class="groups">
-
-            </div>
+            <div class="groups"> </div>
 
         </div>
 
-        <div class="slide">
+        <div class="slide" id="will_come">
             <h2 class="building"> Ещё придут </h2>
 
-            <div class="groups">
-
-            </div>
+            <div class="groups"> </div>
 
         </div>
 
@@ -45,7 +39,8 @@
 </div>
 </body>
 
-<script src="jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
 <script>
     const overlay_menu = document.getElementById('overlay_menu');
@@ -59,12 +54,6 @@
             return lesson.dayDate === date
         })
     }
-
-    // function slideClicked(e) {
-    //     $('.slide').removeClass('active');
-    //     console.log(e.target, e);
-    //     e.currentTarget.classList.add('active')
-    // }
 
     const slides = document.querySelectorAll('.slide')
 
@@ -82,12 +71,12 @@
     }
 
     function fillSlideWithLesson(slide, lesson) {
-        // slide.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
-        // slide.find('.lesson_index').html(`${lesson.Number}`);
-        // slide.find('.lesson_name').html(`${lesson.Discipline}`);
-        // slide.find('.prof_name').html(`${lesson.TeacherFIO}`);
+        var startDate = moment(lesson.TimeStart, "HH:mm:ss");
+        var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
+        if( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBetween(startDate, endDate) ){
+            slide.addClass('now')
+        };
         slide.find('.groups_name').html(`${lesson.GroupCode}`);
-        // slide.find('.room_number').html(`${lesson.Room}`);
     }
 
     function toggleModal(closingObject, openingObject) {
@@ -115,30 +104,51 @@
     });
 
     $.getJSON('timetable.json', function (receivedLessons) {
-        const currentDate = new Date();
-        console.log(`${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`);
-        const currentDayLessons = getLessonsForDate(receivedLessons, '12.05.2022').filter(function (lesson) {
+        // const currentDayLessons = getLessonsForDate(receivedLessons, '12.05.2022').filter(function (lesson) {
+        const currentDayLessons = getLessonsForDate(receivedLessons, moment().format(`DD.MM.YYYY`)).filter(function (lesson) {
             return lesson.DepartmentCode === 'ИТ';
         }).sort(function (lesson1, lesson2) {
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
         });
-        generateSlides(currentDayLessons.length);
-        currentDayLessons.forEach(function (lesson, index, lessons) {
+        const currentDayGroups = [];
+        const futureGroups = [];
+        const pastGroups = [];
+        currentDayLessons.filter(function (lesson, index, lessons){
+            var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
+            return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isAfter(endDate) );
+        }).forEach(function (lesson, index, lessons){
+            if (!pastGroups.includes(lesson.GroupCode)){
+                pastGroups.push(lesson.GroupCode);
+            }
+        });
+        currentDayLessons.filter(function (lesson, index, lessons){
+            var startDate = moment(lesson.TimeStart, "HH:mm:ss");
+            return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBefore(startDate) );
+        }).forEach(function (lesson, index, lessons){
+            if (!futureGroups.includes(lesson.GroupCode)){
+                futureGroups.push(lesson.GroupCode);
+            }
+        });
+        currentDayLessons.forEach(function (lesson, index, lessons){
+            if (!currentDayGroups.includes(lesson.GroupCode)){
+                currentDayGroups.push(lesson.GroupCode);
+            }
+        });
+        generateGroups(currentDayLessons.length);
+        currentDayGroups.forEach(function (group, index, groups) {
             currentDayLessons.length;
             // fillSlideWithLesson($(`.slide:eq(0)`).find(`.groups_name:eq(${index})`).html(lesson.GroupCode));
-            fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
-            console.log(lesson);
+            // fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
+            $(`.slide#already_left`).find(`.groups_name:eq(${index})`).html(group);
+            console.log(group);
         })
-        console.log(currentDayLessons);
-        console.log(currentDayLessons.length);
 
     })
 
-    function generateSlides(amount) {
+    function generateGroups(amount) {
         for (let i = 0; i < amount; i++) {
-            let slide = $(`
-                <h2 class="groups_name"></h2>`);
-            $('.groups').append(slide)
+            let groups = $(`<h2 class="groups_name"></h2>`);
+            $('.groups').append(groups)
         }
     }
 </script>

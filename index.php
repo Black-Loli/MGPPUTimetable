@@ -10,37 +10,18 @@
     <?php include 'menu.html'; ?>
 
     <div class="container">
-        <!---->
-        <!--        <div class="slide active now">-->
-        <!--            <div class="time_lesson">-->
-        <!--                <h2 class="lesson_index"> Alko - Inu </h2>-->
-        <!--                <div class="lesson_range">-->
-        <!--                    <h2>09^00 - 10^30 </h2>-->
-        <!--                </div>-->
-        <!---->
-        <!--                <h2 class="lesson_name"> Lorem ipsum dolor sit. </h2>-->
-        <!--            </div>-->
-        <!---->
-        <!--            <div class="professor">-->
-        <!--                <h2> Преподаватель: </h2>-->
-        <!--                <h2 class="prof_name"> Исаков С.С. </h2>-->
-        <!--            </div>-->
-        <!---->
-        <!--            <div class="room">-->
-        <!--                <h2> Аудитория: </h2>-->
-        <!--                <h2 class="room_number"> 669 </h2>-->
-        <!--            </div>-->
-        <!--        </div>-->
 
     </div>
 
+<!--    Прикрепление файла с выбором факультета и групыы-->
     <?php include 'choice.php'; ?>
 
 
 </div>
 </body>
 
-<script src="jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
 <script>
     const overlay_menu = document.getElementById('overlay_menu');
@@ -63,6 +44,11 @@
 
 
     function fillSlideWithLesson(slide, lesson) {
+        var startDate = moment(lesson.TimeStart, "HH:mm:ss");
+        var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
+        if( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBetween(startDate, endDate) ){
+            slide.addClass('now active')
+        };
         slide.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
         slide.find('.lesson_index').html(`${lesson.Number}`);
         slide.find('.lesson_name').html(`${lesson.Discipline}`);
@@ -97,7 +83,8 @@
     $.getJSON('timetable.json', function (receivedLessons) {
         const currentDate = new Date();
         console.log(`${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`);
-        const currentDayLessons = getLessonsForDate(receivedLessons, '12.05.2022').filter(function (lesson) {
+        // const currentDayLessons = getLessonsForDate(receivedLessons, '21.05.2022').filter(function (lesson) {
+        const currentDayLessons = getLessonsForDate(receivedLessons, moment().format(`DD.MM.YYYY`)).filter(function (lesson) {
             return lesson.GroupCode === '19ИТ-ПИ(б/о)ПИП-1';
         }).sort(function (lesson1, lesson2) {
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);

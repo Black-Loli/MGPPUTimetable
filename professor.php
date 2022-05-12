@@ -11,30 +11,24 @@
 
     <div class="container">
 
-        <div class="slide">
+        <div class="slide" id="already_left">
             <h2 class="building"> Могли уйти </h2>
 
-            <div class="professor">
-
-            </div>
+            <div class="professor"> </div>
 
         </div>
 
-        <div class="slide active now">
+        <div class="slide active now" id="exist_now">
             <h2 class="building"> Сейчас в корпусе </h2>
 
-            <div class="professor">
-
-            </div>
+            <div class="professor"> </div>
 
         </div>
 
-        <div class="slide">
+        <div class="slide" id="will_come">
             <h2 class="building"> Ещё придут </h2>
 
-            <div class="professor">
-
-            </div>
+            <div class="professor"> </div>
 
         </div>
 
@@ -45,9 +39,11 @@
 </div>
 </body>
 
-<script src="jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
 <script>
+    // let currentTime =
     const overlay_menu = document.getElementById('overlay_menu');
     const menu = document.getElementById('menu');
     const student_tab = document.getElementById('student_tab');
@@ -59,12 +55,6 @@
             return lesson.dayDate === date
         })
     }
-
-    // function slideClicked(e) {
-    //     $('.slide').removeClass('active');
-    //     console.log(e.target, e);
-    //     e.currentTarget.classList.add('active')
-    // }
 
     const slides = document.querySelectorAll('.slide')
 
@@ -82,11 +72,14 @@
     }
 
     function fillSlideWithLesson(slide, lesson) {
-        // slide.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
-        // slide.find('.lesson_index').html(`${lesson.Number}`);
-        // slide.find('.lesson_name').html(`${lesson.Discipline}`);
-        slide.find('.prof_name').html(`${lesson.TeacherFIO}`);
-        // slide.find('.room_number').html(`${lesson.Room}`);
+        var startDate = moment(lesson.TimeStart, "HH:mm:ss");
+        var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
+        if( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBetween(startDate, endDate) ){
+            slide.addClass('now')
+        };
+        let array = lesson.TeacherFIO.split(' ');
+        let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
+        slide.find('.prof_name').html(`${result}`);
     }
 
     function toggleModal(closingObject, openingObject) {
@@ -114,29 +107,51 @@
     });
 
     $.getJSON('timetable.json', function (receivedLessons) {
-        const currentDate = new Date();
-        console.log(`${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`);
-        const currentDayLessons = getLessonsForDate(receivedLessons, '12.05.2022').filter(function (lesson) {
+        // const currentDayLessons = getLessonsForDate(receivedLessons, '13.05.2022').filter(function (lesson) {
+        const currentDayLessons = getLessonsForDate(receivedLessons, moment().format(`DD.MM.YYYY`)).filter(function (lesson) {
             return lesson.DepartmentCode === 'ИТ';
         }).sort(function (lesson1, lesson2) {
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
         });
-        generateSlides(currentDayLessons.length);
-        currentDayLessons.forEach(function (lesson, index, lessons) {
-            currentDayLessons.length;
-            // fillSlideWithLesson($(`.slide:eq(0)`).find(`.prof_name:eq(${index})`).html(lesson.TeacheFIO));
-            fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
-            console.log(lesson);
+        const currentDayProfessors = [];
+        const futureProfessors = [];
+        const pastProfessors = [];
+        currentDayLessons.filter(function (lesson, index, lessons){
+            var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
+            return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isAfter(endDate) );
+        }).forEach(function (lesson, index, lessons){
+            if (!pastProfessors.includes(lesson.TeacherFIO)){
+                pastProfessors.push(lesson.TeacherFIO);
+            }
+        });
+        currentDayLessons.filter(function (lesson, index, lessons){
+            var startDate = moment(lesson.TimeStart, "HH:mm:ss");
+            return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBefore(startDate) );
+        }).forEach(function (lesson, index, lessons){
+            if (!futureProfessors.includes(lesson.TeacherFIO)){
+                futureProfessors.push(lesson.TeacherFIO);
+            }
+        });
+        currentDayLessons.forEach(function (lesson, index, lessons){
+            if (!currentDayProfessors.includes(lesson.TeacherFIO)){
+                currentDayProfessors.push(lesson.TeacherFIO);
+            }
+        });
+        generateProfessors(currentDayLessons.length);
+        currentDayProfessors.forEach(function (professor, index, professors) {
+            let array = professor.split(' ');
+            let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
+            $(`.slide#already_left`).find(`.prof_name:eq(${index})`).html(result);
+            console.log(professor);
         })
-        console.log(currentDayLessons);
-        console.log(currentDayLessons.length);
-
+        console.log(currentDayProfessors);
+        console.log(pastProfessors);
+        console.log(futureProfessors);
     })
 
-    function generateSlides(amount) {
+    function generateProfessors(amount) {
         for (let i = 0; i < amount; i++) {
-            let slide = $(`
-                <h2 class="prof_name"></h2>`);
+            let slide = $(`<h2 class="prof_name"></h2>`);
             $('.professor').append(slide)
         }
     }

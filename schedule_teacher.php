@@ -10,15 +10,38 @@
     <?php include 'menu.html'; ?>
 
     <div class="container">
+        <!---->
+        <!--        <div class="slide active now">-->
+        <!--            <div class="time_lesson">-->
+        <!--                <h2 class="lesson_index"> Alko - Inu </h2>-->
+        <!--                <div class="lesson_range">-->
+        <!--                    <h2>09^00 - 10^30 </h2>-->
+        <!--                </div>-->
+        <!---->
+        <!--                <h2 class="lesson_name"> Lorem ipsum dolor sit. </h2>-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="professor">-->
+        <!--                <h2> Преподаватель: </h2>-->
+        <!--                <h2 class="prof_name"> Исаков С.С. </h2>-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="room">-->
+        <!--                <h2> Аудитория: </h2>-->
+        <!--                <h2 class="room_number"> 669 </h2>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
     </div>
 
     <?php include 'choice.php'; ?>
 
+
 </div>
 </body>
 
 <script src="js/jquery.min.js"></script>
+<script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
 <script>
     const overlay_menu = document.getElementById('overlay_menu');
@@ -39,26 +62,17 @@
         e.currentTarget.classList.add('active')
     }
 
-    // const slides = document.querySelectorAll('.slide')
-    //
-    // for (const slide of slides) {
-    //     slide.addEventListener('click', () => {
-    //         clearActiveClasses()
-    //         slide.classList.add('active')
-    //     })
-    // }
-    //
-    // function clearActiveClasses() {
-    //     slides.forEach((slide) => {
-    //         slide.classList.remove('active')
-    //     })
-    // }
 
     function fillSlideWithLesson(slide, lesson) {
+        var startDate = moment(lesson.TimeStart, "HH:mm:ss");
+        var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
+        if( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBetween(startDate, endDate) ){
+            slide.addClass('now active')
+        };
         slide.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
         slide.find('.lesson_index').html(`${lesson.Number}`);
-        // slide.find('.lesson_name').html(`${lesson.Discipline}`);
-        //slide.find('.prof_name').html(`${lesson.TeacherFIO}`);
+        slide.find('.lesson_name').html(`${lesson.Discipline}`);
+        slide.find('.group_name').html(`${lesson.GroupCode}`);
         slide.find('.room_number').html(`${lesson.Room}`);
     }
 
@@ -89,8 +103,9 @@
     $.getJSON('timetable.json', function (receivedLessons) {
         const currentDate = new Date();
         console.log(`${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`);
-        const currentDayLessons = getLessonsForDate(receivedLessons, '12.05.2022').filter(function (lesson) {
-            return lesson.DepartmentCode === 'ИТ';
+        const currentDayLessons = getLessonsForDate(receivedLessons, '13.05.2022').filter(function (lesson) {
+        // const currentDayLessons = getLessonsForDate(receivedLessons, moment().format(`DD.MM.YYYY`)).filter(function (lesson) {
+            return lesson.TeacherFIO === 'Исаков Сергей Сергеевич';
         }).sort(function (lesson1, lesson2) {
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
         });
@@ -98,7 +113,6 @@
         currentDayLessons.forEach(function (lesson, index, lessons) {
             currentDayLessons.length;
             fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
-            console.log(lesson);
         })
         console.log(currentDayLessons);
         console.log(currentDayLessons.length);
@@ -109,16 +123,20 @@
         for (let i = 0; i < amount; i++) {
             let slide = $(`<div class="slide">
                 <div class="time_lesson">
-                    <h2 class="lesson_index"></h2>
-                    <div class="lesson_range">
-                         <h2> Кабинеты </h2>
-                    </div>
-                    <h2 class="lesson_name"></h2>
-                </div>
-                <div class="room">
-                    <h2> Аудитория: </h2>
-                    <h2 class="room_number"></h2>
-                </div>
+                <h2 class="lesson_index"></h2>
+            <div class="lesson_range">
+                <h2></h2>
+            </div>
+            <h2 class="lesson_name"></h2>
+        </div>
+            <div class="professor">
+                <h2> Группа: </h2>
+                <h2 class="group_name"></h2>
+            </div>
+            <div class="room">
+                <h2> Аудитория: </h2>
+                <h2 class="room_number"></h2>
+            </div>
             </div>`);
             slide.click(slideClicked);
             $('.container').append(slide)
@@ -127,3 +145,4 @@
 </script>
 
 </html>
+<?php
