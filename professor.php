@@ -42,12 +42,8 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
+<script src="js/choice.js"></script>
 <script>
-    // let currentTime =
-    const overlay_menu = document.getElementById('overlay_menu');
-    const menu = document.getElementById('menu');
-    const student_tab = document.getElementById('student_tab');
-    const profile_selection_overlay = $('#profile_selection_overlay');
 
     function getLessonsForDate(lessons, date) {
         return lessons.filter(function (lesson) {
@@ -76,35 +72,11 @@
         var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
         if( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBetween(startDate, endDate) ){
             slide.addClass('now')
-        };
+        }
         let array = lesson.TeacherFIO.split(' ');
         let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
         slide.find('.prof_name').html(`${result}`);
     }
-
-    function toggleModal(closingObject, openingObject) {
-        $(closingObject).css('display', 'none');
-        $('#ham-menu').prop('checked', false)
-        openingObject.addClass('active');
-    }
-
-    document.getElementById("time_today").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    document.getElementById("time_week").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    document.getElementById("time_term").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    $('.tab_selector').click(function (event) {
-        console.log(event.target.id)
-        $('.tab-content .active').removeClass('active');
-        $('.tab-content').children(`#${event.target.id}_content`).addClass('active');
-    });
 
     $.getJSON('timetable.json', function (receivedLessons) {
         // const currentDayLessons = getLessonsForDate(receivedLessons, '13.05.2022').filter(function (lesson) {
@@ -113,9 +85,9 @@
         }).sort(function (lesson1, lesson2) {
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
         });
-        const currentDayProfessors = [];
-        const futureProfessors = [];
-        const pastProfessors = [];
+        let currentTimeProfessors = [];
+        let futureProfessors = [];
+        let pastProfessors = [];
         currentDayLessons.filter(function (lesson, index, lessons){
             var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
             return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isAfter(endDate) );
@@ -132,19 +104,45 @@
                 futureProfessors.push(lesson.TeacherFIO);
             }
         });
-        currentDayLessons.forEach(function (lesson, index, lessons){
-            if (!currentDayProfessors.includes(lesson.TeacherFIO)){
-                currentDayProfessors.push(lesson.TeacherFIO);
+
+        currentDayLessons.filter(function (lesson, index, lessons){
+            const startProfessorTime = moment(lesson.TimeStart, "HH:mm:ss");
+            const endProfessorTime = moment(lesson.TimeEnd, "HH:mm:ss");
+            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBetween(startProfessorTime, endProfessorTime));
+        }).forEach(function (lesson, index, lessons){
+            if (!currentTimeProfessors.includes(lesson.TeacherFIO)){
+                currentTimeProfessors.push(lesson.TeacherFIO);
             }
         });
+
+        pastProfessors = pastProfessors.filter(function (profName, index) {
+            return !futureProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
+        })
+
+        futureProfessors = futureProfessors.filter(function (profName, index) {
+            return !pastProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
+        })
+
         generateProfessors(currentDayLessons.length);
-        currentDayProfessors.forEach(function (professor, index, professors) {
+
+        currentTimeProfessors.forEach(function (professor, index, professors) {
+            let array = professor.split(' ');
+            let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
+            $(`.slide#exist_now`).find(`.prof_name:eq(${index})`).html(result);
+        })
+
+        futureProfessors.forEach(function (professor, index, professors) {
+            let array = professor.split(' ');
+            let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
+            $(`.slide#will_come`).find(`.prof_name:eq(${index})`).html(result);
+        })
+
+        pastProfessors.forEach(function (professor, index, professors) {
             let array = professor.split(' ');
             let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
             $(`.slide#already_left`).find(`.prof_name:eq(${index})`).html(result);
-            console.log(professor);
         })
-        console.log(currentDayProfessors);
+        console.log(currentTimeProfessors);
         console.log(pastProfessors);
         console.log(futureProfessors);
     })

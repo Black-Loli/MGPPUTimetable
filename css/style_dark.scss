@@ -100,7 +100,7 @@ button.btn{
 }
 
 button.btn:hover,
-select:hover{
+option:hover{
     cursor: pointer;
     background: rgba($highlighting, 0.5);
 }

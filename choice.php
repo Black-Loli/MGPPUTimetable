@@ -18,9 +18,8 @@
 
                 </select>
 
-                <select name="type" required="">
-                    <option class="op" selected> Выберите группу </option>
-                    <option class="op" selected> 19ИТ-ПИ(б/о)ПИП-1 </option>
+                <select class="choice_group" name="type" required="" id="group_choice">
+                    <option class="name_group" selected> Выберите группу </option>
 
                 </select>
 

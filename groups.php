@@ -14,21 +14,21 @@
         <div class="slide" id="already_left">
             <h2 class="building"> Могли уйти </h2>
 
-            <div class="groups"> </div>
+            <div class="groups"></div>
 
         </div>
 
         <div class="slide active now" id="exist_now">
             <h2 class="building"> Сейчас в корпусе </h2>
 
-            <div class="groups"> </div>
+            <div class="groups"></div>
 
         </div>
 
         <div class="slide" id="will_come">
             <h2 class="building"> Ещё придут </h2>
 
-            <div class="groups"> </div>
+            <div class="groups"></div>
 
         </div>
 
@@ -42,11 +42,8 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
+<script src="js/choice.js"></script>
 <script>
-    const overlay_menu = document.getElementById('overlay_menu');
-    const menu = document.getElementById('menu');
-    const student_tab = document.getElementById('student_tab');
-    const profile_selection_overlay = $('#profile_selection_overlay');
 
     function getLessonsForDate(lessons, date) {
         return lessons.filter(function (lesson) {
@@ -73,35 +70,11 @@
     function fillSlideWithLesson(slide, lesson) {
         var startDate = moment(lesson.TimeStart, "HH:mm:ss");
         var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
-        if( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBetween(startDate, endDate) ){
+        if (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBetween(startDate, endDate)) {
             slide.addClass('now')
-        };
+        }
         slide.find('.groups_name').html(`${lesson.GroupCode}`);
     }
-
-    function toggleModal(closingObject, openingObject) {
-        $(closingObject).css('display', 'none');
-        $('#ham-menu').prop('checked', false)
-        openingObject.addClass('active');
-    }
-
-    document.getElementById("time_today").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    document.getElementById("time_week").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    document.getElementById("time_term").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    $('.tab_selector').click(function (event) {
-        console.log(event.target.id)
-        $('.tab-content .active').removeClass('active');
-        $('.tab-content').children(`#${event.target.id}_content`).addClass('active');
-    });
 
     $.getJSON('timetable.json', function (receivedLessons) {
         // const currentDayLessons = getLessonsForDate(receivedLessons, '12.05.2022').filter(function (lesson) {
@@ -110,36 +83,60 @@
         }).sort(function (lesson1, lesson2) {
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
         });
-        const currentDayGroups = [];
-        const futureGroups = [];
-        const pastGroups = [];
-        currentDayLessons.filter(function (lesson, index, lessons){
+        console.log('currentDayLessons', currentDayLessons)
+        let currentTimeGroups = [];
+        let futureGroups = [];
+        let pastGroups = [];
+        currentDayLessons.filter(function (lesson, index, lessons) {
             var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
-            return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isAfter(endDate) );
-        }).forEach(function (lesson, index, lessons){
-            if (!pastGroups.includes(lesson.GroupCode)){
+            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isAfter(endDate));
+        }).forEach(function (lesson, index, lessons) {
+            if (!pastGroups.includes(lesson.GroupCode)) {
                 pastGroups.push(lesson.GroupCode);
             }
         });
-        currentDayLessons.filter(function (lesson, index, lessons){
+        currentDayLessons.filter(function (lesson, index, lessons) {
             var startDate = moment(lesson.TimeStart, "HH:mm:ss");
-            return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBefore(startDate) );
-        }).forEach(function (lesson, index, lessons){
-            if (!futureGroups.includes(lesson.GroupCode)){
+            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBefore(startDate));
+        }).forEach(function (lesson, index, lessons) {
+            if (!futureGroups.includes(lesson.GroupCode)) {
                 futureGroups.push(lesson.GroupCode);
             }
         });
-        currentDayLessons.forEach(function (lesson, index, lessons){
-            if (!currentDayGroups.includes(lesson.GroupCode)){
-                currentDayGroups.push(lesson.GroupCode);
+        currentDayLessons.filter(function (lesson, index, lessons) {
+            var lessonStartTime = moment(lesson.TimeStart, "HH:mm:ss");
+            var lessonEndTime = moment(lesson.TimeEnd, "HH:mm:ss");
+            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBetween(lessonStartTime, lessonEndTime));
+        }).forEach(function (lesson, index, lessons) {
+            if (!currentTimeGroups.includes(lesson.GroupCode)) {
+                currentTimeGroups.push(lesson.GroupCode);
             }
         });
+        pastGroups = pastGroups.filter(function (groupName, index) {
+            return !futureGroups.includes(groupName) && !currentTimeGroups.includes(groupName)
+        })
+        futureGroups = futureGroups.filter(function (groupName, index) {
+            return !pastGroups.includes(groupName) && !currentTimeGroups.includes(groupName)
+        })
+        console.log('pastGroups', pastGroups)
+        console.log('currentGroups', currentTimeGroups)
+        console.log('futureGroups', futureGroups)
         generateGroups(currentDayLessons.length);
-        currentDayGroups.forEach(function (group, index, groups) {
+        currentTimeGroups.forEach(function (group, index, groups) {
             currentDayLessons.length;
-            // fillSlideWithLesson($(`.slide:eq(0)`).find(`.groups_name:eq(${index})`).html(lesson.GroupCode));
-            // fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
+            $(`.slide#exist_now`).find(`.groups_name:eq(${index})`).html(group);
+            console.log(group);
+        })
+
+        pastGroups.forEach(function (group, index, groups) {
+            currentDayLessons.length;
             $(`.slide#already_left`).find(`.groups_name:eq(${index})`).html(group);
+            console.log(group);
+        })
+
+        futureGroups.forEach(function (group, index, groups) {
+            currentDayLessons.length;
+            $(`.slide#will_come`).find(`.groups_name:eq(${index})`).html(group);
             console.log(group);
         })
 

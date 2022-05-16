@@ -74,7 +74,7 @@ button.btn {
   color: #955D8E; }
 
 button.btn:hover,
-select:hover {
+option:hover {
   background: rgba(180, 139, 175, 0.5); }
 
 select:focus {
