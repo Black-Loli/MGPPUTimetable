@@ -45,7 +45,7 @@
 
     getTimeTable(function (timeTableHandler) {
         generateSlides(timeTableHandler.getCurrentDayLessons().length);
-        timeTableHandler.getCurrentDayLessons().forEach(function (lesson, index, lessons) {
+        timeTableHandler.getCurrentDayLessons().forEach(function (lesson, index) {
             fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
         })
     })
@@ -74,5 +74,4 @@
         }
     }
 </script>
-
 </html>
