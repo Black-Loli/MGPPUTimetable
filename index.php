@@ -7,24 +7,23 @@
 </head>
 <body>
 <div class="main">
-    <?php include 'menu.html'; ?>
+    <?php include 'menu.php'; ?>
 
     <div class="container">
 
     </div>
 
+<!--    Прикрепление файла с выбором факультета и групыы-->
     <?php include 'choice.php'; ?>
 
 </div>
 </body>
 
-<script src="jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
+<script src="js/choice.js"></script>
 <script>
-    const overlay_menu = document.getElementById('overlay_menu');
-    const menu = document.getElementById('menu');
-    const student_tab = document.getElementById('student_tab');
-    const profile_selection_overlay = $('#profile_selection_overlay');
 
     function getLessonsForDate(lessons, date) {
         return lessons.filter(function (lesson) {
@@ -39,8 +38,12 @@
         e.currentTarget.classList.add('active')
     }
 
-
     function fillSlideWithLesson(slide, lesson) {
+        var startDate = moment(lesson.TimeStart, "HH:mm:ss");
+        var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
+        if( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBetween(startDate, endDate) ){
+            slide.addClass('now active')
+        };
         slide.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
         slide.find('.lesson_index').html(`${lesson.Number}`);
         slide.find('.lesson_name').html(`${lesson.Discipline}`);
@@ -48,35 +51,12 @@
         slide.find('.room_number').html(`${lesson.Room}`);
     }
 
-    function toggleModal(closingObject, openingObject) {
-        $(closingObject).css('display', 'none');
-        $('#ham-menu').prop('checked', false)
-        openingObject.addClass('active');
-    }
-
-    document.getElementById("time_today").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    document.getElementById("time_week").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    document.getElementById("time_term").onclick = function () {
-        toggleModal([menu, overlay_menu], profile_selection_overlay);
-    }
-
-    $('.tab_selector').click(function (event) {
-        console.log(event.target.id)
-        $('.tab-content .active').removeClass('active');
-        $('.tab-content').children(`#${event.target.id}_content`).addClass('active');
-    });
-
     $.getJSON('timetable.json', function (receivedLessons) {
         const currentDate = new Date();
         console.log(`${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`);
-        const currentDayLessons = getLessonsForDate(receivedLessons, '12.05.2022').filter(function (lesson) {
-            return lesson.GroupCode === '19ИТ-ПИ(б/о)ПИП-1';
+        // const currentDayLessons = getLessonsForDate(receivedLessons, '20.05.2022').filter(function (lesson) {
+        const currentDayLessons = getLessonsForDate(receivedLessons, moment().format(`DD.MM.YYYY`)).filter(function (lesson) {
+            return lesson.GroupCode === getGroupData().name;
         }).sort(function (lesson1, lesson2) {
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
         });

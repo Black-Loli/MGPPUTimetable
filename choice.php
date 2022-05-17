@@ -12,19 +12,17 @@
         </div>
         <div class="tab-content">
             <div id="student_tab_content" class="active">
-                <select name="type" required="">
+                <select name="type" required="" id="faculty_selector">
                     <option class="op" selected> Выберите факультет </option>
                     <option class="op" selected> Информационные технологии </option>
 
                 </select>
 
-                <select name="type" required="">
-                    <option class="op" selected> Выберите группу </option>
-                    <option class="op" selected> 19ИТ-ПИ(б/о)ПИП-1 </option>
-
+                <select class="choice_group" name="type" required="" id="group_choice">
+                    <option class="name_group" selected> Выберите группу </option>
                 </select>
 
-                <button type="submit" class="btn"> Показать </button>
+<!--                <button type="submit" class="btn"> Показать </button>-->
             </div>
             <div id="professor_tab_content">
                 <select name="type" class="professor_tab" required="">
@@ -32,8 +30,8 @@
                     <option class="op"> Попков </option>
                 </select>
 
-                <button type="submit" class="btn"> Показать </button>
             </div>
+            <button type="submit" class="btn" id="showTimetable"> Показать </button>
         </div>
     </div>
 </div>
