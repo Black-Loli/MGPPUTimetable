@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="main">
-    <?php include 'menu.html'; ?>
+    <?php include 'menu.php'; ?>
 
     <div class="container">
         <!---->

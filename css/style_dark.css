@@ -2,7 +2,7 @@ body {
   background: #2E1B2C;
   color: #E5D4E8; }
 
-a:visited {
+a {
   color: #AE9CB0; }
 
 div.div {
@@ -74,7 +74,7 @@ button.btn {
   color: #E5D4E8; }
 
 button.btn:hover,
-select:hover {
+option:hover {
   cursor: pointer;
   background: rgba(174, 156, 176, 0.5); }
 
@@ -87,3 +87,6 @@ div.slide {
 .slide.now {
   background: #2E1B2C;
   border: 2px solid #E5D4E8; }
+
+.slide.active h2.room_number_used {
+  border: 2px solid #EE333E; }

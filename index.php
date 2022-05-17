@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="main">
-    <?php include 'menu.html'; ?>
+    <?php include 'menu.php'; ?>
 
     <div class="container">
 
@@ -55,9 +55,9 @@
     $.getJSON('timetable.json', function (receivedLessons) {
         const currentDate = new Date();
         console.log(`${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`);
-        // const currentDayLessons = getLessonsForDate(receivedLessons, '21.05.2022').filter(function (lesson) {
+        // const currentDayLessons = getLessonsForDate(receivedLessons, '20.05.2022').filter(function (lesson) {
         const currentDayLessons = getLessonsForDate(receivedLessons, moment().format(`DD.MM.YYYY`)).filter(function (lesson) {
-            return lesson.GroupCode === '19ИТ-ПИ(б/о)ПИП-1';
+            return lesson.GroupCode === getGroupData().name;
         }).sort(function (lesson1, lesson2) {
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
         });

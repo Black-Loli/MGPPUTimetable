@@ -118,3 +118,7 @@ div.slide{
     background: $background;
     border: 2px solid $text_border;
 }
+
+.slide.active h2.room_number_used {
+    border: 2px solid #8D3B3D;
+}

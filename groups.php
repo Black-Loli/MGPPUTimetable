@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="main">
-    <?php include 'menu.html'; ?>
+    <?php include 'menu.php'; ?>
 
     <div class="container">
 
@@ -121,7 +121,10 @@
         console.log('pastGroups', pastGroups)
         console.log('currentGroups', currentTimeGroups)
         console.log('futureGroups', futureGroups)
-        generateGroups(currentDayLessons.length);
+
+        generateGroups($('#already_left'), pastGroups.length);
+        generateGroups($('#exist_now'), currentTimeGroups.length);
+        generateGroups($('#will_come'), futureGroups.length);
         currentTimeGroups.forEach(function (group, index, groups) {
             currentDayLessons.length;
             $(`.slide#exist_now`).find(`.groups_name:eq(${index})`).html(group);
@@ -139,13 +142,12 @@
             $(`.slide#will_come`).find(`.groups_name:eq(${index})`).html(group);
             console.log(group);
         })
-
     })
 
-    function generateGroups(amount) {
+    function generateGroups(parentBlock, amount) {
         for (let i = 0; i < amount; i++) {
             let groups = $(`<h2 class="groups_name"></h2>`);
-            $('.groups').append(groups)
+            parentBlock.find('.groups').append(groups)
         }
     }
 </script>

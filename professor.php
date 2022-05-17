@@ -7,28 +7,28 @@
 </head>
 <body>
 <div class="main">
-    <?php include 'menu.html'; ?>
+    <?php include 'menu.php'; ?>
 
     <div class="container">
 
         <div class="slide" id="already_left">
             <h2 class="building"> Могли уйти </h2>
 
-            <div class="professor"> </div>
+            <div class="professor"></div>
 
         </div>
 
         <div class="slide active now" id="exist_now">
             <h2 class="building"> Сейчас в корпусе </h2>
 
-            <div class="professor"> </div>
+            <div class="professor"></div>
 
         </div>
 
         <div class="slide" id="will_come">
             <h2 class="building"> Ещё придут </h2>
 
-            <div class="professor"> </div>
+            <div class="professor"></div>
 
         </div>
 
@@ -70,7 +70,7 @@
     function fillSlideWithLesson(slide, lesson) {
         var startDate = moment(lesson.TimeStart, "HH:mm:ss");
         var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
-        if( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBetween(startDate, endDate) ){
+        if (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBetween(startDate, endDate)) {
             slide.addClass('now')
         }
         let array = lesson.TeacherFIO.split(' ');
@@ -88,29 +88,29 @@
         let currentTimeProfessors = [];
         let futureProfessors = [];
         let pastProfessors = [];
-        currentDayLessons.filter(function (lesson, index, lessons){
+        currentDayLessons.filter(function (lesson, index, lessons) {
             var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
-            return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isAfter(endDate) );
-        }).forEach(function (lesson, index, lessons){
-            if (!pastProfessors.includes(lesson.TeacherFIO)){
+            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isAfter(endDate));
+        }).forEach(function (lesson, index, lessons) {
+            if (!pastProfessors.includes(lesson.TeacherFIO)) {
                 pastProfessors.push(lesson.TeacherFIO);
             }
         });
-        currentDayLessons.filter(function (lesson, index, lessons){
+        currentDayLessons.filter(function (lesson, index, lessons) {
             var startDate = moment(lesson.TimeStart, "HH:mm:ss");
-            return ( moment(moment().format('HH:mm:ss'),'HH:mm:ss').isBefore(startDate) );
-        }).forEach(function (lesson, index, lessons){
-            if (!futureProfessors.includes(lesson.TeacherFIO)){
+            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBefore(startDate));
+        }).forEach(function (lesson, index, lessons) {
+            if (!futureProfessors.includes(lesson.TeacherFIO)) {
                 futureProfessors.push(lesson.TeacherFIO);
             }
         });
 
-        currentDayLessons.filter(function (lesson, index, lessons){
+        currentDayLessons.filter(function (lesson, index, lessons) {
             const startProfessorTime = moment(lesson.TimeStart, "HH:mm:ss");
             const endProfessorTime = moment(lesson.TimeEnd, "HH:mm:ss");
             return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBetween(startProfessorTime, endProfessorTime));
-        }).forEach(function (lesson, index, lessons){
-            if (!currentTimeProfessors.includes(lesson.TeacherFIO)){
+        }).forEach(function (lesson, index, lessons) {
+            if (!currentTimeProfessors.includes(lesson.TeacherFIO)) {
                 currentTimeProfessors.push(lesson.TeacherFIO);
             }
         });
@@ -123,8 +123,9 @@
             return !pastProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
         })
 
-        generateProfessors(currentDayLessons.length);
-
+        generateProfessors($('#already_left'), pastProfessors.length);
+        generateProfessors($('#exist_now'), currentTimeProfessors.length);
+        generateProfessors($('#will_come'), futureProfessors.length);
         currentTimeProfessors.forEach(function (professor, index, professors) {
             let array = professor.split(' ');
             let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
@@ -147,10 +148,10 @@
         console.log(futureProfessors);
     })
 
-    function generateProfessors(amount) {
+    function generateProfessors(parentBlock, amount) {
         for (let i = 0; i < amount; i++) {
             let slide = $(`<h2 class="prof_name"></h2>`);
-            $('.professor').append(slide)
+            parentBlock.find('.professor').append(slide)
         }
     }
 </script>

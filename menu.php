@@ -11,6 +11,7 @@
 </label>
 
 <div id="overlay_menu"></div>
+
 <div class="ham-menu" id="menu">
     <ul class="centre-text bold-text">
         <li>
@@ -30,6 +31,7 @@
             <ul class="sub-items">
                 <li>
                     <a id="time_today"> На сегодня</a>
+
                 </li>
                 <li>
                     <a id="time_week"> На неделю</a>
