@@ -10,10 +10,6 @@ function toggleModal(closingObject, openingObject) {
     openingObject.addClass('active');
 }
 
-function getGroupData() {
-    return JSON.parse(localStorage.getItem('group'))
-}
-
 $("#time_today, #time_week, #time_term").click(function () {
     wishTimetable = $(this).attr('id');
     toggleModal([menu, overlay_menu], profile_selection_overlay);
