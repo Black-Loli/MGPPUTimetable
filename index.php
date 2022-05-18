@@ -28,7 +28,6 @@
 <script>
     function slideClicked(e) {
         $('.slide').removeClass('active');
-        console.log(e.target, e);
         e.currentTarget.classList.add('active')
     }
 
