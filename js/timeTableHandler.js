@@ -36,19 +36,17 @@ function timetableHandlerConstructor(timetable) {
         timeTable: timetable,
         currentTime: function () {
             //moment().format('HH:mm:ss')
-            moment('11:30:00', this.timeFormat).format(this.timeFormat)
+            return moment('11:30:00', this.timeFormat).format(this.timeFormat)
         },
         currentDate: function () {
             return moment('17.05.2022', 'DD.MM.YYYY').format(`DD.MM.YYYY`)
         },
-        getTimeTable: function () {
+        getTable: function () {
             return timetable;
         },
         getCurrentDayLessons: function () {
-            return timetable.filter(function (lesson) {
+            timetable = timetable.filter(function (lesson) {
                 return lesson.dayDate === moment('17.05.2022', 'DD.MM.YYYY').format(`DD.MM.YYYY`);
-            }).filter(function (lesson) {
-                return lesson.GroupCode === getGroupData().name;
             }).sort(function (lesson1, lesson2) {
                 return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
             }).map((lesson, index, lessons) => {
@@ -57,15 +55,27 @@ function timetableHandlerConstructor(timetable) {
                 }
                 return lesson;
             });
+            return this;
+        },
+        filtrateByGroup: function (group) {
+            timetable = timetable.filter(function (lesson) {
+                return lesson.GroupCode === (getGroupData().name ?? group);
+            })
+            return this;
+        },
+        filtrateByDepartment: function (department) {
+            timetable = timetable.filter(function (lesson) {
+                return lesson.DepartmentCode === (department ?? 'ИТ');
+            })
+            return this;
         },
         currentTimeLessonsMapper: function (lesson) {
             const startDate = moment(lesson.TimeStart, this.timeFormat);
             const endDate = moment(lesson.TimeEnd, this.timeFormat);
-            return moment(this.currentTime, this.timeFormat).isBetween(startDate, endDate)
+            return moment(this.currentTime(), this.timeFormat).isBetween(startDate, endDate)
         },
         getCurrentTimeLessons: function () {
             this.getCurrentDayLessons.filter(this.currentTimeLessonsMapper);
-
         },
         watchCurrentLessons: function (callBackFn) {
 

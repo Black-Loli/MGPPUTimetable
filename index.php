@@ -24,13 +24,9 @@
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
 <script src="js/choice.js"></script>
+<script src="js/slides.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script>
-    function slideClicked(e) {
-        $('.slide').removeClass('active');
-        e.currentTarget.classList.add('active')
-    }
-
     function fillSlideWithLesson(slide, lesson) {
         if (lesson.current) {
             slide.addClass('now active')
@@ -43,8 +39,8 @@
     }
 
     getTimeTable(function (timeTableHandler) {
-        generateSlides(timeTableHandler.getCurrentDayLessons().length);
-        timeTableHandler.getCurrentDayLessons().forEach(function (lesson, index) {
+        generateSlides(timeTableHandler.filtrateByDepartment().getCurrentDayLessons().filtrateByGroup().getTable().length);
+        timeTableHandler.filtrateByDepartment().getCurrentDayLessons().filtrateByGroup().getTable().forEach(function (lesson, index) {
             fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
         })
     })
