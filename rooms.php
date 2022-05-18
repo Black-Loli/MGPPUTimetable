@@ -29,7 +29,7 @@
     }
 
     getTimeTable(function (timeTableHandler) {
-        let currentDayLessons = timeTableHandler.filtrateByDepartment().getCurrentDayLessons().getTable();
+        let currentDayLessons = timeTableHandler.getCurrentDayLessons().getTable();
         generateSlides(5);
         for (let i = 0; i < 5; i++) {
             let slide = $(`.slide:eq(${i})`);

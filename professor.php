@@ -43,8 +43,10 @@
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
 <script src="js/choice.js"></script>
+<script src="js/slides.js"></script>
+<script src="js/timeTableHandler.js"></script>
+<script src="js/lodash.min.js"></script>
 <script>
-
     function getLessonsForDate(lessons, date) {
         return lessons.filter(function (lesson) {
             //return lesson.dayDate === `${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`
@@ -52,25 +54,8 @@
         })
     }
 
-    const slides = document.querySelectorAll('.slide')
-
-    for (const slide of slides) {
-        slide.addEventListener('click', () => {
-            clearActiveClasses()
-            slide.classList.add('active')
-        })
-    }
-
-    function clearActiveClasses() {
-        slides.forEach((slide) => {
-            slide.classList.remove('active')
-        })
-    }
-
     function fillSlideWithLesson(slide, lesson) {
-        var startDate = moment(lesson.TimeStart, "HH:mm:ss");
-        var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
-        if (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBetween(startDate, endDate)) {
+        if (lesson.current) {
             slide.addClass('now')
         }
         let array = lesson.TeacherFIO.split(' ');
@@ -78,47 +63,25 @@
         slide.find('.prof_name').html(`${result}`);
     }
 
-    $.getJSON('timetable.json', function (receivedLessons) {
-        // const currentDayLessons = getLessonsForDate(receivedLessons, '13.05.2022').filter(function (lesson) {
-        const currentDayLessons = getLessonsForDate(receivedLessons, moment().format(`DD.MM.YYYY`)).filter(function (lesson) {
-            return lesson.DepartmentCode === 'ИТ';
-        }).sort(function (lesson1, lesson2) {
-            return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
-        });
+    getTimeTable(function (timeTableHandler) {
         let currentTimeProfessors = [];
         let futureProfessors = [];
         let pastProfessors = [];
-        currentDayLessons.filter(function (lesson, index, lessons) {
-            var endDate = moment(lesson.TimeEnd, "HH:mm:ss");
-            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isAfter(endDate));
-        }).forEach(function (lesson, index, lessons) {
-            if (!pastProfessors.includes(lesson.TeacherFIO)) {
-                pastProfessors.push(lesson.TeacherFIO);
-            }
+
+        timeTableHandler.getSeparateTimeRanges().past.forEach(function (lesson, index, lessons) {
+            pastProfessors = _.uniqBy(lessons, 'TeacherFIO').map(lesson => lesson.TeacherFIO);
         });
-        currentDayLessons.filter(function (lesson, index, lessons) {
-            var startDate = moment(lesson.TimeStart, "HH:mm:ss");
-            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBefore(startDate));
-        }).forEach(function (lesson, index, lessons) {
-            if (!futureProfessors.includes(lesson.TeacherFIO)) {
-                futureProfessors.push(lesson.TeacherFIO);
-            }
+        timeTableHandler.getSeparateTimeRanges().current.forEach(function (lesson, index, lessons) {
+            currentTimeProfessors = _.uniqBy(lessons, 'TeacherFIO').map(lesson => lesson.TeacherFIO);
+        });
+        timeTableHandler.getSeparateTimeRanges().future.forEach(function (lesson, index, lessons) {
+            futureProfessors = _.uniqBy(lessons, 'TeacherFIO').map(lesson => lesson.TeacherFIO);
         });
 
-        currentDayLessons.filter(function (lesson, index, lessons) {
-            const startProfessorTime = moment(lesson.TimeStart, "HH:mm:ss");
-            const endProfessorTime = moment(lesson.TimeEnd, "HH:mm:ss");
-            return (moment(moment().format('HH:mm:ss'), 'HH:mm:ss').isBetween(startProfessorTime, endProfessorTime));
-        }).forEach(function (lesson, index, lessons) {
-            if (!currentTimeProfessors.includes(lesson.TeacherFIO)) {
-                currentTimeProfessors.push(lesson.TeacherFIO);
-            }
-        });
 
         pastProfessors = pastProfessors.filter(function (profName, index) {
             return !futureProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
         })
-
         futureProfessors = futureProfessors.filter(function (profName, index) {
             return !pastProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
         })
@@ -126,6 +89,7 @@
         generateProfessors($('#already_left'), pastProfessors.length);
         generateProfessors($('#exist_now'), currentTimeProfessors.length);
         generateProfessors($('#will_come'), futureProfessors.length);
+
         currentTimeProfessors.forEach(function (professor, index, professors) {
             let array = professor.split(' ');
             let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
@@ -154,6 +118,8 @@
             parentBlock.find('.professor').append(slide)
         }
     }
+
+    $('.slide').click(slideClicked);
 </script>
 
 </html>

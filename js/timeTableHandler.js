@@ -27,26 +27,49 @@ let getTimeTable = async function (callbackfn) {
 }
 
 function timetableHandlerConstructor(timetable) {
+    const timeFormat = 'HH:mm:ss';
+    const dateFormat = 'DD.MM.YYYY';
+
     function getGroupData() {
         return JSON.parse(localStorage.getItem('group'))
     }
 
+    function currentTime() {
+        //moment().format('HH:mm:ss')
+        return moment('11:30:00', timeFormat).format(timeFormat)
+    }
+
+    function currentDate() {
+        return moment('17.05.2022', dateFormat).format(dateFormat)
+    }
+
+    function filtration(type, lesson) {
+        const startTime = moment(lesson.TimeStart, timeFormat);
+        const endTime = moment(lesson.TimeEnd, timeFormat);
+        const currentMoment = moment(currentTime(), timeFormat);
+        if (type === 1) {
+            return currentMoment.isAfter(endTime)
+        } else if (type === 2) {
+            return currentMoment.isBetween(startTime, endTime)
+        } else if (type === 3) {
+            return currentMoment.isBefore(endTime)
+        } else {
+            return true
+        }
+    }
+
     return {
-        timeFormat: 'HH:mm:ss',
         timeTable: timetable,
-        currentTime: function () {
-            //moment().format('HH:mm:ss')
-            return moment('11:30:00', this.timeFormat).format(this.timeFormat)
-        },
-        currentDate: function () {
-            return moment('17.05.2022', 'DD.MM.YYYY').format(`DD.MM.YYYY`)
-        },
+        timeFormat,
+        dateFormat,
+        currentTime,
+        currentDate,
         getTable: function () {
             return timetable;
         },
         getCurrentDayLessons: function () {
-            timetable = timetable.filter(function (lesson) {
-                return lesson.dayDate === moment('17.05.2022', 'DD.MM.YYYY').format(`DD.MM.YYYY`);
+            timetable = this.filtrateByDepartment().getTable().filter(function (lesson) {
+                return lesson.dayDate === currentDate();
             }).sort(function (lesson1, lesson2) {
                 return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
             }).map((lesson, index, lessons) => {
@@ -77,8 +100,21 @@ function timetableHandlerConstructor(timetable) {
         getCurrentTimeLessons: function () {
             this.getCurrentDayLessons.filter(this.currentTimeLessonsMapper);
         },
-        watchCurrentLessons: function (callBackFn) {
+        getSeparateTimeRanges: function () {
+            let past, current, future;
 
+
+            past = this.getCurrentDayLessons().getTable().filter(function (lesson) {
+                return filtration(1, lesson);
+            })
+            current = this.getCurrentDayLessons().getTable().filter(function (lesson) {
+                return filtration(2, lesson);
+            })
+
+            future = this.getCurrentDayLessons().getTable().filter(function (lesson) {
+                return filtration(3, lesson);
+            })
+            return {past, current, future}
         }
     }
 }
