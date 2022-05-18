@@ -39,8 +39,8 @@
     }
 
     getTimeTable(function (timeTableHandler) {
-        generateSlides(timeTableHandler.filtrateByDepartment().getCurrentDayLessons().filtrateByGroup().getTable().length);
-        timeTableHandler.filtrateByDepartment().getCurrentDayLessons().filtrateByGroup().getTable().forEach(function (lesson, index) {
+        generateSlides(timeTableHandler.getCurrentDayLessons().filtrateByGroup().getTable().length);
+        timeTableHandler.getCurrentDayLessons().filtrateByGroup().getTable().forEach(function (lesson, index) {
             fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
         })
     })
