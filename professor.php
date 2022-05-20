@@ -69,22 +69,26 @@
         let pastProfessors = [];
 
         timeTableHandler.getSeparateTimeRanges().past.forEach(function (lesson, index, lessons) {
-            pastProfessors = _.uniqBy(lessons, 'TeacherFIO').map(lesson => lesson.TeacherFIO);
+            pastProfessors = _.uniqBy(lessons, (lesson) => lesson.TeacherFIO).map(lesson => lesson.TeacherFIO);
         });
         timeTableHandler.getSeparateTimeRanges().current.forEach(function (lesson, index, lessons) {
-            currentTimeProfessors = _.uniqBy(lessons, 'TeacherFIO').map(lesson => lesson.TeacherFIO);
+            currentTimeProfessors = _.uniqBy(lessons, (lesson) => lesson.TeacherFIO).map(lesson => lesson.TeacherFIO);
         });
         timeTableHandler.getSeparateTimeRanges().future.forEach(function (lesson, index, lessons) {
-            futureProfessors = _.uniqBy(lessons, 'TeacherFIO').map(lesson => lesson.TeacherFIO);
+            futureProfessors = _.uniqBy(lessons, (lesson) => lesson.TeacherFIO).map(lesson => lesson.TeacherFIO);
         });
 
-
-        pastProfessors = pastProfessors.filter(function (profName, index) {
+        pastProfessors = _.difference([futureProfessors, currentTimeProfessors], pastProfessors, _.isEqual)
+        futureProfessors = _.difference([pastProfessors, currentTimeProfessors], futureProfessors, _.isEqual)
+        /*pastProfessors = pastProfessors.filter(function (profName, index) {
             return !futureProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
-        })
-        futureProfessors = futureProfessors.filter(function (profName, index) {
+        })*/
+        /*futureProfessors = futureProfessors.filter(function (profName, index) {
             return !pastProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
-        })
+        })*/
+        console.log(pastProfessors);
+        console.log(currentTimeProfessors);
+        console.log(futureProfessors);
 
         generateProfessors($('#already_left'), pastProfessors.length);
         generateProfessors($('#exist_now'), currentTimeProfessors.length);
@@ -107,9 +111,7 @@
             let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
             $(`.slide#already_left`).find(`.prof_name:eq(${index})`).html(result);
         })
-        console.log(currentTimeProfessors);
-        console.log(pastProfessors);
-        console.log(futureProfessors);
+
     })
 
     function generateProfessors(parentBlock, amount) {
