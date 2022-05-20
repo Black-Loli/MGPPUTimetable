@@ -59,7 +59,7 @@ function timetableHandlerConstructor(timetable) {
     }
 
     return {
-        timeTable: timetable,
+        timetable,
         timeFormat,
         dateFormat,
         currentTime,
