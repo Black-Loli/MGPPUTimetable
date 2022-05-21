@@ -29,8 +29,18 @@ $.getJSON('groups.json', function (receivedGroups) {
     console.log(receivedGroups)
     receivedGroups.forEach(function (group, index) {
         $('#group_choice').append(`<option class="name_group" value="${group.id}"> ${group.name} </option>`)
+    });
+});
+$.getJSON('timetable.json', function (receivedLessons) {
+    console.log(receivedLessons.length);
+    _(receivedLessons).filter(function (lesson) {
+        return lesson.TeacherFIO !== null && lesson.dayDate === moment().format('DD.MM.YYYY');
+    }).uniqBy('TeacherID').sort(function (lesson1, lesson2) {
+        return lesson1.TeacherFIO.localeCompare(lesson2.TeacherFIO);
+    }).forEach(function (lesson, index) {
+        $('#professor_choice').append(`<option class="name_prof" value="${lesson.TeacherID}"> ${lesson.TeacherFIO}</option>`)
     })
-})
+});
 
 $(`.overlay`).click(function (event) {
     if (event.target === $(this).get(0)) {
@@ -41,6 +51,13 @@ $(`.overlay`).click(function (event) {
     }
 })
 
+$('#professor_choice').change(function () {
+    console.log("Профессора котических наук", $(this).val(), $(this).find('option:selected').html())
+    localStorage.setItem('professor', JSON.stringify({
+        id: $(this).val(),
+        name: $(this).find('option:selected').html().trim()
+    }))
+})
 $('#group_choice').change(function () {
     console.log("МЯЯЯЯЯУ", $(this).val(), $(this).find('option:selected').html())
     localStorage.setItem('group', JSON.stringify({
@@ -53,10 +70,17 @@ $('#showTimetable').click(function () {
     let selectedTab = $('.tab-list input[type="radio"]:checked').attr('id')
 
     console.log("Ща покажем для", selectedTab, wishTimetable);
-    if( wishTimetable ==='time_today'){
+    if (wishTimetable === 'time_today') {
         location.replace('index.php');
     } else {
         location.replace('loading.php');
+    }
+    if (selectedTab === 'professor_tab') {
+        if (wishTimetable === 'time_today') {
+            location.replace('schedule_teacher.php');
+        } else {
+            location.replace('loading.php');
+        }
     }
 })
 

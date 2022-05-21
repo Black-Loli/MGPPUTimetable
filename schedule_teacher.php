@@ -41,8 +41,10 @@
 </body>
 
 <script src="js/jquery.min.js"></script>
+<script src="js/lodash.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
+<script src="js/choice.js"></script>
 <script>
 
     function getLessonsForDate(lessons, date) {
@@ -75,10 +77,11 @@
     $.getJSON('timetable.json', function (receivedLessons) {
         const currentDate = new Date();
         console.log(`${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`);
-        const currentDayLessons = getLessonsForDate(receivedLessons, '13.05.2022').filter(function (lesson) {
+        const currentDayLessons = getLessonsForDate(receivedLessons, '21.05.2022').filter(function (lesson) {
         // const currentDayLessons = getLessonsForDate(receivedLessons, moment().format(`DD.MM.YYYY`)).filter(function (lesson) {
-            return lesson.TeacherFIO === 'Исаков Сергей Сергеевич';
+            return lesson.TeacherID === JSON.parse(localStorage.getItem('professor')).id;
         }).sort(function (lesson1, lesson2) {
+            console.log(lesson1)
             return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
         });
         generateSlides(currentDayLessons.length);
