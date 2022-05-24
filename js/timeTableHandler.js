@@ -17,12 +17,12 @@ let getTimeTableSync = async function () {
     if (localStorage.keyExists('timetable')) {
         return (timetableHandlerConstructor(JSON.parse(localStorage.getItem('timetable'))));
     } else {
-        return await getData()
+        return timetableHandlerConstructor(await getData())
     }
 }
-let getTimeTable = async function (callbackfn) {
+let getTimeTable = function (callbackfn) {
     getTimeTableSync().then(data => {
-        callbackfn(timetableHandlerConstructor(data))
+        callbackfn(data)
     })
 }
 
