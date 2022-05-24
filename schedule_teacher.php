@@ -25,12 +25,10 @@
 <script src="js/lodash.min.js"></script>
 <script>
     function fillSlideWithLessons(slide, lessons) {
-        console.log(slide)
         //работает в рамках одной пары
         if (lessons[0].current) {
             slide.addClass('now active')
         }
-        console.log(_(lessons).map('GroupCode').value())
         slide.find('.lesson_range h2').html(`${lessons[0].lessonTimeRange}`);
         slide.find('.lesson_index').html(`${lessons[0].Number}`);
         slide.find('.lesson_name').html(`${lessons[0].Discipline}`);
@@ -40,14 +38,9 @@
 
     getTimeTable(function (timeTableHandler) {
         const currentDayLessons = timeTableHandler.getCurrentDayLessons().filtrateByTeacher().getTable()
-        console.log(currentDayLessons);
-        //generateSlides(currentDayLessons.length);
-        console.log(_(currentDayLessons).groupBy('Number').value());
-        _(currentDayLessons).groupBy('Number').forEach(function (lessonGrouping, key, lessons) {
-            var slide = generateSlide();
+        _(currentDayLessons).groupBy('Number').forEach(function (lessonGrouping) {
+            const slide = generateSlide();
             fillSlideWithLessons(slide, lessonGrouping);
-            lessonGrouping.forEach((lesson, index) => {
-            })
             $('.container').append(slide)
         })
     })

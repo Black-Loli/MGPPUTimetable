@@ -48,8 +48,6 @@
 <script src="js/timeTableHandler.js"></script>
 <script>
     function fillSlideWithLesson(slide, lesson) {
-        const startDate = moment(lesson.TimeStart, "HH:mm:ss");
-        const endDate = moment(lesson.TimeEnd, "HH:mm:ss");
         if (lesson.current) {
             slide.addClass('now')
         }
@@ -81,15 +79,15 @@
         generateGroups($('#already_left'), pastGroups.length);
         generateGroups($('#exist_now'), currentTimeGroups.length);
         generateGroups($('#will_come'), futureGroups.length);
-        currentTimeGroups.forEach(function (group, index, groups) {
+        currentTimeGroups.forEach(function (group, index) {
             $(`.slide#exist_now`).find(`.groups_name:eq(${index})`).html(group);
         })
 
-        pastGroups.forEach(function (group, index, groups) {
+        pastGroups.forEach(function (group, index) {
             $(`.slide#already_left`).find(`.groups_name:eq(${index})`).html(group);
         })
 
-        futureGroups.forEach(function (group, index, groups) {
+        futureGroups.forEach(function (group, index) {
             $(`.slide#will_come`).find(`.groups_name:eq(${index})`).html(group);
         })
     })
