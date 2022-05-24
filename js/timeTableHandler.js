@@ -42,8 +42,8 @@ function timetableHandlerConstructor(allTimetable) {
     }
 
     function currentTime() {
-        return moment('14:35:00', timeFormat).format(timeFormat)
-        //return moment().format(timeFormat)
+        return moment().format(timeFormat)
+        //return moment('14:35:00', timeFormat).format(timeFormat)
     }
 
     function currentDate() {
