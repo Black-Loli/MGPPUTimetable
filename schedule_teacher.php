@@ -24,28 +24,36 @@
 <script src="js/timeTableHandler.js"></script>
 <script src="js/lodash.min.js"></script>
 <script>
-    function fillSlideWithLesson(slide, lesson) {
-        if (lesson.current) {
+    function fillSlideWithLessons(slide, lessons) {
+        console.log(slide)
+        //работает в рамках одной пары
+        if (lessons[0].current) {
             slide.addClass('now active')
         }
-        slide.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
-        slide.find('.lesson_index').html(`${lesson.Number}`);
-        slide.find('.lesson_name').html(`${lesson.Discipline}`);
-        slide.find('.group_name').html(`${lesson.GroupCode}`);
-        slide.find('.room_number').html(`${lesson.Room}`);
+        console.log(_(lessons).map('GroupCode').value())
+        slide.find('.lesson_range h2').html(`${lessons[0].lessonTimeRange}`);
+        slide.find('.lesson_index').html(`${lessons[0].Number}`);
+        slide.find('.lesson_name').html(`${lessons[0].Discipline}`);
+        slide.find('.group_name').html(`${_(lessons).map('GroupCode').value().join('<br>')}`);
+        slide.find('.room_number').html(`${lessons[0].Room}`);
     }
 
     getTimeTable(function (timeTableHandler) {
         const currentDayLessons = timeTableHandler.getCurrentDayLessons().filtrateByTeacher().getTable()
-        generateSlides(currentDayLessons.length);
-        currentDayLessons.forEach(function (lesson, index, lessons) {
-            fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
+        console.log(currentDayLessons);
+        //generateSlides(currentDayLessons.length);
+        console.log(_(currentDayLessons).groupBy('Number').value());
+        _(currentDayLessons).groupBy('Number').forEach(function (lessonGrouping, key, lessons) {
+            var slide = generateSlide();
+            fillSlideWithLessons(slide, lessonGrouping);
+            lessonGrouping.forEach((lesson, index) => {
+            })
+            $('.container').append(slide)
         })
     })
 
-    function generateSlides(amount) {
-        for (let i = 0; i < amount; i++) {
-            let slide = $(`<div class="slide">
+    function generateSlide() {
+        return $(`<div class="slide">
                 <div class="time_lesson">
                 <h2 class="lesson_index"></h2>
             <div class="lesson_range">
@@ -54,17 +62,14 @@
             <h2 class="lesson_name"></h2>
         </div>
             <div class="professor">
-                <h2> Группа: </h2>
+                <h2> Группы: </h2>
                 <h2 class="group_name"></h2>
             </div>
             <div class="room">
                 <h2> Аудитория: </h2>
                 <h2 class="room_number"></h2>
             </div>
-            </div>`);
-            slide.click(slideClicked);
-            $('.container').append(slide)
-        }
+            </div>`).click(slideClicked);
     }
 </script>
 
