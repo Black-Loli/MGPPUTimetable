@@ -100,7 +100,7 @@ button.btn{
 }
 
 button.btn:hover,
-select:hover{
+option:hover{
     cursor: pointer;
     background: rgba($highlighting, 0.5);
 }
@@ -116,4 +116,8 @@ div.slide{
 .slide.now{
     background: $background;
     border: 2px solid $text_border;
+}
+
+.slide.active h2.room_number_used {
+    border: 2px solid #EE333E;
 }

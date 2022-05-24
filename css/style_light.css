@@ -74,7 +74,7 @@ button.btn {
   color: #955D8E; }
 
 button.btn:hover,
-select:hover {
+option:hover {
   background: rgba(180, 139, 175, 0.5); }
 
 select:focus {
@@ -86,3 +86,6 @@ div.slide {
 .slide.now {
   background: #FCF6FB;
   border: 2px solid #955D8E; }
+
+.slide.active h2.room_number_used {
+  border: 2px solid #8D3B3D; }
