@@ -6,6 +6,9 @@ function getData() {
     return Promise.resolve($.getJSON('timetable.json', function (data) {
         try {
             //TODO: срез для кэширования
+            _(data).filter(function (lesson) {
+                return moment(moment().format('DD.MM.YYYY')).add(14, 'days').isBefore(lesson.dayDate) && moment(moment().format('DD.MM.YYYY')).add(14, 'days').isAfter(lesson.dayDate)
+            }).value()
             //localStorage.setItem('timetable', JSON.stringify(data));
         } catch (e) {
             console.warn(`не удалось положить в память ${data.length} элементов: слишком большой объём данных`)

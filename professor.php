@@ -78,13 +78,13 @@
         generateProfessors($('#exist_now'), currentTimeProfessors.length);
         generateProfessors($('#will_come'), futureProfessors.length);
 
-        currentTimeProfessors.forEach(function (professor, index, professors) {
+        currentTimeProfessors.forEach(function (professor, index) {
             fillSlide($(`.slide#exist_now`).find(`.prof_name:eq(${index})`), professor)
         })
-        futureProfessors.forEach(function (professor, index, professors) {
+        futureProfessors.forEach(function (professor, index) {
             fillSlide($(`.slide#will_come`).find(`.prof_name:eq(${index})`), professor)
         })
-        pastProfessors.forEach(function (professor, index, professors) {
+        pastProfessors.forEach(function (professor, index) {
             fillSlide($(`.slide#already_left`).find(`.prof_name:eq(${index})`), professor)
         })
 
