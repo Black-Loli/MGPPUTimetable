@@ -25,9 +25,8 @@
 <!--                <button type="submit" class="btn"> Показать </button>-->
             </div>
             <div id="professor_tab_content">
-                <select name="type" class="professor_tab" required="">
-                    <option class="op" selected> Выберите преподавателя </option>
-                    <option class="op"> Попков </option>
+                <select name="type" class="professor_tab" required="" id="professor_choice">
+                    <option class="name_prof" selected> Выберите преподавателя </option>
                 </select>
 
             </div>

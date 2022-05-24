@@ -13,14 +13,15 @@
 
     </div>
 
-    <!--    Прикрепление файла с выбором факультета и групыы-->
+<!--    Прикрепление файла с выбором факультета и групыы-->
     <?php include 'choice.php'; ?>
 
 
 </div>
 </body>
 
-<script src="js/jquery.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/lodash.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
 <script src="js/choice.js"></script>
