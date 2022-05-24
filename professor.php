@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>...</title>
+    <title>Сегодня | Преподаватели</title>
     <?php include 'header.php'; ?>
 </head>
 <body>
@@ -48,27 +48,16 @@
 <script src="js/timeTableHandler.js"></script>
 <script src="js/lodash.min.js"></script>
 <script>
-    function getLessonsForDate(lessons, date) {
-        return lessons.filter(function (lesson) {
-            //return lesson.dayDate === `${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`
-            return lesson.dayDate === date
-        })
-    }
-
-    function fillSlideWithLesson(slide, lesson) {
-        if (lesson.current) {
-            slide.addClass('now')
-        }
-        let array = lesson.TeacherFIO.split(' ');
+    function fillSlide(element, professor) {
+        let array = professor.split(' ');
         let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
-        slide.find('.prof_name').html(`${result}`);
+        element.html(result);
     }
 
     getTimeTable(function (timeTableHandler) {
         let currentTimeProfessors = [];
         let futureProfessors = [];
         let pastProfessors = [];
-
         timeTableHandler.getSeparateTimeRanges().past.forEach(function (lesson, index, lessons) {
             pastProfessors = _.uniqBy(lessons, (lesson) => lesson.TeacherFIO).map(lesson => lesson.TeacherFIO);
         });
@@ -79,14 +68,8 @@
             futureProfessors = _.uniqBy(lessons, (lesson) => lesson.TeacherFIO).map(lesson => lesson.TeacherFIO);
         });
 
-        pastProfessors = _.difference([futureProfessors, currentTimeProfessors], pastProfessors, _.isEqual)
-        futureProfessors = _.difference([pastProfessors, currentTimeProfessors], futureProfessors, _.isEqual)
-        /*pastProfessors = pastProfessors.filter(function (profName, index) {
-            return !futureProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
-        })*/
-        /*futureProfessors = futureProfessors.filter(function (profName, index) {
-            return !pastProfessors.includes(profName) && !currentTimeProfessors.includes(profName)
-        })*/
+        pastProfessors = _(pastProfessors).difference(futureProfessors, _.isEqual).difference(currentTimeProfessors, _.isEqual).value()
+        futureProfessors = _(futureProfessors).difference(pastProfessors, _.isEqual).difference(currentTimeProfessors, _.isEqual).value()
         console.log(pastProfessors);
         console.log(currentTimeProfessors);
         console.log(futureProfessors);
@@ -96,21 +79,13 @@
         generateProfessors($('#will_come'), futureProfessors.length);
 
         currentTimeProfessors.forEach(function (professor, index, professors) {
-            let array = professor.split(' ');
-            let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
-            $(`.slide#exist_now`).find(`.prof_name:eq(${index})`).html(result);
+            fillSlide($(`.slide#exist_now`).find(`.prof_name:eq(${index})`), professor)
         })
-
         futureProfessors.forEach(function (professor, index, professors) {
-            let array = professor.split(' ');
-            let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
-            $(`.slide#will_come`).find(`.prof_name:eq(${index})`).html(result);
+            fillSlide($(`.slide#will_come`).find(`.prof_name:eq(${index})`), professor)
         })
-
         pastProfessors.forEach(function (professor, index, professors) {
-            let array = professor.split(' ');
-            let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
-            $(`.slide#already_left`).find(`.prof_name:eq(${index})`).html(result);
+            fillSlide($(`.slide#already_left`).find(`.prof_name:eq(${index})`), professor)
         })
 
     })

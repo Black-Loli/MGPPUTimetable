@@ -20,27 +20,35 @@ let getTimeTableSync = async function () {
         return timetableHandlerConstructor(await getData())
     }
 }
+/**
+ *
+ * @param callbackfn(timetableHandlerConstructor)
+ * @return timetableHandlerConstructor
+ */
 let getTimeTable = function (callbackfn) {
     getTimeTableSync().then(data => {
         callbackfn(data)
     })
 }
 
-function timetableHandlerConstructor(timetable) {
+function timetableHandlerConstructor(allTimetable) {
     const timeFormat = 'HH:mm:ss';
     const dateFormat = 'DD.MM.YYYY';
+    console.log("Время сейчас", currentTime())
+    console.log("День сегодня", currentDate())
 
     function getGroupData() {
         return JSON.parse(localStorage.getItem('group'))
     }
 
     function currentTime() {
-        //moment().format('HH:mm:ss')
-        return moment('11:30:00', timeFormat).format(timeFormat)
+        return moment('14:35:00', timeFormat).format(timeFormat)
+        //return moment().format(timeFormat)
     }
 
     function currentDate() {
-        return moment('17.05.2022', dateFormat).format(dateFormat)
+        return moment().format(dateFormat)
+        //return moment('24.05.2022', dateFormat).format(dateFormat)
     }
 
     function filtration(type, lesson) {
@@ -59,16 +67,16 @@ function timetableHandlerConstructor(timetable) {
     }
 
     return {
-        timetable,
+        timetable: allTimetable,
         timeFormat,
         dateFormat,
         currentTime,
         currentDate,
         getTable: function () {
-            return timetable;
+            return this.timetable;
         },
         getCurrentDayLessons: function () {
-            timetable = this.filtrateByDepartment().getTable().filter(function (lesson) {
+            this.timetable = this.filtrateByDepartment().getTable().filter(function (lesson) {
                 return lesson.dayDate === currentDate();
             }).sort(function (lesson1, lesson2) {
                 return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
@@ -81,14 +89,20 @@ function timetableHandlerConstructor(timetable) {
             return this;
         },
         filtrateByGroup: function (group) {
-            timetable = timetable.filter(function (lesson) {
+            this.timetable = this.timetable.filter(function (lesson) {
                 return lesson.GroupCode === (getGroupData().name ?? group);
             })
             return this;
         },
         filtrateByDepartment: function (department) {
-            timetable = timetable.filter(function (lesson) {
+            this.timetable = this.timetable.filter(function (lesson) {
                 return lesson.DepartmentCode === (department ?? 'ИТ');
+            })
+            return this;
+        },
+        filtrateByTeacher: function (teacher) {
+            this.timetable = this.timetable.filter(function (lesson) {
+                return lesson.TeacherFIO === (teacher ?? JSON.parse(localStorage.getItem('professor')).name);
             })
             return this;
         },
@@ -102,8 +116,6 @@ function timetableHandlerConstructor(timetable) {
         },
         getSeparateTimeRanges: function () {
             let past, current, future;
-
-
             past = this.getCurrentDayLessons().getTable().filter(function (lesson) {
                 return filtration(1, lesson);
             })

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>...</title>
+    <title>Сегодня | Расписание</title>
     <?php include 'header.php'; ?>
 </head>
 <body>
@@ -39,8 +39,10 @@
     }
 
     getTimeTable(function (timeTableHandler) {
-        generateSlides(timeTableHandler.getCurrentDayLessons().filtrateByGroup().getTable().length);
-        timeTableHandler.getCurrentDayLessons().filtrateByGroup().getTable().forEach(function (lesson, index) {
+        const lessonsArray = timeTableHandler.getCurrentDayLessons().filtrateByGroup().getTable()
+        generateSlides(lessonsArray.length);
+        console.log(timeTableHandler.getCurrentDayLessons())
+        lessonsArray.forEach(function (lesson, index) {
             fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
         })
     })
