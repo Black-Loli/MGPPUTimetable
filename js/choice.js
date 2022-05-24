@@ -22,13 +22,11 @@ $('.tab_selector').click(function (event) {
 });
 
 $.getJSON('groups.json', function (receivedGroups) {
-    console.log(receivedGroups)
     receivedGroups.forEach(function (group, index) {
         $('#group_choice').append(`<option class="name_group" value="${group.id}"> ${group.name} </option>`)
     });
 });
 $.getJSON('timetable.json', function (receivedLessons) {
-    console.log(receivedLessons.length);
     _(receivedLessons).filter(function (lesson) {
         return lesson.TeacherFIO !== null && lesson.dayDate === moment().format('DD.MM.YYYY');
     }).uniqBy('TeacherID').sort(function (lesson1, lesson2) {
