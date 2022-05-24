@@ -19,8 +19,7 @@
 <script src="js/lodash.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
-<script src="js/choice.js"></script>
-<script src="js/slides.js"></script>
+<script src="js/common.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script src="js/lodash.min.js"></script>
 <script>

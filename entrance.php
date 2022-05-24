@@ -118,7 +118,7 @@
 <script src="js/lodash.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
-<script src="js/choice.js"></script>
+<script src="js/common.js"></script>
 <script>
     const menu = document.getElementById('menu');
     const profile_selection_overlay = $('#profile_selection_overlay');

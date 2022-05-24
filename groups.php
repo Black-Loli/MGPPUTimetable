@@ -43,8 +43,7 @@
 <script src="js/lodash.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/dark_or_light.js"></script>
-<script src="js/choice.js"></script>
-<script src="js/slides.js"></script>
+<script src="js/common.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script>
     function fillSlideWithLesson(slide, lesson) {
@@ -71,10 +70,6 @@
 
         pastGroups = _(pastGroups).difference(futureGroups, _.isEqual).difference(currentTimeGroups, _.isEqual).value();
         futureGroups = _(futureGroups).difference(pastGroups, _.isEqual).difference(currentTimeGroups, _.isEqual).value();
-
-        console.log('pastGroups', pastGroups)
-        console.log('currentGroups', currentTimeGroups)
-        console.log('futureGroups', futureGroups)
 
         generateGroups($('#already_left'), pastGroups.length);
         generateGroups($('#exist_now'), currentTimeGroups.length);
