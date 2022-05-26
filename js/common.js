@@ -52,6 +52,7 @@ $('#professor_choice').change(function () {
         name: $(this).find('option:selected').html().trim()
     }))
 })
+
 $('#group_choice').change(function () {
     console.log("МЯЯЯЯЯУ", $(this).val(), $(this).find('option:selected').html())
     localStorage.setItem('group', JSON.stringify({
@@ -71,7 +72,7 @@ $('#showTimetable').click(function () {
     }
     if (selectedTab === 'professor_tab') {
         if (wishTimetable === 'time_today') {
-            location.replace('schedule_teacher.php');
+            location.replace('schedule_teacher_day.php');
         } else {
             location.replace('loading.php');
         }

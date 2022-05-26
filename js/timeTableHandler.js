@@ -5,10 +5,10 @@ Storage.prototype.keyExists = function (key) {
 function getData() {
     return Promise.resolve($.getJSON('timetable.json', function (data) {
         try {
-            //TODO: срез для кэширования
-            _(data).filter(function (lesson) {
-                return moment(moment().format('DD.MM.YYYY')).add(14, 'days').isBefore(lesson.dayDate) && moment(moment().format('DD.MM.YYYY')).add(14, 'days').isAfter(lesson.dayDate)
-            }).value()
+            // //TODO: срез для кэширования
+            // _(data).filter(function (lesson) {
+            //     return moment(moment().format('DD.MM.YYYY')).add(14, 'days').isBefore(lesson.dayDate) && moment(moment().format('DD.MM.YYYY')).add(14, 'days').isAfter(lesson.dayDate)
+            // }).value()
             //localStorage.setItem('timetable', JSON.stringify(data));
         } catch (e) {
             console.warn(`не удалось положить в память ${data.length} элементов: слишком большой объём данных`)
@@ -46,12 +46,12 @@ function timetableHandlerConstructor(allTimetable) {
 
     function currentTime() {
         return moment().format(timeFormat)
-        //return moment('14:35:00', timeFormat).format(timeFormat)
+        // return moment('14:35:00', timeFormat).format(timeFormat)
     }
 
     function currentDate() {
         return moment().format(dateFormat)
-        //return moment('24.05.2022', dateFormat).format(dateFormat)
+        // return moment('27.05.2022', dateFormat).format(dateFormat)
     }
 
     function filtration(type, lesson) {
