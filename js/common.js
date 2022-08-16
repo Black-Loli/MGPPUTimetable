@@ -54,7 +54,7 @@ $('#professor_choice').change(function () {
 })
 
 $('#group_choice').change(function () {
-    console.log("МЯЯЯЯЯУ", $(this).val(), $(this).find('option:selected').html())
+    console.log("Котёнок из группы", $(this).val(), $(this).find('option:selected').html())
     localStorage.setItem('group', JSON.stringify({
         id: $(this).val(),
         name: $(this).find('option:selected').html().trim()
@@ -64,9 +64,11 @@ $('#group_choice').change(function () {
 $('#showTimetable').click(function () {
     let selectedTab = $('.tab-list input[type="radio"]:checked').attr('id')
 
-    console.log("Ща покажем для", selectedTab, wishTimetable);
+    console.log("Ща тыгдыкним для", selectedTab, wishTimetable);
     if (wishTimetable === 'time_today') {
-        location.replace('index.php');
+        location.replace('schedule_group_day.php');
+    } else if (wishTimetable === 'time_week') {
+        location.replace('schedule_group_week.php');
     } else {
         location.replace('loading.php');
     }

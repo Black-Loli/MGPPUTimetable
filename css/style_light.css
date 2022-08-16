@@ -80,12 +80,15 @@ option:hover {
 select:focus {
   box-shadow: 0 0 0.9rem 0.1rem rgba(180, 139, 175, 0.5); }
 
-div.slide {
+div.slide, div.slide_day {
   background: #F2E6EF; }
 
-.slide.now {
+.slide.now, .slide_day.now {
   background: #FCF6FB;
   border: 2px solid #955D8E; }
 
 .slide.active h2.room_number_used {
   border: 2px solid #8D3B3D; }
+
+.slide_day svg {
+  stroke: #955D8E; }

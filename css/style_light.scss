@@ -110,15 +110,19 @@ select:focus{
     box-shadow: 0 0 0.9rem 0.1rem rgba($highlighting, 0.5);
 }
 
-div.slide{
+div.slide, div.slide_day{
     background: $secondary_timeline;
 }
 
-.slide.now{
+.slide.now, .slide_day.now{
     background: $background;
     border: 2px solid $text_border;
 }
 
 .slide.active h2.room_number_used {
     border: 2px solid #8D3B3D;
+}
+
+.slide_day svg{
+    stroke: $text_border;
 }

@@ -46,12 +46,12 @@ function timetableHandlerConstructor(allTimetable) {
 
     function currentTime() {
         return moment().format(timeFormat)
-        // return moment('14:35:00', timeFormat).format(timeFormat)
+        // return moment('16:30:20', timeFormat).format(timeFormat)
     }
 
     function currentDate() {
-        return moment().format(dateFormat)
-        // return moment('27.05.2022', dateFormat).format(dateFormat)
+        // return moment().format(dateFormat)
+        return moment('12.04.2022', dateFormat).format(dateFormat)
     }
 
     function filtration(type, lesson) {

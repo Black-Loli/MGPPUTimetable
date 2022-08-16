@@ -52,7 +52,63 @@ div.entrance {
 svg.loading {
     width: 40%;
     margin: auto;
+    animation: animate 4s linear infinite;
 }
+
+@keyframes animate {
+    0%{
+        transform: rotate(0deg), rotateX(-30deg) rotateY(0deg);
+    }
+
+    8.3%{
+        transform: rotate(30deg);
+    }
+
+    16.6%{
+        transform: rotate(60deg);
+    }
+
+    24.9%{
+        transform: rotate(90deg);
+    }
+
+    33.3%{
+        transform: rotate(120deg);
+    }
+
+    41.6%{
+        transform: rotate(150deg);
+    }
+
+    49.9%{
+        transform: rotate(180deg);
+    }
+
+    58.3%{
+        transform: rotate(210deg);
+    }
+
+    66.6%{
+        transform: rotate(240deg);
+    }
+
+    74.9%{
+        transform: rotate(270deg);
+    }
+
+    83.3%{
+        transform: rotate(300deg);
+    }
+
+    91.6%{
+        transform: rotate(330deg);
+    }
+
+    100%{
+        transform: rotate(360deg), rotateX(-30deg) rotateY(360deg);
+    }
+}
+
 
 h1.loading {
     text-align: center;
@@ -380,6 +436,15 @@ select:hover {
     margin: 3% auto 0;
 }
 
+.container_week {
+    width: 80vw;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+    margin: 3% auto 0;
+}
+
 .slide {
     height: 65px;
     border-radius: 20px;
@@ -392,7 +457,19 @@ select:hover {
     flex-direction: column;
 }
 
-.slide div.professor, .slide div.rooms, .slide div.groups, .slide div.room {
+.slide_day {
+    width: 10%;
+    border-radius: 20px;
+    margin: 3vh;
+    cursor: pointer;
+    flex: 1;
+    position: relative;
+    transition: all 1000ms ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide div.professor, .slide div.rooms, .slide div.groups, .slide div.room, .slide_day div.time_lesson, .slide_day svg, .slide_day .lesson_name, .slide_day .today {
     display: none;
 }
 
@@ -410,7 +487,11 @@ select:hover {
     height: 250px;
 }
 
-.slide.active div.time_lesson, .slide.active h2.building {
+.slide_day.active {
+    width: 40%;
+}
+
+.slide.active div.time_lesson, .slide.active h2.building, .slide_day.active div.time_lesson {
     padding: 3% 3% 0;
     display: flex;
     justify-content: space-between;
@@ -447,5 +528,35 @@ select:hover {
 .slide.active h2.room_number_used{
     border-radius: 10px;
     margin: 5px auto 0 0;
+}
+
+.active .date_week{
+    display: flex;
+    justify-content: space-around
+}
+
+.slide_day.now .today{
+    display: block;
+    text-align: center;
+}
+
+.slide_day.active svg{
+    display: flex;
+    width: 90%;
+    margin: 15px auto;
+}
+
+.slide_day.active h2.lesson_name{
+    display: flex;
+}
+
+.slide_day .time_lesson{
+    padding: 10px;
+}
+
+.slide_day .date_week{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
