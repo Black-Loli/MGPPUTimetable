@@ -49,13 +49,10 @@ div.entrance {
     align-items: flex-start;
 }
 
-.loading g{
-    transform-origin: center center;
-}
-
 svg.loading {
     width: 40%;
     margin: auto;
+    transform-origin: center center;
     animation: animate 4s infinite steps(12);
 }
 
