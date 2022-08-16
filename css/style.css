@@ -49,63 +49,23 @@ div.entrance {
     align-items: flex-start;
 }
 
+.loading g{
+    transform-origin: center center;
+}
+
 svg.loading {
     width: 40%;
     margin: auto;
-    animation: animate 4s linear infinite;
+    animation: animate 4s infinite steps(12);
 }
 
 @keyframes animate {
     0%{
-        transform: rotate(0deg), rotateX(-30deg) rotateY(0deg);
-    }
-
-    8.3%{
-        transform: rotate(30deg);
-    }
-
-    16.6%{
-        transform: rotate(60deg);
-    }
-
-    24.9%{
-        transform: rotate(90deg);
-    }
-
-    33.3%{
-        transform: rotate(120deg);
-    }
-
-    41.6%{
-        transform: rotate(150deg);
-    }
-
-    49.9%{
-        transform: rotate(180deg);
-    }
-
-    58.3%{
-        transform: rotate(210deg);
-    }
-
-    66.6%{
-        transform: rotate(240deg);
-    }
-
-    74.9%{
-        transform: rotate(270deg);
-    }
-
-    83.3%{
-        transform: rotate(300deg);
-    }
-
-    91.6%{
-        transform: rotate(330deg);
+        transform: rotate(0deg);
     }
 
     100%{
-        transform: rotate(360deg), rotateX(-30deg) rotateY(360deg);
+        transform: rotate(360deg);
     }
 }
 
