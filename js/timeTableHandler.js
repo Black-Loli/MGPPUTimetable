@@ -3,7 +3,7 @@ Storage.prototype.keyExists = function (key) {
 }
 
 function getData() {
-    return Promise.resolve($.getJSON('timetable.json', function (data) {
+    return Promise.resolve($.getJSON('Timetable2022.json', function (data) {
         try {
             // //TODO: срез для кэширования
             // _(data).filter(function (lesson) {
@@ -17,8 +17,8 @@ function getData() {
 }
 
 let getTimeTableSync = async function () {
-    if (localStorage.keyExists('timetable')) {
-        return (timetableHandlerConstructor(JSON.parse(localStorage.getItem('timetable'))));
+    if (localStorage.keyExists('Timetable2022')) {
+        return (timetableHandlerConstructor(JSON.parse(localStorage.getItem('Timetable2022'))));
     } else {
         return timetableHandlerConstructor(await getData())
     }
@@ -50,9 +50,10 @@ function timetableHandlerConstructor(allTimetable) {
     }
 
     function currentDate() {
-        // return moment().format(dateFormat)
-        return moment('12.04.2022', dateFormat).format(dateFormat)
+        return moment().format(dateFormat)
+        // return moment('22.04.2022', dateFormat).format(dateFormat)
     }
+
 
     function filtration(type, lesson) {
         const startTime = moment(lesson.TimeStart, timeFormat);
@@ -81,6 +82,10 @@ function timetableHandlerConstructor(allTimetable) {
         getCurrentDayLessons: function () {
             this.timetable = this.filtrateByDepartment().getTable().filter(function (lesson) {
                 return lesson.dayDate === currentDate();
+                // if (true) return lesson.dayDate === currentDate();
+                // else if(false) return lesson.dayDate === currentDate();
+                // if ();
+    // moment().add('days', 7);    // прибавляет к текущей дате 7 дней
             }).sort(function (lesson1, lesson2) {
                 return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
             }).map((lesson, index, lessons) => {
