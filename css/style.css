@@ -57,11 +57,11 @@ svg.loading {
 }
 
 @keyframes animate {
-    0%{
+    0% {
         transform: rotate(0deg);
     }
 
-    100%{
+    100% {
         transform: rotate(360deg);
     }
 }
@@ -394,12 +394,11 @@ select:hover {
 }
 
 .container_week {
-    width: 80vw;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: row;
-    padding: 0 20px;
-    margin: 3% auto 0;
+    margin: 3% 10px 0 110px;
 }
 
 .slide {
@@ -415,18 +414,18 @@ select:hover {
 }
 
 .slide_day {
-    width: 10%;
+    width: 200px;
     border-radius: 20px;
-    margin: 3vh;
+    margin: 5px;
     cursor: pointer;
-    flex: 1;
     position: relative;
     transition: all 1000ms ease-out;
     display: flex;
     flex-direction: column;
+    height: 100px;
 }
 
-.slide div.professor, .slide div.rooms, .slide div.groups, .slide div.room, .slide_day div.time_lesson, .slide_day svg, .slide_day .lesson_name, .slide_day .today {
+.slide div.professor, .slide div.rooms, .slide div.groups, .slide div.room, .slide_day div.time_lesson, .slide_day svg, .slide_day .lesson_name, .slide_day .today, .slide_day .tomorrow {
     display: none;
 }
 
@@ -445,7 +444,7 @@ select:hover {
 }
 
 .slide_day.active {
-    width: 40%;
+    width: 400px;
 }
 
 .slide.active div.time_lesson, .slide.active h2.building, .slide_day.active div.time_lesson {
@@ -482,36 +481,36 @@ select:hover {
     padding: 1% 3%;
 }
 
-.slide.active h2.room_number_used{
+.slide.active h2.room_number_used {
     border-radius: 10px;
     margin: 5px auto 0 0;
 }
 
-.active .date_week{
+.active .date_week {
     display: flex;
     justify-content: space-around
 }
 
-.slide_day.now .today{
+.slide_day.now .today {
     display: block;
     text-align: center;
 }
 
-.slide_day.active svg{
+.slide_day.active svg {
     display: flex;
     width: 90%;
     margin: 15px auto;
 }
 
-.slide_day.active h2.lesson_name{
+.slide_day.active h2.lesson_name {
     display: flex;
 }
 
-.slide_day .time_lesson{
+.slide_day .time_lesson {
     padding: 10px;
 }
 
-.slide_day .date_week{
+.slide_day .date_week {
     display: flex;
     flex-direction: column;
     text-align: center;
