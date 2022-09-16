@@ -54,7 +54,6 @@ function timetableHandlerConstructor(allTimetable) {
         // return moment('22.04.2022', dateFormat).format(dateFormat)
     }
 
-
     function filtration(type, lesson) {
         const startTime = moment(lesson.TimeStart, timeFormat);
         const endTime = moment(lesson.TimeEnd, timeFormat);
