@@ -26,7 +26,7 @@ $.getJSON('groups.json', function (receivedGroups) {
         $('#group_choice').append(`<option class="name_group" value="${group.id}"> ${group.name} </option>`)
     });
 });
-$.getJSON('timetable.json', function (receivedLessons) {
+$.getJSON('Timetable2022.json', function (receivedLessons) {
     _(receivedLessons).filter(function (lesson) {
         return lesson.TeacherFIO !== null && lesson.dayDate === moment().format('DD.MM.YYYY');
     }).uniqBy('TeacherID').sort(function (lesson1, lesson2) {

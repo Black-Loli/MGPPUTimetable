@@ -3,7 +3,7 @@ Storage.prototype.keyExists = function (key) {
 }
 
 function getData() {
-    return Promise.resolve($.getJSON('timetable.json', function (data) {
+    return Promise.resolve($.getJSON('Timetable2022.json', function (data) {
         try {
             // //TODO: срез для кэширования
             // _(data).filter(function (lesson) {
@@ -50,8 +50,8 @@ function timetableHandlerConstructor(allTimetable) {
     }
 
     function currentDate() {
-        // return moment().format(dateFormat)
-        return moment('22.04.2022', dateFormat).format(dateFormat)
+        return moment().format(dateFormat)
+        // return moment('22.04.2022', dateFormat).format(dateFormat)
     }
 
     function filtration(type, lesson) {
