@@ -14,7 +14,8 @@
     <?php include 'menu.php'; ?>
 
     <div class="container_week">
-        <div class="slide_day now active">
+
+        <div class="slide_day">
             <h2 class="today"> Сегодня </h2>
             <h2 class="tomorrow"> Завтра </h2>
             <div class="date_week">
@@ -203,36 +204,37 @@
 <script src="js/moment.js"></script>
 <script src="js/lodash.js"></script>
 <script src="js/dark_or_light.js"></script>
-<!--<script src="js/common.js"></script>-->
-<!--<script src="js/timeTableHandler.js"></script>-->
+<script src="js/common.js"></script>
+<script src="js/timeTableHandler.js"></script>
 <script>
     // function fillSlideWithRooms(slide, lesson) {
     //     if (lesson.current) slide.addClass('now active')
-    //     slide.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
+    //     slide.find('.lesson_range').append(`<h2>${lesson.TimeStart} - ${lesson.TimeEnd}</h2>`);
+    //     slide.find('.date_week').append(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${lesson.dayDate}</h2>`);
     //     slide.find('.lesson_index').html(`${lesson.Number}`);
     //     slide.find('.rooms').append(`<h2 class="room_number_used">${lesson.Room}</h2>`);
     // }
-    // function fillSlideWithLesson(slide, lesson) {
-    //     if (lesson.current) {
-    //         slide.addClass('now active')
-    //     }
-    //
-    //     slide_day.find('.day').html(`${lesson.dayDate}`);
-    //     slide_day.find('.day_week_name').html(`${lesson.dayOfWeekName}`);
-    //     slide_day.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
-    //     slide_day.find('.lesson_index').html(`${lesson.Number}`);
-    //     slide_day.find('.lesson_name').html(`${lesson.Discipline}`);
-    // }
+    function fillSlideWithLesson(slide_day, lesson) {
+        if (lesson.current) {
+            slide_day.addClass('now active')
+        }
 
-    // getTimeTable(function (timeTableHandler) {
-    //     const lessonsArray = timeTableHandler.getCurrentDayLessons().filtrateByGroup().getTable()
-    //     generateSlides(5);
+        // slide_day.find('.day').html(`${lesson.dayDate}`);
+        slide_day.find('.date_week').append(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate,'HH MMMM').locale('ru').format('HH MMMM')}</h2>`);
+        // slide_day.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
+        // slide_day.find('.lesson_index').html(`${lesson.Number}`);
+        // slide_day.find('.lesson_name').html(`${lesson.Discipline}`);
+    }
 
-    //     console.log(timeTableHandler.getCurrentDayLessons())
-    //     lessonsArray.forEach(function (lesson, index) {
-    //         fillSlideWithLesson($(`.slide:eq(${index})`), lesson);
-    //     })
-    // })
+    getTimeTable(function (timeTableHandler) {
+        const lessonsArray = timeTableHandler.getCurrentDayLessons().filtrateByGroup().getTable()
+        // generateSlides(5);
+
+        console.log(timeTableHandler.getCurrentDayLessons())
+        lessonsArray.forEach(function (lesson, index) {
+            fillSlideWithLesson($(`.slide_day:eq(${index})`), lesson);
+        })
+    })
 
     // function generateSlides(amount) {
     //     for (let i = 0; i < amount; i++) {

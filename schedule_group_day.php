@@ -24,12 +24,13 @@
 <script src="js/timeTableHandler.js"></script>
 <script>
     function fillSlideWithLesson(slide, lesson) {
+
         if (lesson.current) {
             slide.addClass('now active')
         }
 
         // slide.find('.lesson_range h2').html(`${lesson.lessonTimeRange}`);
-        slide.find('.lesson_range').append(`<h2>${lesson.TimeStart} - ${lesson.TimeEnd}</h2>`);
+        slide.find('.lesson_range').append(`<h2>${moment(lesson.TimeStart,'HH:mm').format( 'HH:mm')} - ${moment(lesson.TimeEnd,'HH:mm').format( 'HH:mm')}</h2>`);
         slide.find('.lesson_index').html(`${lesson.Number}`);
         slide.find('.lesson_name').html(`${lesson.Discipline}`);
         slide.find('.prof_name').html(`${lesson.TeacherFIO}`);

@@ -28,7 +28,7 @@
         if (lessons[0].current) {
             slide.addClass('now active')
         }
-        slide.find('.lesson_range').append(`<h2>${lessons[0].TimeStart} - ${lessons[0].TimeEnd}</h2>`);
+        slide.find('.lesson_range').append(`<h2>${moment(lessons[0].TimeStart,'HH:mm').format( 'HH:mm')} - ${moment(lessons[0].TimeEnd,'HH:mm').format( 'HH:mm')}</h2>`);
         slide.find('.lesson_index').html(`${lessons[0].Number}`);
         slide.find('.lesson_name').html(`${lessons[0].Discipline}`);
         slide.find('.group_name').html(`${_(lessons).map('GroupCode').value().join('<br>')}`);
