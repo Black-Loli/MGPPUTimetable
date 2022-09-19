@@ -516,3 +516,7 @@ select:hover {
     text-align: center;
 }
 
+.slide_day .date_week .day_week_name {
+    text-transform: capitalize;
+}
+

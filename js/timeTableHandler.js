@@ -35,8 +35,10 @@ let getTimeTable = function (callbackfn) {
 }
 
 function timetableHandlerConstructor(allTimetable) {
-    const timeFormat = 'HH:mm:ss';
+    // const timeFormat = 'HH:mm:ss';
+    const timeFormat = 'HH:mm';
     const dateFormat = 'DD.MM.YYYY';
+    // const dateFormat = 'DD.MMM';
     console.log("Время сейчас", currentTime())
     console.log("День сегодня", currentDate())
 
@@ -84,7 +86,7 @@ function timetableHandlerConstructor(allTimetable) {
                 // if (true) return lesson.dayDate === currentDate();
                 // else if(false) return lesson.dayDate === currentDate();
                 // if ();
-    // moment().add('days', 7);    // прибавляет к текущей дате 7 дней
+                // moment().add('days', 7);    // прибавляет к текущей дате 7 дней
             }).sort(function (lesson1, lesson2) {
                 return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
             }).map((lesson, index, lessons) => {
