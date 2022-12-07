@@ -1,95 +1,95 @@
 body {
-  background: #2E1B2C;
-  color: #E5D4E8; }
+  background: #301b2d;
+  color: #e3cde0; }
 
 a {
-  color: #AE9CB0; }
+  color: #d0adcc; }
 
 div.div {
-  background: #2E1B2C;
-  box-shadow: 10px 20px 50px 10px rgba(229, 212, 232, 0.5);
-  color: #E5D4E8; }
+  background: #301b2d;
+  box-shadow: 10px 20px 50px 10px rgba(227, 205, 224, 0.5);
+  color: #e3cde0; }
 
 svg.loading {
-  fill: #E5D4E8; }
+  fill: #e3cde0; }
 
 .menu {
-  background: rgba(46, 27, 44, 0.7);
-  border: 2px solid #E5D4E8; }
+  background: rgba(48, 27, 45, 0.7);
+  border: 2px solid #e3cde0; }
 
 .ham-menu {
-  background-color: #2E1B2C;
-  box-shadow: 20px 0 50px 10px rgba(229, 212, 232, 0.5); }
+  background-color: #301b2d;
+  box-shadow: 20px 0 50px 10px rgba(227, 205, 224, 0.5); }
 
 .ham-menu > ul > li {
-  color: #E5D4E8; }
+  color: #e3cde0; }
 
 #overlay_menu {
-  background: rgba(46, 27, 44, 0.5); }
+  background: rgba(31, 18, 30, 0.5); }
 
 .menu-line {
-  background-color: #E5D4E8; }
+  background-color: #e3cde0; }
 
 #ham-menu:checked + label span {
-  background-color: #E5D4E8; }
+  background-color: #e3cde0; }
 
 svg.click {
-  stroke: #E5D4E8; }
+  stroke: #e3cde0; }
 
 ul.sub-items {
-  color: #AE9CB0; }
+  color: #d0adcc; }
 
 input[type='checkbox'].checkbox + label:after {
-  border: 1px solid #E5D4E8; }
+  border: 1px solid #e3cde0; }
 
 div.color input[type='checkbox'].checkbox + label:before {
   background: gray; }
 
 div.color input[type='checkbox'].checkbox:checked + label:before {
-  background: #E5D4E8;
-  box-shadow: 0 0 12px rgba(229, 212, 232, 0.5); }
+  background: #e3cde0;
+  box-shadow: 0 0 12px rgba(227, 205, 224, 0.5); }
 
 div.overlay {
-  background: rgba(46, 27, 44, 0.5); }
+  background: rgba(31, 18, 30, 0.5); }
 
 div.modal {
-  background: #2E1B2C;
-  box-shadow: 10px 20px 50px 10px rgba(229, 212, 232, 0.5); }
+  background: #301b2d;
+  box-shadow: 10px 20px 50px 10px rgba(227, 205, 224, 0.5); }
 
 .tab-list {
-  border-bottom: 1px solid #E5D4E8; }
+  border-bottom: 1px solid #e3cde0; }
 
 .tab_selector:checked + .tab_selector_label {
-  border-bottom: 3px solid #E5D4E8; }
+  border-bottom: 3px solid #e3cde0; }
 
 select {
-  border: 2px solid #E5D4E8;
-  background-color: #2E1B2C;
+  border: 2px solid #e3cde0;
+  background-color: #301b2d;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-  color: #E5D4E8; }
+  color: #e3cde0; }
 
 button.btn {
-  border: 2px solid #E5D4E8;
-  background: #2E1B2C;
-  color: #E5D4E8; }
+  border: 2px solid #e3cde0;
+  background: #301b2d;
+  color: #e3cde0; }
 
 button.btn:hover,
 option:hover {
   cursor: pointer;
-  background: rgba(174, 156, 176, 0.5); }
+  background: rgba(208, 173, 204, 0.5); }
 
 select:focus {
-  box-shadow: 0 0 0.9rem 0.1rem rgba(174, 156, 176, 0.5); }
+  box-shadow: 0 0 0.9rem 0.1rem rgba(208, 173, 204, 0.5); }
 
 div.slide, div.slide_day {
-  background: #261924; }
+  background: #261624; }
 
 .slide.now, .slide_day.now {
-  background: #2E1B2C;
-  border: 2px solid #E5D4E8; }
+  background: #301b2d;
+  border: 2px solid #e3cde0; }
 
 .slide.active h2.room_number_used {
   border: 2px solid #EE333E; }
 
 .slide_day svg {
-  stroke: #E5D4E8; }
+  stroke: #e3cde0; }
