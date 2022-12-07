@@ -1,8 +1,9 @@
-$background: #2E1B2C;
-$text_border: #E5D4E8;
-$secondary_timeline: #261924;
-$highlighting: #AE9CB0;
-$overlay: rgba(46, 27, 44, 0.5);
+$color: #91538A;
+$background: darken($color, 30%);
+$text_border: lighten($color, 40%);
+$secondary_timeline: darken($color, 33%);
+$highlighting: lighten($color, 30%);
+$overlay: rgba(darken($color, 35%), 0.5);
 
 body {
     background: $background;
