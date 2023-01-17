@@ -14,6 +14,7 @@
 
     <?php include 'choice.php'; ?>
 
+
 </div>
 </body>
 <script src="js/jquery.js"></script>

@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Timetable for University",
   "main": " ",
-  "dependencies": {
-    "ometa": "^0.2.2"
-  },
+
   "scripts": {
     "compile-scss_light": "node-sass css/style_light.scss -o css",
     "compile-scss_dark": "node-sass css/style_dark.scss -o css"
@@ -20,6 +18,8 @@
     "url": "https://github.com/Black-Loli/MGPPUTimetable/issues"
   },
   "homepage": "https://github.com/Black-Loli/MGPPUTimetable#readme",
+  "dependencies": {
+  },
   "devDependencies": {
     "node-sass": "^7.0.1"
   }

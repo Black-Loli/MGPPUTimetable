@@ -227,10 +227,9 @@
     }
 
     getTimeTable(function (timeTableHandler) {
-        const lessonsArray = timeTableHandler.getCurrentDayLessons().filtrateByGroup().getTable()
+        const lessonsArray = timeTableHandler.filtrateByGroup().getTable()
         // generateSlides(5);
-
-        console.log(timeTableHandler.getCurrentDayLessons())
+        console.log(timeTableHandler.filtrateByGroup())
         lessonsArray.forEach(function (lesson, index) {
             fillSlideWithLesson($(`.slide_day:eq(${index})`), lesson);
         })
