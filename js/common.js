@@ -28,7 +28,7 @@ $.getJSON('groups.json', function (receivedGroups) {
 });
 $.getJSON('Timetable2022.json', function (receivedLessons) {
     _(receivedLessons).filter(function (lesson) {
-        return lesson.TeacherFIO !== null && lesson.dayDate === moment().format('DD.MM.YYYY');
+        return lesson.TeacherFIO !== null;
     }).uniqBy('TeacherID').sort(function (lesson1, lesson2) {
         return lesson1.TeacherFIO.localeCompare(lesson2.TeacherFIO);
     }).forEach(function (lesson, index) {
@@ -75,6 +75,8 @@ $('#showTimetable').click(function () {
     if (selectedTab === 'professor_tab') {
         if (wishTimetable === 'time_today') {
             location.replace('schedule_teacher_day.php');
+        } else if (wishTimetable === 'time_week') {
+            location.replace('schedule_teacher_week.php');
         } else {
             location.replace('loading.php');
         }

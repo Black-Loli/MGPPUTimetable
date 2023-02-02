@@ -1,12 +1,12 @@
 body {
-  background: #001420;
+  background: #001b2d;
   color: white; }
 
 a {
-  color: #53bdff; }
+  color: #51b8ff; }
 
 div.div {
-  background: #001420;
+  background: #001b2d;
   box-shadow: 10px 20px 50px 10px rgba(255, 255, 255, 0.5);
   color: white; }
 
@@ -14,18 +14,18 @@ svg.loading {
   fill: white; }
 
 .menu {
-  background: rgba(0, 20, 32, 0.7);
+  background: rgba(0, 27, 45, 0.7);
   border: 2px solid white; }
 
 .ham-menu {
-  background-color: #001420;
+  background-color: #001b2d;
   box-shadow: 20px 0 50px 10px rgba(255, 255, 255, 0.5); }
 
 .ham-menu > ul > li {
   color: white; }
 
 #overlay_menu {
-  background: rgba(0, 4, 7, 0.5); }
+  background: rgba(0, 3, 5, 0.5); }
 
 .menu-line {
   background-color: white; }
@@ -37,7 +37,7 @@ svg.click {
   stroke: white; }
 
 ul.sub-items {
-  color: #53bdff; }
+  color: #51b8ff; }
 
 input[type='checkbox'].checkbox + label:after {
   border: 1px solid white; }
@@ -50,10 +50,10 @@ div.color input[type='checkbox'].checkbox:checked + label:before {
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); }
 
 div.overlay {
-  background: rgba(0, 4, 7, 0.5); }
+  background: rgba(0, 3, 5, 0.5); }
 
 div.modal {
-  background: #001420;
+  background: #001b2d;
   box-shadow: 10px 20px 50px 10px rgba(255, 255, 255, 0.5); }
 
 .tab-list {
@@ -64,28 +64,28 @@ div.modal {
 
 select {
   border: 2px solid white;
-  background-color: #001420;
+  background-color: #001b2d;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   color: white; }
 
 button.btn {
   border: 2px solid white;
-  background: #001420;
+  background: #001b2d;
   color: white; }
 
 button.btn:hover,
 option:hover {
   cursor: pointer;
-  background: rgba(83, 189, 255, 0.5); }
+  background: rgba(81, 184, 255, 0.5); }
 
 select:focus {
-  box-shadow: 0 0 0.9rem 0.1rem rgba(83, 189, 255, 0.5); }
+  box-shadow: 0 0 0.9rem 0.1rem rgba(81, 184, 255, 0.5); }
 
 div.slide, div.slide_day {
-  background: #000a11; }
+  background: #000f19; }
 
 .slide.now, .slide_day.now {
-  background: #001420;
+  background: #001b2d;
   border: 2px solid white; }
 
 .slide.active h2.room_number_used {

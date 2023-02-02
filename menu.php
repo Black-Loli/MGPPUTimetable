@@ -86,7 +86,7 @@
                     <a href="groups_day.php"> На сегодня</a>
                 </li>
                 <li>
-                    <a href="loading.php"> На неделю</a>
+                    <a href="groups_week.php"> На неделю</a>
                 </li>
                 <li>
                     <a href="loading.php"> На семестр </a>

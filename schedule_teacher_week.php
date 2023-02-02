@@ -22,15 +22,15 @@
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-<!--            <div class="lesson">-->
-<!--                <div class="time_lesson">-->
-<!--                    <h2 class="lesson_index"></h2>-->
-<!--                    <div class="lesson_range">-->
-<!--                        <h2></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <h2 class="lesson_name"></h2>-->
-<!--            </div>-->
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
 
         </div>
 
@@ -41,15 +41,15 @@
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-<!--            <div class="lesson">-->
-<!--                <div class="time_lesson">-->
-<!--                    <h2 class="lesson_index"></h2>-->
-<!--                    <div class="lesson_range">-->
-<!--                        <h2></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <h2 class="lesson_name"></h2>-->
-<!--            </div>-->
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
 
         </div>
 
@@ -60,15 +60,15 @@
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-<!--            <div class="lesson">-->
-<!--                <div class="time_lesson">-->
-<!--                    <h2 class="lesson_index"></h2>-->
-<!--                    <div class="lesson_range">-->
-<!--                        <h2></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <h2 class="lesson_name"></h2>-->
-<!--            </div>-->
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
 
         </div>
 
@@ -79,15 +79,15 @@
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-<!--            <div class="lesson">-->
-<!--                <div class="time_lesson">-->
-<!--                    <h2 class="lesson_index"></h2>-->
-<!--                    <div class="lesson_range">-->
-<!--                        <h2></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <h2 class="lesson_name"></h2>-->
-<!--            </div>-->
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
 
         </div>
 
@@ -98,15 +98,15 @@
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-<!--            <div class="lesson">-->
-<!--                <div class="time_lesson">-->
-<!--                    <h2 class="lesson_index"></h2>-->
-<!--                    <div class="lesson_range">-->
-<!--                        <h2></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <h2 class="lesson_name"></h2>-->
-<!--            </div>-->
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
 
         </div>
 
@@ -117,15 +117,15 @@
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-<!--            <div class="lesson">-->
-<!--                <div class="time_lesson">-->
-<!--                    <h2 class="lesson_index"></h2>-->
-<!--                    <div class="lesson_range">-->
-<!--                        <h2></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <h2 class="lesson_name"></h2>-->
-<!--            </div>-->
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
         </div>
     </div>
 
@@ -151,7 +151,7 @@
 	}
 
 	getTimeTable(function (timeTableHandler) {
-		const lessonsArray = timeTableHandler.trimWeek().filtrateByGroup().getTable()
+		const lessonsArray = timeTableHandler.trimWeek().filtrateByTeacher().getTable()
 		console.log(_(lessonsArray))
 		let index = 0;
 		_(lessonsArray).groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
@@ -163,8 +163,8 @@
 
 	function generateLessonsInSlide(amount, slide) {
 		console.log("AMOUNT", amount)
-	    for (let i = 0; i < amount; i++) {
-	        let slide_day = $(` <div class="lesson">
+		for (let i = 0; i < amount; i++) {
+			let slide_day = $(` <div class="lesson">
                 <div class="time_lesson">
                     <h2 class="lesson_index"></h2>
                     <div class="lesson_range">
@@ -173,9 +173,9 @@
                 </div>
                 <h2 class="lesson_name"></h2>
             </div> `);
-	        slide_day.click(slideClicked);
-	        slide.append(slide_day)
-	    }
+			slide_day.click(slideClicked);
+			slide.append(slide_day)
+		}
 	}
 
 	const slides_day = document.querySelectorAll('.slide_day')

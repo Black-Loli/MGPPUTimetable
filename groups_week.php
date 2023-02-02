@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Неделя | Расписание </title>
+    <?php include 'header.php'; ?>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="main">
+
+    <?php include 'menu.php'; ?>
+
+    <div class="container_week">
+
+        <div class="slide_day">
+            <div class="date_week">
+                <h2 class="day_week_name"></h2>
+                <h2 class="date"></h2>
+            </div>
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
+
+        </div>
+
+        <div class="slide_day">
+            <div class="date_week">
+                <h2 class="day_week_name"></h2>
+                <h2 class="date"></h2>
+            </div>
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
+
+        </div>
+
+        <div class="slide_day">
+            <div class="date_week">
+                <h2 class="day_week_name"></h2>
+                <h2 class="date"></h2>
+            </div>
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
+
+        </div>
+
+        <div class="slide_day">
+            <div class="date_week">
+                <h2 class="day_week_name"></h2>
+                <h2 class="date"></h2>
+            </div>
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
+
+        </div>
+
+        <div class="slide_day">
+            <div class="date_week">
+                <h2 class="day_week_name"></h2>
+                <h2 class="date"></h2>
+            </div>
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
+
+        </div>
+
+        <div class="slide_day">
+            <div class="date_week">
+                <h2 class="day_week_name"></h2>
+                <h2 class="date"></h2>
+            </div>
+            <!--            <div class="lesson">-->
+            <!--                <div class="time_lesson">-->
+            <!--                    <h2 class="lesson_index"></h2>-->
+            <!--                    <div class="lesson_range">-->
+            <!--                        <h2></h2>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <h2 class="lesson_name"></h2>-->
+            <!--            </div>-->
+        </div>
+    </div>
+
+    <?php include 'choice.php'; ?>
+
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/lodash.js"></script>
+<script src="js/dark_or_light.js"></script>
+<script src="js/common.js"></script>
+<script src="js/timeTableHandler.js"></script>
+<script>
+	function fillSlideWithLessons(slide_day, lessons, i) {
+		_(lessons).groupBy('Number').forEach(function (lessons, number) {
+			lessons.forEach(function (lesson, index) {
+				slide_day.find(`.lesson:eq(${index}) .day`).html(`${lesson.dayDate}`);
+				slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
+				slide_day.find(`.lesson:eq(${index}) .lesson_range h2`).append(`${lesson.TimeStart} - ${lesson.TimeEnd}`);
+				slide_day.find(`.lesson:eq(${index}) .lesson_index`).append(`${lesson.Number}`);
+				slide_day.find(`.lesson:eq(${index}) .lesson_name`).append(`${lesson.GroupCode}`);
+			})
+		})
+	}
+
+	getTimeTable(function (timeTableHandler) {
+		const lessonsArray = timeTableHandler.trimWeek().getTable()
+		console.log(_(lessonsArray))
+		let index = 0;
+		_(lessonsArray).groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
+			generateLessonsInSlide(lessonRangeForDate.length, $(`.slide_day:eq(${index})`));
+			fillSlideWithLessons($(`.slide_day:eq(${index})`), lessonRangeForDate, index);
+			index++;
+		})
+	})
+
+	function generateLessonsInSlide(amount, slide) {
+		console.log("AMOUNT", amount)
+		for (let i = 0; i < amount; i++) {
+			let slide_day = $(` <div class="lesson">
+                <div class="time_lesson">
+                    <h2 class="lesson_index"></h2>
+                    <div class="lesson_range">
+                        <h2></h2>
+                    </div>
+                </div>
+                <h2 class="lesson_name"></h2>
+            </div> `);
+			slide_day.click(slideClicked);
+			slide.append(slide_day)
+		}
+	}
+
+	const slides_day = document.querySelectorAll('.slide_day')
+
+	for (const slide of slides_day) {
+		slide.addEventListener('click', () => {
+			clearActiveClasses()
+			slide.classList.add('active')
+		})
+	}
+
+	function clearActiveClasses() {
+		slides_day.forEach((slide) => {
+			slide.classList.remove('active')
+		})
+	}
+</script>
+</html>
