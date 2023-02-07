@@ -134,7 +134,7 @@
 				slide_day.find(`.lesson:eq(${parseInt(number)}) .day`).html(`${lesson.dayDate}`);
 				slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
 				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_index`).html(`${lesson.Number}`);
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_range h2`).html(`${lesson.TimeStart} - ${lesson.TimeEnd}`);
+				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
 				slide_day.find(`.lesson:eq(${parseInt(number)}) .prof`).append(`<h2 class="lesson_name">${lesson.TeacherFIO}</h2>`);
 			})
 		})
