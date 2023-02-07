@@ -2,7 +2,7 @@ $color: #006cb7;
 $background: darken($color, 27%);
 $text_border: lighten($color, 65%);
 $secondary_timeline: darken($color, 31%);
-$highlighting: lighten($color, 30%);
+$highlighting: rgba(lighten($color, 65%), 0.7);
 $overlay: rgba(darken($color, 35%), 0.5);
 
 body {
@@ -93,21 +93,26 @@ select{
     background-color: $background;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     color: $text_border;
+
+    &:focus{
+        box-shadow: 0 0 0.9rem 0.1rem rgba($highlighting, 0.5);
+    }
 }
 button.btn{
     border: 2px solid $text_border;
     background: $background;
     color: $text_border;
+
+    &:hover{
+        cursor: pointer;
+        background: $highlighting;
+        color: $background;
+    }
 }
 
-button.btn:hover,
 option:hover{
     cursor: pointer;
     background: rgba($highlighting, 0.5);
-}
-
-select:focus{
-    box-shadow: 0 0 0.9rem 0.1rem rgba($highlighting, 0.5);
 }
 
 div.slide, div.slide_day{
@@ -125,4 +130,8 @@ div.slide, div.slide_day{
 
 .slide_day svg{
     stroke: $text_border;
+}
+
+.slide_day.active .lesson:nth-last-child(n+2){
+    border-bottom: 1px solid $text_border;
 }

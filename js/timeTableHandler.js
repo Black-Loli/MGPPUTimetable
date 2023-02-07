@@ -62,7 +62,7 @@ function timetableHandlerConstructor(allTimetable) {
 
 	function currentDate() {
 		// return moment().format(dateFormat)
-		return moment('11.11.2022', dateFormat).format(dateFormat)
+		return moment('04.10.2022', dateFormat).format(dateFormat)
 	}
 
 	function filtration(type, lesson) {
@@ -113,9 +113,9 @@ function timetableHandlerConstructor(allTimetable) {
 			})
 			return this;
 		},
-		trimDistant:function(){
+		trimDistant: function () {
 			this.timetable = this.timetable.filter(function (lesson) {
-				return lesson.Room!=="WebEx";
+				return lesson.Room !== "WebEx";
 			})
 			return this;
 		},

@@ -3,7 +3,7 @@ body {
   color: white; }
 
 a {
-  color: #51b8ff; }
+  color: rgba(255, 255, 255, 0.7); }
 
 div.div {
   background: #001b2d;
@@ -37,7 +37,7 @@ svg.click {
   stroke: white; }
 
 ul.sub-items {
-  color: #51b8ff; }
+  color: rgba(255, 255, 255, 0.7); }
 
 input[type='checkbox'].checkbox + label:after {
   border: 1px solid white; }
@@ -67,19 +67,21 @@ select {
   background-color: #001b2d;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   color: white; }
+  select:focus {
+    box-shadow: 0 0 0.9rem 0.1rem rgba(255, 255, 255, 0.5); }
 
 button.btn {
   border: 2px solid white;
   background: #001b2d;
   color: white; }
+  button.btn:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.7);
+    color: #001b2d; }
 
-button.btn:hover,
 option:hover {
   cursor: pointer;
-  background: rgba(81, 184, 255, 0.5); }
-
-select:focus {
-  box-shadow: 0 0 0.9rem 0.1rem rgba(81, 184, 255, 0.5); }
+  background: rgba(255, 255, 255, 0.5); }
 
 div.slide, div.slide_day {
   background: #000f19; }
@@ -93,3 +95,6 @@ div.slide, div.slide_day {
 
 .slide_day svg {
   stroke: white; }
+
+.slide_day.active .lesson:nth-last-child(n+2) {
+  border-bottom: 1px solid white; }

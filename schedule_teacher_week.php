@@ -16,116 +16,45 @@
     <div class="container_week">
 
         <div class="slide_day">
-            <h2 class="today"> Сегодня </h2>
-            <h2 class="tomorrow"> Завтра </h2>
             <div class="date_week">
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-            <!--            <div class="lesson">-->
-            <!--                <div class="time_lesson">-->
-            <!--                    <h2 class="lesson_index"></h2>-->
-            <!--                    <div class="lesson_range">-->
-            <!--                        <h2></h2>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <h2 class="lesson_name"></h2>-->
-            <!--            </div>-->
-
         </div>
 
         <div class="slide_day">
-            <h2 class="today"> Сегодня </h2>
-            <h2 class="tomorrow"> Завтра </h2>
             <div class="date_week">
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-            <!--            <div class="lesson">-->
-            <!--                <div class="time_lesson">-->
-            <!--                    <h2 class="lesson_index"></h2>-->
-            <!--                    <div class="lesson_range">-->
-            <!--                        <h2></h2>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <h2 class="lesson_name"></h2>-->
-            <!--            </div>-->
-
         </div>
 
         <div class="slide_day">
-            <h2 class="today"> Сегодня </h2>
-            <h2 class="tomorrow"> Завтра </h2>
             <div class="date_week">
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-            <!--            <div class="lesson">-->
-            <!--                <div class="time_lesson">-->
-            <!--                    <h2 class="lesson_index"></h2>-->
-            <!--                    <div class="lesson_range">-->
-            <!--                        <h2></h2>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <h2 class="lesson_name"></h2>-->
-            <!--            </div>-->
-
         </div>
 
         <div class="slide_day">
-            <h2 class="today"> Сегодня </h2>
-            <h2 class="tomorrow"> Завтра </h2>
             <div class="date_week">
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-            <!--            <div class="lesson">-->
-            <!--                <div class="time_lesson">-->
-            <!--                    <h2 class="lesson_index"></h2>-->
-            <!--                    <div class="lesson_range">-->
-            <!--                        <h2></h2>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <h2 class="lesson_name"></h2>-->
-            <!--            </div>-->
-
         </div>
 
         <div class="slide_day">
-            <h2 class="today"> Сегодня </h2>
-            <h2 class="tomorrow"> Завтра </h2>
             <div class="date_week">
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-            <!--            <div class="lesson">-->
-            <!--                <div class="time_lesson">-->
-            <!--                    <h2 class="lesson_index"></h2>-->
-            <!--                    <div class="lesson_range">-->
-            <!--                        <h2></h2>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <h2 class="lesson_name"></h2>-->
-            <!--            </div>-->
-
         </div>
 
         <div class="slide_day">
-            <h2 class="today"> Сегодня </h2>
-            <h2 class="tomorrow"> Завтра </h2>
             <div class="date_week">
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-            <!--            <div class="lesson">-->
-            <!--                <div class="time_lesson">-->
-            <!--                    <h2 class="lesson_index"></h2>-->
-            <!--                    <div class="lesson_range">-->
-            <!--                        <h2></h2>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <h2 class="lesson_name"></h2>-->
-            <!--            </div>-->
         </div>
     </div>
 
@@ -147,6 +76,8 @@
 			slide_day.find(`.lesson:eq(${index}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
 			slide_day.find(`.lesson:eq(${index}) .lesson_index`).append(`${lesson.Number}`);
 			slide_day.find(`.lesson:eq(${index}) .lesson_name`).append(`${lesson.Discipline}`);
+			slide_day.find('.prof_name').html(`${_(lessons).map('GroupCode').uniq().value().join('<br>')}`);
+			slide_day.find(`.lesson:eq(${index}) .room_number`).append(`${lesson.Room}`);
 		})
 	}
 
@@ -172,6 +103,11 @@
                     </div>
                 </div>
                 <h2 class="lesson_name"></h2>
+                <h2 class="prof_name"></h2>
+                <div class="room">
+                    <h2> Аудитория: </h2>
+                    <h2 class="room_number"></h2>
+                </div>
             </div> `);
 			slide_day.click(slideClicked);
 			slide.append(slide_day)

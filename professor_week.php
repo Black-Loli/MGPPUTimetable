@@ -88,16 +88,6 @@
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-            <!--            <div class="lesson">-->
-            <!--                <div class="time_lesson">-->
-            <!--                    <h2 class="lesson_index"></h2>-->
-            <!--                    <div class="lesson_range">-->
-            <!--                        <h2></h2>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <h2 class="lesson_name"></h2>-->
-            <!--            </div>-->
-
         </div>
 
         <div class="slide_day">
@@ -105,15 +95,6 @@
                 <h2 class="day_week_name"></h2>
                 <h2 class="date"></h2>
             </div>
-            <!--            <div class="lesson">-->
-            <!--                <div class="time_lesson">-->
-            <!--                    <h2 class="lesson_index"></h2>-->
-            <!--                    <div class="lesson_range">-->
-            <!--                        <h2></h2>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <h2 class="lesson_name"></h2>-->
-            <!--            </div>-->
         </div>
     </div>
 
@@ -128,20 +109,25 @@
 <script src="js/common.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script>
+	function convertInitials(professor) {
+		let array = professor.split(' ');
+		return `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
+	}
+
 	function fillSlideWithLessons(slide_day, lessons, i) {
 		_(lessons).groupBy('Number').forEach(function (lessons, number) {
-			lessons.forEach(function (lesson, index) {
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .day`).html(`${lesson.dayDate}`);
+			_(lessons).uniqBy("TeacherFIO").forEach(function (lesson, index) {
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .day`).html(`${lesson.dayDate}`);
 				slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_index`).html(`${lesson.Number}`);
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .prof`).append(`<h2 class="lesson_name">${lesson.TeacherFIO}</h2>`);
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_index`).html(`${lesson.Number}`);
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .prof`).append(`<h2 class="lesson_name">${convertInitials(lesson.TeacherFIO)}</h2>`);
 			})
 		})
 	}
 
 	getTimeTable(function (timeTableHandler) {
-		const lessonsArray = timeTableHandler.trimWeek().getTable()
+		const lessonsArray = timeTableHandler.trimDistant().trimWeek().getTable()
 		console.log(lessonsArray)
 		let index = 0;
 		_(lessonsArray).groupBy('dayDate').forEach(function (lessonRangeForDate, date) {

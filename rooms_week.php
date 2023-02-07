@@ -130,13 +130,12 @@
 <script>
 	function fillSlideWithLessons(slide_day, lessons, i) {
 		_(lessons).groupBy('Number').forEach(function (lessons, number) {
-			lessons.forEach(function (lesson, index) {
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .day`).html(`${lesson.dayDate}`);
+			_(lessons).uniqBy("Room").forEach(function (lesson, index) {
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .day`).html(`${lesson.dayDate}`);
 				slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_index`).html(`${lesson.Number}`);
-				// slide.find('.lesson_range').html(`<h2>${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}</h2>`);
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .prof`).append(`<h2 class="lesson_name">${lesson.Room}</h2>`);
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_index`).html(`${lesson.Number}`);
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .prof`).append(`<h2 class="lesson_name">${lesson.Room}</h2>`);
 			})
 		})
 	}
