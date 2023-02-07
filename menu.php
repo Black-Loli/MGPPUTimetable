@@ -59,7 +59,7 @@
                     <a href="professor_day.php"> На сегодня</a>
                 </li>
                 <li>
-                    <a href="loading.php"> На неделю</a>
+                    <a href="professor_week.php"> На неделю</a>
                 </li>
                 <li>
                     <a href="loading.php"> На семестр </a>
@@ -113,7 +113,7 @@
                     <a href="rooms_day.php"> На сегодня</a>
                 </li>
                 <li>
-                    <a href="loading.php"> На неделю</a>
+                    <a href="rooms_week.php"> На неделю</a>
                 </li>
                 <li>
                     <a href="loading.php"> На семестр </a>

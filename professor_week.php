@@ -135,7 +135,7 @@
 				slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
 				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_index`).html(`${lesson.Number}`);
 				slide_day.find(`.lesson:eq(${parseInt(number)}) .lesson_range h2`).html(`${lesson.TimeStart} - ${lesson.TimeEnd}`);
-				slide_day.find(`.lesson:eq(${parseInt(number)}) .groups`).append(`<h2 class="lesson_name">${lesson.GroupCode}</h2>`);
+				slide_day.find(`.lesson:eq(${parseInt(number)}) .prof`).append(`<h2 class="lesson_name">${lesson.TeacherFIO}</h2>`);
 			})
 		})
 	}
@@ -162,7 +162,7 @@
                         <h2></h2>
                     </div>
                 </div>
-                <div class="groups"> </div>
+                <div class="prof"> </div>
             </div> `);
 			slide_day.click(slideClicked);
 			slide.append(slide_day)
