@@ -2,6 +2,14 @@ Storage.prototype.keyExists = function (key) {
 	return localStorage.getItem(key) !== null
 }
 
+function getDaysArray(initialDate = moment('16.09.2022', 'DD.MM.YYYY')) {
+	let days = []
+	for (let i = 1; i < 7; i++) {
+		days.push(initialDate.day(i).format('DD.MM.YYYY'))
+	}
+	return days;
+}
+
 function getData() {
 	return Promise.resolve($.getJSON('Timetable2022.json', function (data) {
 		try {
@@ -62,7 +70,7 @@ function timetableHandlerConstructor(allTimetable) {
 
 	function currentDate() {
 		// return moment().format(dateFormat)
-		return moment('04.10.2022', dateFormat).format(dateFormat)
+		return moment('16.09.2022', dateFormat).format(dateFormat)
 	}
 
 	function filtration(type, lesson) {

@@ -247,7 +247,6 @@ li input[type="radio"] {
 
 label.time:hover,
 ul.sub-items li:hover {
-    background: rgba(149, 93, 142, 0.1);
     cursor: pointer;
 }
 
@@ -422,14 +421,14 @@ select:hover {
     transition: all 1000ms ease-out;
     display: flex;
     flex-direction: column;
-    max-height: 100px;
+    min-height: 500px;
+    max-height: 500px;
 }
 
 .slide div.professor,
 .slide div.rooms,
 .slide div.groups,
 .slide div.room,
-.slide_day div.time_lesson,
 .slide_day svg,
 .slide_day .lesson_name,
 .slide_day .prof_name,
@@ -453,17 +452,36 @@ select:hover {
 
 .slide_day.active {
     width: 400px;
-    max-height: 1200px;
+    max-height: 1800px;
     padding: 10px 20px;
 }
 
 .slide_day.active .lesson{
-    padding: 30px 0;
+    padding: 20px 0 30px;
 }
+
+
+.slide_day div.time_lesson {
+    display: flex;
+    justify-content: center;
+    min-height: 52px;
+}
+
+.slide_day div.time_lesson .lesson_range h2 {
+    display: none;
+}
+
+.slide_day.active div.time_lesson .lesson_range h2 {
+    display: flex;
+}
+
+.slide_day.active .lesson.empty {
+    display: none;
+}
+
 
 .slide.active div.time_lesson,
 .slide.active h2.building,
-.slide_day.active div.time_lesson,
 .slide_day.active div.time_lesson,
 .slide_day.active .lesson_name,
 .slide_day.active .prof_name,
@@ -552,7 +570,7 @@ select:hover {
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px 0 30px;
 }
 
 .slide_day .date_week .day_week_name {

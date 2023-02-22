@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Неделя | Расписание </title>
+    <title> Неделя | Преподаватели </title>
     <?php include 'header.php'; ?>
     <style>
 
@@ -115,10 +115,11 @@
 	}
 
 	function fillSlideWithLessons(slide_day, lessons, i) {
-		_(lessons).groupBy('Number').forEach(function (lessons, number) {
-			_(lessons).uniqBy("TeacherFIO").forEach(function (lesson, index) {
+		_(lessons).groupBy('Number').forEach(function (lessonsForNumber, number) {
+			_(lessonsForNumber).uniqBy("TeacherFIO").forEach(function (lesson, index) {
 				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .day`).html(`${lesson.dayDate}`);
 				slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1})`).removeClass('empty');
 				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_index`).html(`${lesson.Number}`);
 				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
 				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .prof`).append(`<h2 class="lesson_name">${convertInitials(lesson.TeacherFIO)}</h2>`);
@@ -127,11 +128,13 @@
 	}
 
 	getTimeTable(function (timeTableHandler) {
-		const lessonsArray = timeTableHandler.trimDistant().trimWeek().getTable()
+		const lessonsArray = timeTableHandler.trimDistant().getTable()
 		console.log(lessonsArray)
 		let index = 0;
-		_(lessonsArray).groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
-			console.log(`lessons for ${date}`, lessonRangeForDate)
+		_(lessonsArray).filter(function(lesson){
+			return getDaysArray().includes(lesson.dayDate);
+		}).sortBy('dayDate').groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
+			console.log(lessonRangeForDate)
 			generateLessonsInSlide(7, $(`.slide_day:eq(${index})`));
 			fillSlideWithLessons($(`.slide_day:eq(${index})`), lessonRangeForDate, index);
 			index++;
@@ -141,7 +144,7 @@
 	function generateLessonsInSlide(amount, slide) {
 		console.log("AMOUNT", amount)
 		for (let i = 0; i < amount; i++) {
-			let slide_day = $(` <div class="lesson">
+			let slide_day = $(` <div class="lesson empty">
                 <div class="time_lesson">
                     <h2 class="lesson_index"></h2>
                     <div class="lesson_range">

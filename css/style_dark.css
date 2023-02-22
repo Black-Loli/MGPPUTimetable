@@ -84,7 +84,10 @@ option:hover {
   background: rgba(255, 255, 255, 0.5); }
 
 div.slide, div.slide_day {
-  background: #000f19; }
+  background: #00121e; }
+
+div.slide_day {
+  border: 1px solid white; }
 
 .slide.now, .slide_day.now {
   background: #001b2d;
@@ -96,5 +99,22 @@ div.slide, div.slide_day {
 .slide_day svg {
   stroke: white; }
 
-.slide_day.active .lesson:nth-last-child(n+2) {
-  border-bottom: 1px solid white; }
+.slide_day.active .lesson {
+  border-top: 1px solid white; }
+
+.slide_day div.time_lesson {
+  border-bottom: 1px dashed white;
+  background: #00060a; }
+
+.slide_day .lesson.empty div.time_lesson {
+  background: #00121e; }
+
+.slide_day div.time_lesson:nth-child(1) {
+  border-top: 1px dashed white; }
+
+.slide_day div.time_lesson:nth-child(1) {
+  border-top: 1px dashed white; }
+
+.slide_day.active div.time_lesson {
+  border: 0;
+  background: none; }

@@ -1,7 +1,8 @@
 $color: #006cb7;
 $background: darken($color, 27%);
 $text_border: lighten($color, 65%);
-$secondary_timeline: darken($color, 31%);
+$secondary_timeline: darken($color, 30%);
+$ternary_timeline: darken($color, 34%);
 $highlighting: rgba(lighten($color, 65%), 0.7);
 $overlay: rgba(darken($color, 35%), 0.5);
 
@@ -119,6 +120,10 @@ div.slide, div.slide_day{
     background: $secondary_timeline;
 }
 
+div.slide_day {
+    border: 1px solid $text_border;
+}
+
 .slide.now, .slide_day.now{
     background: $background;
     border: 2px solid $text_border;
@@ -132,6 +137,29 @@ div.slide, div.slide_day{
     stroke: $text_border;
 }
 
-.slide_day.active .lesson:nth-last-child(n+2){
-    border-bottom: 1px solid $text_border;
+.slide_day.active .lesson{
+    border-top: 1px solid $text_border;
 }
+
+.slide_day div.time_lesson {
+    border-bottom: 1px dashed $text_border;
+    background: $ternary_timeline;
+}
+
+.slide_day .lesson.empty div.time_lesson {
+    background: $secondary_timeline;
+}
+
+.slide_day div.time_lesson:nth-child(1) {
+    border-top: 1px dashed $text_border;
+}
+
+.slide_day div.time_lesson:nth-child(1) {
+    border-top: 1px dashed $text_border;
+}
+
+.slide_day.active div.time_lesson {
+    border: 0;
+    background: none;
+}
+
