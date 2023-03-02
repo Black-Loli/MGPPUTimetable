@@ -88,4 +88,9 @@ function slideClicked(e) {
     e.currentTarget.classList.add('active')
 }
 
+function slide_dayClicked(e) {
+    $('.slide_day').removeClass('active');
+    e.currentTarget.classList.add('active')
+}
+
 

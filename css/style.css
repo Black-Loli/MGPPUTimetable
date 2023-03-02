@@ -421,8 +421,8 @@ select:hover {
     transition: all 1000ms ease-out;
     display: flex;
     flex-direction: column;
-    min-height: 500px;
-    max-height: 500px;
+    min-height: 550px;
+    max-height: 550px;
 }
 
 .slide div.professor,
@@ -537,11 +537,6 @@ select:hover {
     justify-content: space-around;
 }
 
-.slide_day.now .today {
-    display: block;
-    text-align: center;
-}
-
 .slide_day.active svg {
     display: flex;
     width: 90%;
@@ -577,3 +572,17 @@ select:hover {
     text-transform: capitalize;
 }
 
+.empty-holder {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.empty-holder svg{
+    width: 90%;
+    display: flex;
+    margin: 20px auto;
+}

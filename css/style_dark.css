@@ -107,7 +107,7 @@ div.slide_day {
   background: #00060a; }
 
 .slide_day .lesson.empty div.time_lesson {
-  background: #00121e; }
+  background: none; }
 
 .slide_day div.time_lesson:nth-child(1) {
   border-top: 1px dashed white; }
@@ -118,3 +118,7 @@ div.slide_day {
 .slide_day.active div.time_lesson {
   border: 0;
   background: none; }
+
+.empty-holder svg {
+  fill: white;
+  stroke: none; }

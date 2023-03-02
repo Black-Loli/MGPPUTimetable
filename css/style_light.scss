@@ -147,7 +147,7 @@ div.slide_day {
 }
 
 .slide_day .lesson.empty div.time_lesson {
-    background: $secondary_timeline;
+    background: none;
 }
 
 .slide_day div.time_lesson:nth-child(1) {
@@ -166,4 +166,9 @@ div.slide_day {
 label.time:hover,
 ul.sub-items li:hover {
     background: $secondary_timeline;
+}
+
+.empty-holder svg{
+    fill: $text_border;
+    stroke: none;
 }

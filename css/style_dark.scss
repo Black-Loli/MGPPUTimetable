@@ -7,159 +7,168 @@ $highlighting: rgba(lighten($color, 65%), 0.7);
 $overlay: rgba(darken($color, 35%), 0.5);
 
 body {
-    background: $background;
-    color: $text_border;
+  background: $background;
+  color: $text_border;
 }
 
-a{
-    color: $highlighting;
+a {
+  color: $highlighting;
 }
 
-div.div{
-    background: $background;
-    box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
-    color: $text_border;
+div.div {
+  background: $background;
+  box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
+  color: $text_border;
 }
 
-svg.loading{
-    fill: $text_border;
+svg.loading {
+  fill: $text_border;
 }
 
 .menu {
-    background: rgba($background, 0.7);
-    border: 2px solid $text_border;
+  background: rgba($background, 0.7);
+  border: 2px solid $text_border;
 }
 
 .ham-menu {
-    background-color: $background;
-    box-shadow: 20px 0 50px 10px rgba($text_border, 0.5);
+  background-color: $background;
+  box-shadow: 20px 0 50px 10px rgba($text_border, 0.5);
 }
 
 .ham-menu > ul > li {
-    color: $text_border;
+  color: $text_border;
 }
 
 #overlay_menu {
-    background: $overlay;
+  background: $overlay;
 }
 
 .menu-line {
-    background-color: $text_border;
+  background-color: $text_border;
 }
 
 #ham-menu:checked + label span {
-    background-color: $text_border;
+  background-color: $text_border;
 }
 
 svg.click {
-    stroke: $text_border;
+  stroke: $text_border;
 }
 
 ul.sub-items {
-    color: $highlighting;
+  color: $highlighting;
 }
 
 input[type='checkbox'].checkbox + label:after {
-    border: 1px solid $text_border;
+  border: 1px solid $text_border;
 }
 
 div.color input[type='checkbox'].checkbox + label:before {
-    background: gray;
+  background: gray;
 }
 
 div.color input[type='checkbox'].checkbox:checked + label:before {
-    background: $text_border;
-    box-shadow: 0 0 12px rgba($text_border, 0.5);
+  background: $text_border;
+  box-shadow: 0 0 12px rgba($text_border, 0.5);
 }
 
 div.overlay {
-    background: $overlay;
+  background: $overlay;
 }
 
 div.modal {
-    background: $background;
-    box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
+  background: $background;
+  box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
 }
 
 .tab-list {
-    border-bottom: 1px solid $text_border;
+  border-bottom: 1px solid $text_border;
 }
 
 .tab_selector:checked + .tab_selector_label {
-    border-bottom: 3px solid $text_border;
+  border-bottom: 3px solid $text_border;
 }
 
-select{
-    border: 2px solid $text_border;
-    background-color: $background;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-    color: $text_border;
+select {
+  border: 2px solid $text_border;
+  background-color: $background;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  color: $text_border;
 
-    &:focus{
-        box-shadow: 0 0 0.9rem 0.1rem rgba($highlighting, 0.5);
-    }
-}
-button.btn{
-    border: 2px solid $text_border;
-    background: $background;
-    color: $text_border;
-
-    &:hover{
-        cursor: pointer;
-        background: $highlighting;
-        color: $background;
-    }
+  &:focus {
+    box-shadow: 0 0 0.9rem 0.1rem rgba($highlighting, 0.5);
+  }
 }
 
-option:hover{
+button.btn {
+  border: 2px solid $text_border;
+  background: $background;
+  color: $text_border;
+
+  &:hover {
     cursor: pointer;
-    background: rgba($highlighting, 0.5);
+    background: $highlighting;
+    color: $background;
+  }
 }
 
-div.slide, div.slide_day{
-    background: $secondary_timeline;
+option:hover {
+  cursor: pointer;
+  background: rgba($highlighting, 0.5);
+}
+
+div.slide, div.slide_day {
+  background: $secondary_timeline;
 }
 
 div.slide_day {
-    border: 1px solid $text_border;
+  border: 1px solid $text_border;
 }
 
-.slide.now, .slide_day.now{
-    background: $background;
-    border: 2px solid $text_border;
+.slide.now, .slide_day.now {
+  background: $background;
+  border: 2px solid $text_border;
 }
 
 .slide.active h2.room_number_used {
-    border: 2px solid #EE333E;
+  border: 2px solid #EE333E;
 }
 
-.slide_day svg{
-    stroke: $text_border;
+.slide_day svg {
+  stroke: $text_border;
 }
 
-.slide_day.active .lesson{
-    border-top: 1px solid $text_border;
+.slide_day.active .lesson {
+  border-top: 1px solid $text_border;
 }
 
 .slide_day div.time_lesson {
-    border-bottom: 1px dashed $text_border;
-    background: $ternary_timeline;
+  border-bottom: 1px dashed $text_border;
+  background: $ternary_timeline;
 }
 
 .slide_day .lesson.empty div.time_lesson {
-    background: $secondary_timeline;
+  background: none;
+}
+
+//.slide_day.now .lesson.empty{
+//  background: $background;
+//}
+
+.slide_day div.time_lesson:nth-child(1) {
+  border-top: 1px dashed $text_border;
 }
 
 .slide_day div.time_lesson:nth-child(1) {
-    border-top: 1px dashed $text_border;
-}
-
-.slide_day div.time_lesson:nth-child(1) {
-    border-top: 1px dashed $text_border;
+  border-top: 1px dashed $text_border;
 }
 
 .slide_day.active div.time_lesson {
-    border: 0;
-    background: none;
+  border: 0;
+  background: none;
 }
 
+.empty-holder svg{
+  fill: $text_border;
+  stroke: none;
+}
