@@ -475,7 +475,12 @@ select:hover {
     display: flex;
 }
 
-.slide_day.active .lesson.empty {
+.slide_day.active .lesson.empty, .empty-holder.empty  {
+    display: none;
+}
+
+
+.empty-holder.dn  {
     display: none;
 }
 
@@ -581,8 +586,14 @@ select:hover {
     margin: 0 auto;
 }
 
-.empty-holder svg{
+.slide_day .empty-holder svg{
     width: 90%;
+    display: flex;
+    margin: 20px auto;
+}
+
+.empty-holder svg{
+    width: 30%;
     display: flex;
     margin: 20px auto;
 }
