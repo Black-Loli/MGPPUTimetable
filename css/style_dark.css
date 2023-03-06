@@ -100,22 +100,23 @@ div.slide_day {
   stroke: white; }
 
 .slide_day.active .lesson {
-  border-top: 1px solid white; }
+  border-top: 1px solid white;
+  border-bottom: 0; }
 
-.slide_day div.time_lesson {
-  border-bottom: 1px dashed white;
+.slide_day .time_lesson {
   background: #00060a; }
 
-.slide_day .lesson.empty div.time_lesson {
+.slide_day .lesson {
+  border-bottom: 1px dashed white;
+  border-top: 1px dashed white; }
+
+.slide_day .lesson.empty .time_lesson {
   background: none; }
 
-.slide_day div.time_lesson:nth-child(1) {
+.slide_day .lesson:nth-child(1) {
   border-top: 1px dashed white; }
 
-.slide_day div.time_lesson:nth-child(1) {
-  border-top: 1px dashed white; }
-
-.slide_day.active div.time_lesson {
+.slide_day.active .time_lesson {
   border: 0;
   background: none; }
 

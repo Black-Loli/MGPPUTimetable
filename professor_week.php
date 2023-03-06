@@ -436,6 +436,10 @@
                     <div class="lesson_range">
                         <h2></h2>
                     </div>
+<!--                    <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                        <line y1="-2" x2="19.3367" y2="-2" transform="matrix(0.706464 -0.707749 0.706464 0.707749 14.1777 16.6855)" stroke-width="4"/>-->
+<!--                        <line y1="-2" x2="19.3375" y2="-2" transform="matrix(0.689819 0.723982 -0.722728 0.691132 0.838379 3)" stroke-width="4"/>-->
+<!--                    </svg>-->
                 </div>
                 <div class="prof"> </div>
             </div> `);

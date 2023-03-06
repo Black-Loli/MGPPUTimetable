@@ -11,17 +11,17 @@ body {
     color: $text_border;
 }
 
-a{
+a {
     color: $highlighting;
 }
 
-div.div{
+div.div {
     background: $background;
     box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
     color: $text_border;
 }
 
-svg.loading{
+svg.loading {
     fill: $text_border;
 }
 
@@ -89,34 +89,35 @@ div.modal {
     border-bottom: 3px solid $text_border;
 }
 
-select{
+select {
     border: 2px solid $text_border;
     background-color: $background;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     color: $text_border;
 
-    &:focus{
+    &:focus {
         box-shadow: 0 0 0.9rem 0.1rem rgba($highlighting, 0.5);
     }
 }
-button.btn{
+
+button.btn {
     border: 2px solid $text_border;
     background: $background;
     color: $text_border;
 
-    &:hover{
+    &:hover {
         cursor: pointer;
         background: $highlighting;
         color: $background;
     }
 }
 
-option:hover{
+option:hover {
     cursor: pointer;
     background: rgba($highlighting, 0.5);
 }
 
-div.slide, div.slide_day{
+div.slide, div.slide_day {
     background: $secondary_timeline;
 }
 
@@ -124,7 +125,7 @@ div.slide_day {
     border: 1px solid $text_border;
 }
 
-.slide.now, .slide_day.now{
+.slide.now, .slide_day.now {
     background: $background;
     border: 2px solid $text_border;
 }
@@ -133,39 +134,35 @@ div.slide_day {
     border: 2px solid #EE333E;
 }
 
-.slide_day svg{
+.slide_day svg {
     stroke: $text_border;
 }
 
-.slide_day.active .lesson{
+.slide_day.active .lesson {
     border-top: 1px solid $text_border;
+    border-bottom: 0;
 }
 
-.slide_day div.time_lesson {
-    border-bottom: 1px dashed $text_border;
+.slide_day .time_lesson {
     background: $ternary_timeline;
 }
 
-.slide_day .lesson.empty div.time_lesson {
+.slide_day .lesson {
+    border-bottom: 1px dashed $text_border;
+    border-top: 1px dashed $text_border;
+}
+
+.slide_day .lesson.empty .time_lesson {
     background: none;
 }
 
-.slide_day div.time_lesson:nth-child(1) {
+.slide_day .lesson:nth-child(1) {
     border-top: 1px dashed $text_border;
 }
 
-.slide_day div.time_lesson:nth-child(1) {
-    border-top: 1px dashed $text_border;
-}
-
-.slide_day.active div.time_lesson {
+.slide_day.active .time_lesson {
     border: 0;
     background: none;
-}
-
-label.time:hover,
-ul.sub-items li:hover {
-    background: $secondary_timeline;
 }
 
 .empty-holder svg{
