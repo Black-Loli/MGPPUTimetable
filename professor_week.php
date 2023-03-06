@@ -384,82 +384,90 @@
 <script src="js/common.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script>
-	$('.slide_day').click(slide_dayClicked);
+    $('.slide_day').click(slide_dayClicked);
 
-	function convertInitials(professor) {
-		let array = professor.split(' ');
-		return `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
-	}
+    function convertInitials(professor) {
+        let array = professor.split(' ');
+        return `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
+    }
 
-	function fillSlideWithLessons(slide_day, lessons, i) {
-		_(lessons).groupBy('Number').forEach(function (lessonsForNumber, number) {
-			_(lessonsForNumber).uniqBy("TeacherFIO").forEach(function (lesson, index) {
-				// slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .day`).html(`${lesson.dayDate}`);
-				// slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1})`).removeClass('empty');
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_index`).html(`${lesson.Number}`);
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .prof`).append(`<h2 class="lesson_name">${convertInitials(lesson.TeacherFIO)}</h2>`);
-			})
-		})
-	}
+    function fillSlideWithLessons(slide_day, lessons, i) {
+        _(lessons).groupBy('Number').forEach(function (lessonsForNumber, number) {
+            _(lessonsForNumber).uniqBy("TeacherFIO").forEach(function (lesson, index) {
+                // slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .day`).html(`${lesson.dayDate}`);
+                // slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
+                slide_day.find(`.lesson:eq(${parseInt(number) - 1})`).removeClass('empty');
+                slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_index`).html(`${lesson.Number}`);
+                slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
+                slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .prof`).append(`<h2 class="lesson_name">${convertInitials(lesson.TeacherFIO)}</h2>`);
+            })
+        })
+    }
 
-	getTimeTable(function (timeTableHandler) {
-		const lessonsArray = timeTableHandler.trimDistant().getTable()
-		console.log(_(lessonsArray))
-		let index = 0;
+    getTimeTable(function (timeTableHandler) {
+        const lessonsArray = timeTableHandler.trimDistant().getTable()
+        console.log(_(lessonsArray))
+        let index = 0;
 
-		getDaysArray().forEach(function (date, index) {
-			$(`.slide_day:eq(${index})`).get(0).dataset.date = date
-			$(`.slide_day:eq(${index})`).find('.day_week_name').html(moment(date, 'DD.MM.YYYY').locale('ru').format('dddd'))
-			$(`.slide_day:eq(${index})`).find('.date').html(moment(date, 'DD.MM.YYYY').locale('ru').format('DD MMMM'))
-		})
-		_(lessonsArray).filter(function (lesson) {
-			return getDaysArray().includes(lesson.dayDate);
-		}).groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
-			generateLessonsInSlide(7, $(`.slide_day[data-date="${date}"]`));
-			fillSlideWithLessons($(`.slide_day[data-date="${date}"]`), lessonRangeForDate, index);
-			index++;
-			//$(`.slide_day:eq(${index}) .weekend`).append(`<h2> Акитушки отправляют на отдых </h2>`);
-		})
+        getDaysArray().forEach(function (date, index) {
+            $(`.slide_day:eq(${index})`).get(0).dataset.date = date
+            $(`.slide_day:eq(${index})`).find('.day_week_name').html(moment(date, 'DD.MM.YYYY').locale('ru').format('dddd'))
+            $(`.slide_day:eq(${index})`).find('.date').html(moment(date, 'DD.MM.YYYY').locale('ru').format('DD MMMM'))
+        })
+        _(lessonsArray).filter(function (lesson) {
+            return getDaysArray().includes(lesson.dayDate);
+        }).groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
+            generateLessonsInSlide(7, $(`.slide_day[data-date="${date}"]`));
+            fillSlideWithLessons($(`.slide_day[data-date="${date}"]`), lessonRangeForDate, index);
+            index++;
+            //$(`.slide_day:eq(${index}) .weekend`).append(`<h2> Акитушки отправляют на отдых </h2>`);
+        })
 
-		$(`.slide_day[data-date="${timeTableHandler.currentDate()}"]`).addClass('now active')
-	})
+        $(`.slide_day[data-date="${timeTableHandler.currentDate()}"]`).addClass('now active')
+    })
 
-	function generateLessonsInSlide(amount, slide) {
-		console.log("AMOUNT", amount)
-		slide.find('.empty-holder').remove()
-		for (let i = 0; i < amount; i++) {
-			let slide_day = $(` <div class="lesson empty">
+    function generateLessonsInSlide(amount, slide) {
+        console.log("AMOUNT", amount)
+        slide.find('.empty-holder').remove()
+        for (let i = 0; i < amount; i++) {
+            let slide_day = $(` <div class="lesson empty">
                 <div class="time_lesson">
                     <h2 class="lesson_index"></h2>
                     <div class="lesson_range">
                         <h2></h2>
                     </div>
-<!--                    <svg class="click" width="28" height="17" viewBox="0 0 28 17" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                    <svg class="click_${i}" width="28" height="17" viewBox="0 0 28 17" fill="none" xmlns="http://www.w3.org/2000/svg">-->
 <!--                        <line y1="-2" x2="19.3367" y2="-2" transform="matrix(0.706464 -0.707749 0.706464 0.707749 14.1777 16.6855)" stroke-width="4"/>-->
 <!--                        <line y1="-2" x2="19.3375" y2="-2" transform="matrix(0.689819 0.723982 -0.722728 0.691132 0.838379 3)" stroke-width="4"/>-->
 <!--                    </svg>-->
                 </div>
                 <div class="prof"> </div>
             </div> `);
-			slide.append(slide_day)
-		}
-	}
+            slide.append(slide_day)
+        }
+    }
 
-	const slides_day = document.querySelectorAll('.slide_day')
 
-	for (const slide of slides_day) {
-		slide.addEventListener('click', () => {
-			clearActiveClasses()
-			slide.classList.add('active')
-		})
-	}
+    // $('.click_${event.target.id}').click(toggle)
+    //
+    // function toggle() {
+    //     $('.prof_${event.target.id}').toggleClass("active")
+    // }
 
-	function clearActiveClasses() {
-		slides_day.forEach((slide) => {
-			slide.classList.remove('active')
-		})
-	}
+
+    // const slides_day = document.querySelectorAll('.slide_day')
+    //
+    // for (const slide of slides_day) {
+    // 	slide.addEventListener('click', () => {
+    // 		clearActiveClasses()
+    // 		slide.classList.add('active')
+    // 	})
+    // }
+    //
+    // function clearActiveClasses() {
+    // 	slides_day.forEach((slide) => {
+    // 		slide.classList.remove('active')
+    // 	})
+    // }
 </script>
 </html>

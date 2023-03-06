@@ -1,125 +1,129 @@
 body {
   background: #001b2d;
-  color: white; }
+  color: #f9fdff; }
 
 a {
-  color: rgba(255, 255, 255, 0.7); }
+  color: rgba(249, 253, 255, 0.7); }
 
 div.div {
   background: #001b2d;
-  box-shadow: 10px 20px 50px 10px rgba(255, 255, 255, 0.5);
-  color: white; }
+  box-shadow: 10px 20px 50px 10px rgba(249, 253, 255, 0.5);
+  color: #f9fdff; }
 
 svg.loading {
-  fill: white; }
+  fill: #f9fdff; }
 
 .menu {
   background: rgba(0, 27, 45, 0.7);
-  border: 2px solid white; }
+  border: 2px solid #f9fdff; }
 
 .ham-menu {
   background-color: #001b2d;
-  box-shadow: 20px 0 50px 10px rgba(255, 255, 255, 0.5); }
+  box-shadow: 20px 0 50px 10px rgba(249, 253, 255, 0.5); }
 
 .ham-menu > ul > li {
-  color: white; }
+  color: #f9fdff; }
 
 #overlay_menu {
   background: rgba(0, 3, 5, 0.5); }
 
 .menu-line {
-  background-color: white; }
+  background-color: #f9fdff; }
 
 #ham-menu:checked + label span {
-  background-color: white; }
+  background-color: #f9fdff; }
 
 svg.click {
-  stroke: white; }
+  stroke: #f9fdff; }
 
 ul.sub-items {
-  color: rgba(255, 255, 255, 0.7); }
+  color: rgba(249, 253, 255, 0.7); }
 
 input[type='checkbox'].checkbox + label:after {
-  border: 1px solid white; }
+  border: 1px solid #f9fdff; }
 
 div.color input[type='checkbox'].checkbox + label:before {
   background: gray; }
 
 div.color input[type='checkbox'].checkbox:checked + label:before {
-  background: white;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); }
+  background: #f9fdff;
+  box-shadow: 0 0 12px rgba(249, 253, 255, 0.5); }
 
 div.overlay {
   background: rgba(0, 3, 5, 0.5); }
 
 div.modal {
   background: #001b2d;
-  box-shadow: 10px 20px 50px 10px rgba(255, 255, 255, 0.5); }
+  box-shadow: 10px 20px 50px 10px rgba(249, 253, 255, 0.5); }
 
 .tab-list {
-  border-bottom: 1px solid white; }
+  border-bottom: 1px solid #f9fdff; }
 
 .tab_selector:checked + .tab_selector_label {
-  border-bottom: 3px solid white; }
+  border-bottom: 3px solid #f9fdff; }
 
 select {
-  border: 2px solid white;
+  border: 2px solid #f9fdff;
   background-color: #001b2d;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23E5D4E8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-  color: white; }
+  color: #f9fdff; }
   select:focus {
-    box-shadow: 0 0 0.9rem 0.1rem rgba(255, 255, 255, 0.5); }
+    box-shadow: 0 0 0.9rem 0.1rem rgba(249, 253, 255, 0.5); }
 
 button.btn {
-  border: 2px solid white;
+  border: 2px solid #f9fdff;
   background: #001b2d;
-  color: white; }
+  color: #f9fdff; }
   button.btn:hover {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(249, 253, 255, 0.7);
     color: #001b2d; }
 
 option:hover {
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.5); }
+  background: rgba(249, 253, 255, 0.5); }
 
 div.slide, div.slide_day {
   background: #00121e; }
 
 div.slide_day {
-  border: 1px solid white; }
+  border: 1px solid #f9fdff; }
 
 .slide.now, .slide_day.now {
   background: #001b2d;
-  border: 2px solid white; }
+  border: 2px solid #f9fdff; }
 
 .slide.active h2.room_number_used {
   border: 2px solid #EE333E; }
 
 .slide_day svg {
-  stroke: white; }
+  stroke: #f9fdff; }
 
 .slide_day.active .lesson {
-  border-top: 1px solid white;
+  border-top: 1px solid #f9fdff;
   border-bottom: 0; }
 
 .slide_day .time_lesson {
   background: #00060a; }
 
 .slide_day .lesson {
-  border-bottom: 1px dashed white;
-  border-top: 1px dashed white; }
+  border-bottom: 1px dashed #f9fdff;
+  border-top: 1px dashed #f9fdff; }
 
 .slide_day .lesson.empty .time_lesson {
   background: none; }
 
 .slide_day .lesson:nth-child(1) {
-  border-top: 1px dashed white; }
+  border-top: 1px dashed #f9fdff; }
 
 .slide_day.active .time_lesson {
   border: 0;
   background: none; }
 
 .empty-holder svg {
-  fill: white;
+  fill: #f9fdff;
   stroke: none; }
+
+.slide_day .lesson .rooms svg,
+.slide .rooms svg {
+  fill: #f9fdff; }

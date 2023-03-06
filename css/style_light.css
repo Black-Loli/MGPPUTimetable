@@ -84,7 +84,7 @@ option:hover {
   background: rgba(0, 138, 234, 0.5); }
 
 div.slide, div.slide_day {
-  background: #dbf0ff; }
+  background: #eaf6ff; }
 
 div.slide_day {
   border: 1px solid #006cb7; }
@@ -100,29 +100,30 @@ div.slide_day {
   stroke: #006cb7; }
 
 .slide_day.active .lesson {
-  border-top: 1px solid #006cb7; }
+  border-top: 1px solid #006cb7;
+  border-bottom: 0; }
 
-.slide_day div.time_lesson {
+.slide_day .time_lesson {
+  background: #d1ecff; }
+
+.slide_day .lesson {
   border-bottom: 1px dashed #006cb7;
-  background: #bce4ff; }
+  border-top: 1px dashed #006cb7; }
 
-.slide_day .lesson.empty div.time_lesson {
+.slide_day .lesson.empty .time_lesson {
   background: none; }
 
-.slide_day div.time_lesson:nth-child(1) {
+.slide_day .lesson:nth-child(1) {
   border-top: 1px dashed #006cb7; }
 
-.slide_day div.time_lesson:nth-child(1) {
-  border-top: 1px dashed #006cb7; }
-
-.slide_day.active div.time_lesson {
+.slide_day.active .time_lesson {
   border: 0;
   background: none; }
-
-label.time:hover,
-ul.sub-items li:hover {
-  background: #dbf0ff; }
 
 .empty-holder svg {
   fill: #006cb7;
   stroke: none; }
+
+.slide_day .lesson .rooms svg,
+.slide .rooms svg {
+  stroke: #006cb7; }

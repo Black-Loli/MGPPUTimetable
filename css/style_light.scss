@@ -1,8 +1,8 @@
 $color: #006cb7;
 $background: lighten($color, 63%);
 $text_border: $color;
-$secondary_timeline: lighten($color, 57%);
-$ternary_timeline: lighten($color, 51%);
+$secondary_timeline: lighten($color, 60%);
+$ternary_timeline: lighten($color, 55%);
 $highlighting: rgba(lighten($color, 10%), 0.7);
 $overlay: rgba(lighten($color, 50%), 0.5);
 
@@ -168,4 +168,9 @@ div.slide_day {
 .empty-holder svg{
     fill: $text_border;
     stroke: none;
+}
+
+.slide_day .lesson .rooms svg,
+.slide .rooms svg{
+    stroke: $text_border;
 }

@@ -1,8 +1,10 @@
+const timeFormat = 'HH:mm:ss';
+const dateFormat = 'DD.MM.YYYY';
 Storage.prototype.keyExists = function (key) {
 	return localStorage.getItem(key) !== null
 }
 
-function getDaysArray(initialDate = moment('16.09.2022', 'DD.MM.YYYY')) {
+function getDaysArray(initialDate = currentDateObject()) {
 	let days = []
 	for (let i = 1; i < 7; i++) {
 		days.push(initialDate.day(i).format('DD.MM.YYYY'))
@@ -10,8 +12,26 @@ function getDaysArray(initialDate = moment('16.09.2022', 'DD.MM.YYYY')) {
 	return days;
 }
 
+function currentTimeObject() {
+	return moment()
+	// return moment('14:00:20', timeFormat)
+}
+
+function currentTime() {
+	return currentTimeObject().format(timeFormat)
+}
+
+function currentDateObject() {
+	return moment()
+	// return moment('11.04.2023', dateFormat)
+}
+
+function currentDate() {
+	return currentDateObject().format(dateFormat)
+}
+
 function getData() {
-	return Promise.resolve($.getJSON('Timetable2022.json', function (data) {
+	return Promise.resolve($.getJSON('IT_timetable_spring.json', function (data) {
 		try {
 			// //TODO: срез для кэширования
 			// _(data).filter(function (lesson) {
@@ -52,25 +72,12 @@ let getTimeTable = function (callbackfn) {
 	// })
 }
 
-
 function timetableHandlerConstructor(allTimetable) {
-	const timeFormat = 'HH:mm:ss';
-	const dateFormat = 'DD.MM.YYYY';
 	console.log("Время сейчас", currentTime())
 	console.log("День сегодня", currentDate())
 
 	function getGroupData() {
 		return JSON.parse(localStorage.getItem('group'))
-	}
-
-	function currentTime() {
-		// return moment().format(timeFormat)
-		return moment('14:00:20', timeFormat).format(timeFormat)
-	}
-
-	function currentDate() {
-		// return moment().format(dateFormat)
-		return moment('16.09.2022', dateFormat).format(dateFormat)
 	}
 
 	function filtration(type, lesson) {
@@ -90,12 +97,14 @@ function timetableHandlerConstructor(allTimetable) {
 
 	return {
 		timetable: allTimetable,
-		timeFormat,
-		dateFormat,
+		timeFormat: timeFormat,
+		dateFormat: dateFormat,
 		currentTime,
 		currentDate,
 		getTable: function () {
-			return this.timetable;
+			return this.timetable.map(function (lesson, index) {
+				return lesson;
+			});
 		},
 		getCurrentDayLessons: function () {
 			this.timetable = this.filtrateByDepartment().getTable().filter(function (lesson) {
@@ -123,7 +132,7 @@ function timetableHandlerConstructor(allTimetable) {
 		},
 		trimDistant: function () {
 			this.timetable = this.timetable.filter(function (lesson) {
-				return lesson.Room !== "WebEx";
+				return lesson.Building !== "Дистанционно";
 			})
 			return this;
 		},
