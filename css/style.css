@@ -490,6 +490,7 @@ select:hover {
 .slide.active h2.building,
 .slide_day.active .time_lesson,
 .slide_day.active .lesson_name,
+.slide_day.active .room,
 .slide_day.active .prof_name{
     padding: 3% 3% 0;
     display: flex;
@@ -557,6 +558,15 @@ select:hover {
     display: flex;
 }
 
+.slide_day.active div.room {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.slide_day.active div.room .room_number{
+    margin-left: 30px;
+}
+
 .slide_day .time_lesson {
     padding: 10px;
 }
@@ -599,14 +609,13 @@ select:hover {
     width: 10%;
 }
 
-.slide_day .room{
+.slide_day .rooms{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px 0;
     padding: 0 3%;
-    justify-items: start;
 }
 
-.slide_day .room .lesson_name{
+.slide_day .rooms .lesson_name{
     padding: 0;
 }

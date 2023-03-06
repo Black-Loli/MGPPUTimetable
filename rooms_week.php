@@ -394,7 +394,7 @@
 				slide_day.find(`.lesson:eq(${parseInt(number) - 1})`).removeClass('empty');
 				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_index`).html(`${lesson.Number}`);
 				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .room`).append(`<h2 class="lesson_name">${lesson.Room}</h2>`);
+				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .rooms`).append(`<h2 class="lesson_name">${lesson.Room}</h2>`);
 			})
 		})
 	}
@@ -452,7 +452,7 @@
 <!--                        <line y1="-2" x2="19.3375" y2="-2" transform="matrix(0.689819 0.723982 -0.722728 0.691132 0.838379 3)" stroke-width="4"/>-->
 <!--                    </svg>-->
                 </div>
-                <div class="room"> </div>
+                <div class="rooms"> </div>
             </div> `);
 			slide.append(slide_day)
 		}
