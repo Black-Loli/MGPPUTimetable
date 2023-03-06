@@ -11,6 +11,8 @@
     <?php include 'menu.php'; ?>
 
     <div class="container">
+        <h2 class="date"></h2>
+
         <div class="empty-holder">
             <h2 class=""> Пёся отправляет на отдых </h2>
             <svg viewBox="0 0 235.51 235.511">
@@ -77,6 +79,8 @@
 <script src="js/common.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script>
+	$(`.container`).find('.date').html(moment().locale('ru').format('LLLL'))
+
 	function fillSlideWithLesson(slide, lesson) {
 
 		if (lesson.current) {

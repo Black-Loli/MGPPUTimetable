@@ -537,7 +537,11 @@ select:hover {
     margin: 5px auto 0 0;
 }
 
-.active .date_week {
+.container > .date {
+    margin: 0 3vh 40px;
+}
+
+.slide_day.active .date_week {
     display: flex;
     justify-content: space-around;
 }

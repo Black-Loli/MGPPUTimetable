@@ -10,6 +10,7 @@
     <?php include 'menu.php'; ?>
 
     <div class="container">
+        <h2 class="date"></h2>
 
         <div class="empty-holder">
             <h2 class=""> Пёся отправляет на отдых </h2>
@@ -100,6 +101,8 @@
 <script src="js/timeTableHandler.js"></script>
 <script src="js/lodash.min.js"></script>
 <script>
+	$(`.container`).find('.date').html(moment().locale('ru').format('LLLL'))
+
 	function fillSlide(element, professor) {
 		let array = professor.split(' ');
 		let result = `${array[0]} ${array[1][0]}. ${array[2][0]}.`;

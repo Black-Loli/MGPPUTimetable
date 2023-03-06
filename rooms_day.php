@@ -9,6 +9,8 @@
 <div class="main">
     <?php include 'menu.php'; ?>
     <div class="container">
+        <h2 class="date"></h2>
+
         <div class="empty-holder">
             <h2 class=""> Пёся отправляет на отдых </h2>
             <svg viewBox="0 0 235.51 235.511">
@@ -74,6 +76,15 @@
 <script src="js/common.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script>
+	// getDaysArray().forEach(function (date, index) {
+	// $(`.slide_day:eq(${index})`).get(0).dataset.date = date
+	// $(`.slide_day:eq(${index})`).find('.day_week_name').html(moment(date, 'DD.MM.YYYY').locale('ru').format('dddd'))
+	// $(`.slide_day:eq(${index})`).find('.date').html(moment(date, 'DD.MM.YYYY').locale('ru').format('DD MMMM'))
+	// })
+	$(`.container`).find('.date').html(moment().locale('ru').format('LLLL'))
+
+	// $(`.date_week`).find('.date').html(moment('DD.MM.YYYY').locale('ru').format('DD MMMM'))
+
 	function fillSlideWithRooms(slide, lesson) {
 		if (lesson.current) slide.addClass('now active')
 		slide.find('.lesson_range').html(`<h2>${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}</h2>`);
@@ -86,15 +97,20 @@
 		(currentDayLessons).forEach(function (lesson) {
 			console.log(`${lesson.TeacherFIO} ${lesson.Discipline} ${lesson.dayDate} ${lesson.Number} ${lesson.Room}`)
 		})
-		generateSlides(5);
-		for (let i = 0; i < 5; i++) {
-			let slide = $(`.slide:eq(${i})`);
-			_(currentDayLessons).filter(function (lesson) {
-				// $('.empty-holder').hide();
-				return lesson.Number === `${i + 1} пара`
-			}).uniqBy('Room').forEach(function (lesson) {
-				fillSlideWithRooms(slide, lesson);
-			})
+		if (currentDayLessons.length > 0) {
+			$('.empty-holder').hide();
+			generateSlides(5);
+			for (let i = 0; i < 5; i++) {
+				let slide = $(`.slide:eq(${i})`);
+				_(currentDayLessons).filter(function (lesson) {
+					// $('.empty-holder').hide();
+					return lesson.Number === `${i + 1} пара`
+				}).uniqBy('Room').forEach(function (lesson) {
+					fillSlideWithRooms(slide, lesson);
+				})
+			}
+		} else {
+			generateSlides(0);
 		}
 	})
 
