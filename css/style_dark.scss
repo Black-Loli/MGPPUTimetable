@@ -117,11 +117,17 @@ option:hover {
   background: rgba($highlighting, 0.5);
 }
 
-div.slide, div.slide_day {
+div.slide,
+div.slide_day,
+.container_month .slide_month_day,
+.container_month__list .slide_month_day {
   background: $secondary_timeline;
+  border-radius: 20px;
 }
 
-div.slide_day {
+div.slide_day,
+.container_month .slide_month_day,
+.container_month__list .slide_month_day {
   border: 1px solid $text_border;
 }
 
@@ -148,7 +154,7 @@ div.slide_day {
 }
 
 .slide_day .lesson {
-  border-bottom: 1px dashed $text_border;
+
   border-top: 1px dashed $text_border;
 }
 
@@ -156,8 +162,8 @@ div.slide_day {
   background: none;
 }
 
-.slide_day .lesson:nth-child(1) {
-  border-top: 1px dashed $text_border;
+.slide_day .lesson:last-child {
+  border-bottom: 1px dashed $text_border;
 }
 
 .slide_day.active .time_lesson {
@@ -165,7 +171,8 @@ div.slide_day {
   background: none;
 }
 
-.empty-holder svg{
+.empty-holder svg,
+.container_month__list .slide_month_day .lesson-list__empty svg{
   fill: $text_border;
   stroke: none;
 }
@@ -173,4 +180,12 @@ div.slide_day {
 .slide_day .lesson .rooms svg,
 .slide .rooms svg{
   fill: $text_border;
+}
+
+.container_month__list .slide_month_day .lesson{
+  border-bottom: 1px dashed $text_border;
+}
+
+.container_month__list .slide_month_day .lesson:last-child{
+  border-bottom: 0;
 }

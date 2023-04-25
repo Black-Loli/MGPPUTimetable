@@ -432,12 +432,14 @@ select:hover {
 .slide_day svg,
 .slide_day .lesson_name,
 .slide_day .prof_name,
+.slide_day .rooms,
 .slide_day .room {
     display: none;
 }
 
-.slide div.time_lesson, .slide h2.building {
-    padding: 1% 10% 1%;
+.slide div.time_lesson, .slide h2.building,
+.container_month__list .slide_month_day .time_lesson{
+    padding: 30px;
     display: flex;
     justify-content: space-between;
 }
@@ -467,7 +469,7 @@ select:hover {
     min-height: 52px;
 }
 
-.slide_day div.time_lesson .lesson_range h2 {
+.slide_day div.time_lesson .lesson_range h2{
     display: none;
 }
 
@@ -608,19 +610,145 @@ select:hover {
     width: 10%;
 }
 
-.slide_day .rooms{
+.slide_day.active .rooms{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px 0;
     padding: 0 3%;
+
 }
 
-.slide_day .rooms .lesson_name{
+.slide_day.active .rooms .lesson_name{
     padding: 0;
 }
 
-.slide_day .lesson .rooms svg,
+.slide_day.active .lesson .rooms svg,
 .slide .rooms svg{
     margin: 0;
     width: 30px;
+}
+
+.container_month__calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin: 3% 10px 0 110px;
+    width: 90%;
+    padding-bottom: 100px;
+}
+
+.container_month__list {
+    display: flex;
+    margin: 3% 10px 0 110px;
+    width: 90%;
+    padding-bottom: 100px;
+    flex-direction: column;
+}
+
+.container_month__calendar .slide_month_day{
+    height: 250px;
+}
+
+.container_month__list .slide_month_day {
+    width: 100%;
+    border-radius: 20px;
+    margin: 5px;
+    cursor: pointer;
+    position: relative;
+    /*transition: all 1000ms ease-out;*/
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+.container_month__calendar.Sunday .slide_month_day:first-child{
+    grid-column: 7/8;
+}
+
+.container_month__calendar.Monday{
+    grid-column: 1/2;
+}
+
+.container_month__calendar.Tuesday{
+    grid-column: 2/3;
+}
+
+.container_month__calendar.Wednesday {
+    grid-column: 3/4;
+}
+
+.container_month__calendar.Thursday{
+    grid-column: 4/5;
+}
+
+.container_month__calendar.Friday{
+    grid-column: 5/6;
+}
+
+.container_month__calendar.Saturday .slide_month_day:first-child{
+    grid-column: 6/7;
+}
+
+.technical_values {
+    display: flex;
+    margin: 3% 10px 0 130px;
+}
+
+.container_month__list .slide_month_day .lesson{
+    border-bottom: 1px dashed #d1ecff;
+    padding: 20px 0;
+}
+
+.container_month__list .slide_month_day .lesson:first-child{
+    padding: 10px 0;
+}
+
+.container_month__list .slide_month_day .time_lesson,
+.container_month__list .slide_month_day .professor,
+.container_month__list .slide_month_day .room{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_month__list .slide_month_day .date{
+    padding: 30px 15px 20px;
+    text-transform: capitalize;
+}
+
+.container_month__list .slide_month_day .professor,
+.container_month__list .slide_month_day .room {
+    display: flex;
+    justify-content: left;
+}
+
+.container_month__list .slide_month_day .professor .prof_name,
+.container_month__list .slide_month_day .room_number {
+    padding-left: 10px;
+}
+
+.container_month__list .slide_month_day .professor{
+    padding-bottom: 0;
+}
+
+.container_month__list .slide_month_day .lesson_range{
+    margin: 0 auto 0 20px;
+}
+
+.container_month__list .slide_month_day .lesson-list__empty {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.container_month__list .slide_month_day .lesson-list__empty svg {
+    width: 200px;
+    margin: 20px 0;
+}
+
+.technical_values .container_month_name {
+    text-transform: capitalize;
 }

@@ -83,10 +83,16 @@ option:hover {
   cursor: pointer;
   background: rgba(249, 253, 255, 0.5); }
 
-div.slide, div.slide_day {
-  background: #00121e; }
+div.slide,
+div.slide_day,
+.container_month .slide_month_day,
+.container_month__list .slide_month_day {
+  background: #00121e;
+  border-radius: 20px; }
 
-div.slide_day {
+div.slide_day,
+.container_month .slide_month_day,
+.container_month__list .slide_month_day {
   border: 1px solid #f9fdff; }
 
 .slide.now, .slide_day.now {
@@ -107,23 +113,29 @@ div.slide_day {
   background: #00060a; }
 
 .slide_day .lesson {
-  border-bottom: 1px dashed #f9fdff;
   border-top: 1px dashed #f9fdff; }
 
 .slide_day .lesson.empty .time_lesson {
   background: none; }
 
-.slide_day .lesson:nth-child(1) {
-  border-top: 1px dashed #f9fdff; }
+.slide_day .lesson:last-child {
+  border-bottom: 1px dashed #f9fdff; }
 
 .slide_day.active .time_lesson {
   border: 0;
   background: none; }
 
-.empty-holder svg {
+.empty-holder svg,
+.container_month__list .slide_month_day .lesson-list__empty svg {
   fill: #f9fdff;
   stroke: none; }
 
 .slide_day .lesson .rooms svg,
 .slide .rooms svg {
   fill: #f9fdff; }
+
+.container_month__list .slide_month_day .lesson {
+  border-bottom: 1px dashed #f9fdff; }
+
+.container_month__list .slide_month_day .lesson:last-child {
+  border-bottom: 0; }

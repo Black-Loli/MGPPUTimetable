@@ -70,15 +70,16 @@ $('#showTimetable').click(function () {
     } else if (wishTimetable === 'time_week') {
         location.replace('schedule_group_week.php');
     } else {
-        location.replace('loading.php');
+        location.replace('schedule_group_month.php');
     }
+
     if (selectedTab === 'professor_tab') {
         if (wishTimetable === 'time_today') {
             location.replace('schedule_teacher_day.php');
         } else if (wishTimetable === 'time_week') {
             location.replace('schedule_teacher_week.php');
         } else {
-            location.replace('loading.php');
+            location.replace('schedule_teacher_month.php');
         }
     }
 })

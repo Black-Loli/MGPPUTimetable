@@ -384,63 +384,70 @@
 <script src="js/common.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script>
-	$('.slide_day').click(slide_dayClicked);
+    $('.slide_day').click(slide_dayClicked);
 
-	function fillSlideWithLessons(slide_day, lessons, i) {
-		_(lessons).groupBy('Number').forEach(function (lessons, number) {
-			_(lessons).uniqBy("Room").forEach(function (lesson, index) {
-				// slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .day`).html(`${lesson.dayDate}`);
-				// slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1})`).removeClass('empty');
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_index`).html(`${lesson.Number}`);
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
-				slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .rooms`).append(`<h2 class="lesson_name">${lesson.Room}</h2>`);
-			})
-		})
-	}
+    function fillSlideWithLessons(slide_day, lessons, i) {
+        _(lessons).groupBy('Number').forEach(function (lessons, number) {
+            _(lessons).uniqBy("Room").forEach(function (lesson, index) {
+                // slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .day`).html(`${lesson.dayDate}`);
+                // slide_day.find(`.date_week`).html(`<h2 class="day_week_name">${lesson.dayOfWeekName}</h2> <h2 class="date">${moment(lesson.dayDate, 'DD.MM.YYYY').locale('ru').format('DD MMMM')}</h2>`);
+                slide_day.find(`.lesson:eq(${parseInt(number) - 1})`).removeClass('empty');
+                slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_index`).html(`${lesson.Number}`);
+                slide_day.find(`.lesson:eq(${parseInt(number) - 1}) .lesson_range h2`).html(`${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}`);
+                if (lesson.Room === "спортивный зал") {
 
-	getTimeTable(function (timeTableHandler) {
-		const lessonsArray = timeTableHandler.trimDistant().getTable()
-		console.log(_(lessonsArray))
-		let index = 0;
+                    slide_day.find('.rooms').append(`<svg class="room_number_used" viewBox="0 0 50 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M46.2953 10.7131H45.1752V7.47071C45.1752 5.83764 43.8461 4.50847 42.213 4.50847H40.2189V3.42324C40.2189 1.79017 38.8897 0.460999 37.2566 0.460999H35.0576C33.4245 0.460999 32.0954 1.79017 32.0954 3.42324V10.7013H17.0625V3.42324C17.0625 1.79017 15.7333 0.460999 14.1003 0.460999H11.9012C10.2682 0.460999 8.939 1.79017 8.939 3.42324V5.44035H6.94559C5.31252 5.44035 3.98334 6.76953 3.98334 8.40259V11.109H2.86257C1.28457 11.1083 0 12.4375 0 14.0706V16.2466C0 17.8797 1.28457 19.2089 2.86257 19.2089H3.98265V22.4513C3.98265 24.0844 5.31182 25.4135 6.94489 25.4135H8.9383V26.4988C8.9383 28.1318 10.2675 29.461 11.9005 29.461H14.0996C15.7326 29.461 17.0618 28.1318 17.0618 26.4988V18.8248H32.0947V26.4988C32.0947 28.1318 33.4238 29.461 35.0569 29.461H37.2559C38.889 29.461 40.2182 28.1318 40.2182 26.4988V24.4816H42.2123C43.8454 24.4816 45.1745 23.1525 45.1745 21.5194V18.8137H46.2946C47.8733 18.8137 49.1572 17.4845 49.1572 15.8514V13.6754C49.1586 12.0423 47.874 10.7131 46.2953 10.7131ZM2.86257 17.4664C2.24503 17.4664 1.7425 16.9192 1.7425 16.2466V14.0706C1.7425 13.398 2.24503 12.8508 2.86257 12.8508H3.98265V17.4664H2.86257ZM6.94559 23.671C6.27298 23.671 5.72584 23.1239 5.72584 22.4513V8.4019C5.72584 7.72929 6.27298 7.18215 6.94559 7.18215H8.939V23.6703H6.94559V23.671ZM15.32 26.4988C15.32 27.1714 14.7729 27.7185 14.1003 27.7185H11.9012C11.2286 27.7185 10.6815 27.1714 10.6815 26.4988V3.42324C10.6815 2.75064 11.2286 2.20349 11.9012 2.20349H14.1003C14.7729 2.20349 15.32 2.75064 15.32 3.42324V26.4988ZM17.0625 17.0823V12.4438H32.0954V17.0823H17.0625ZM38.4764 26.4988C38.4764 27.1714 37.9292 27.7185 37.2566 27.7185H35.0576C34.385 27.7185 33.8379 27.1714 33.8379 26.4988V3.42324C33.8379 2.75064 34.385 2.20349 35.0576 2.20349H37.2566C37.9292 2.20349 38.4764 2.75064 38.4764 3.42324V26.4988ZM43.4327 21.5194C43.4327 22.192 42.8856 22.7391 42.213 22.7391H40.2189V6.25096H42.213C42.8856 6.25096 43.4327 6.7981 43.4327 7.47071V21.5194ZM47.4161 15.8514C47.4161 16.524 46.9135 17.0712 46.296 17.0712H45.1759V12.4556H46.296C46.9135 12.4556 47.4161 13.0028 47.4161 13.6754V15.8514Z"/>
+</svg>`);
+                } else {
+                    slide_day.find('.rooms').append(`<h2 class="room_number_used">${lesson.Room}</h2>`);
+                }
+            })
+        })
+    }
 
-		getDaysArray().forEach(function (date, index) {
-			$(`.slide_day:eq(${index})`).get(0).dataset.date = date
-			$(`.slide_day:eq(${index})`).find('.day_week_name').html(moment(date, 'DD.MM.YYYY').locale('ru').format('dddd'))
-			$(`.slide_day:eq(${index})`).find('.date').html(moment(date, 'DD.MM.YYYY').locale('ru').format('DD MMMM'))
-		})
-		_(lessonsArray).filter(function (lesson) {
-			return getDaysArray().includes(lesson.dayDate);
-		}).groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
-			generateLessonsInSlide(7, $(`.slide_day[data-date="${date}"]`));
-			fillSlideWithLessons($(`.slide_day[data-date="${date}"]`), lessonRangeForDate, index);
-			index++;
-			//$(`.slide_day:eq(${index}) .weekend`).append(`<h2> Акитушки отправляют на отдых </h2>`);
-		})
+    getTimeTable(function (timeTableHandler) {
+        const lessonsArray = timeTableHandler.trimDistant().getTable()
+        console.log(_(lessonsArray))
+        let index = 0;
 
-		$(`.slide_day[data-date="${timeTableHandler.currentDate()}"]`).addClass('now active')
-	})
+        getDaysArray().forEach(function (date, index) {
+            $(`.slide_day:eq(${index})`).get(0).dataset.date = date
+            $(`.slide_day:eq(${index})`).find('.day_week_name').html(moment(date, 'DD.MM.YYYY').locale('ru').format('dddd'))
+            $(`.slide_day:eq(${index})`).find('.date').html(moment(date, 'DD.MM.YYYY').locale('ru').format('DD MMMM'))
+        })
+        _(lessonsArray).filter(function (lesson) {
+            return getDaysArray().includes(lesson.dayDate);
+        }).groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
+            generateLessonsInSlide(7, $(`.slide_day[data-date="${date}"]`));
+            fillSlideWithLessons($(`.slide_day[data-date="${date}"]`), lessonRangeForDate, index);
+            index++;
+            //$(`.slide_day:eq(${index}) .weekend`).append(`<h2> Акитушки отправляют на отдых </h2>`);
+        })
+
+        $(`.slide_day[data-date="${timeTableHandler.currentDate()}"]`).addClass('now active')
+    })
 
 
-	// getTimeTable(function (timeTableHandler) {
-	// 	const lessonsArray = timeTableHandler.trimDistant().getTable()
-	// 	console.log(lessonsArray)
-	// 	let index = 0;
-	// 	_(lessonsArray).filter(function(lesson){
-	// 		return getDaysArray().includes(lesson.dayDate);
-	// 	}).sortBy('dayDate').groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
-	// 		console.log(lessonRangeForDate)
-	// 		generateLessonsInSlide(7, $(`.slide_day:eq(${index})`));
-	// 		fillSlideWithLessons($(`.slide_day:eq(${index})`), lessonRangeForDate, index);
-	// 		index++;
-	// 	})
-	// })
+    // getTimeTable(function (timeTableHandler) {
+    // 	const lessonsArray = timeTableHandler.trimDistant().getTable()
+    // 	console.log(lessonsArray)
+    // 	let index = 0;
+    // 	_(lessonsArray).filter(function(lesson){
+    // 		return getDaysArray().includes(lesson.dayDate);
+    // 	}).sortBy('dayDate').groupBy('dayDate').forEach(function (lessonRangeForDate, date) {
+    // 		console.log(lessonRangeForDate)
+    // 		generateLessonsInSlide(7, $(`.slide_day:eq(${index})`));
+    // 		fillSlideWithLessons($(`.slide_day:eq(${index})`), lessonRangeForDate, index);
+    // 		index++;
+    // 	})
+    // })
 
-	function generateLessonsInSlide(amount, slide) {
-		console.log("AMOUNT", amount)
-		slide.find('.empty-holder').remove()
-		for (let i = 0; i < amount; i++) {
-			let slide_day = $(` <div class="lesson empty">
+    function generateLessonsInSlide(amount, slide) {
+        console.log("AMOUNT", amount)
+        slide.find('.empty-holder').remove()
+        for (let i = 0; i < amount; i++) {
+            let slide_day = $(` <div class="lesson empty">
                 <div class="time_lesson">
                     <h2 class="lesson_index"></h2>
                     <div class="lesson_range">
@@ -449,8 +456,8 @@
                 </div>
                 <div class="rooms"> </div>
             </div> `);
-			slide.append(slide_day)
-		}
-	}
+            slide.append(slide_day)
+        }
+    }
 </script>
 </html>
