@@ -139,3 +139,15 @@ div.slide_day,
 
 .container_month__list .slide_month_day .lesson:last-child {
   border-bottom: 0; }
+
+.tools_block svg {
+  stroke: #f9fdff;
+  fill: none; }
+
+.tools_block .now_day {
+  background: #001b2d;
+  border: 3px solid #f9fdff;
+  color: #f9fdff; }
+
+.container_month__list .slide_month_day.now {
+  background: #001b2d; }

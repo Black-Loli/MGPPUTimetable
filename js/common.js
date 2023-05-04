@@ -10,9 +10,19 @@ function toggleModal(closingObject, openingObject) {
     openingObject.addClass('active');
 }
 
-$("#time_today, #time_week, #time_term").click(function () {
-    wishTimetable = $(this).attr('id');
-    toggleModal([menu, overlay_menu], profile_selection_overlay);
+$("#time_today, #time_week, #time_term").click(function (event) {
+    if (localStorage.keyExists('group')) {
+    } else if (localStorage.keyExists('professor')) {
+    } else {
+        event.preventDefault();
+        wishTimetable = $(this).attr('id');
+        const {tabTarget} = event.target.dataset
+        $(`.tab-list input[type="radio"]#${tabTarget}`).attr('checked', true).click();
+
+        toggleModal([menu, overlay_menu], profile_selection_overlay);
+    }
+
+
 });
 
 $('.tab_selector').click(function (event) {

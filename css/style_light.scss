@@ -7,36 +7,36 @@ $highlighting: rgba(lighten($color, 10%), 0.7);
 $overlay: rgba(lighten($color, 50%), 0.5);
 
 body {
-    background: $background;
-    color: $text_border;
+  background: $background;
+  color: $text_border;
 }
 
 a {
-    color: $highlighting;
+  color: $highlighting;
 }
 
 div.div {
-    background: $background;
-    box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
-    color: $text_border;
+  background: $background;
+  box-shadow: 10px 20px 50px 10px rgba($text_border, 0.5);
+  color: $text_border;
 }
 
 svg.loading {
-    fill: $text_border;
+  fill: $text_border;
 }
 
 .menu {
-    background: rgba($background, 0.7);
-    border: 2px solid $text_border;
+  background: rgba($background, 0.7);
+  border: 2px solid $text_border;
 }
 
 .ham-menu {
-    background-color: $background;
-    box-shadow: 20px 0 50px 10px rgba($text_border, 0.5);
+  background-color: $background;
+  box-shadow: 20px 0 50px 10px rgba($text_border, 0.5);
 }
 
 .ham-menu > ul > li {
-    color: $text_border;
+  color: $text_border;
 }
 
 #overlay_menu {
@@ -117,12 +117,18 @@ option:hover {
     background: rgba($highlighting, 0.5);
 }
 
-div.slide, div.slide_day {
-    background: $secondary_timeline;
+div.slide,
+div.slide_day,
+.container_month .slide_month_day,
+.container_month__list .slide_month_day {
+  background: $secondary_timeline;
+  border-radius: 20px;
 }
 
-div.slide_day {
-    border: 1px solid $text_border;
+div.slide_day,
+.container_month .slide_month_day,
+.container_month__list .slide_month_day {
+  border: 1px solid $text_border;
 }
 
 .slide.now, .slide_day.now {
@@ -156,8 +162,8 @@ div.slide_day {
     background: none;
 }
 
-.slide_day .lesson:nth-child(1) {
-    border-top: 1px dashed $text_border;
+.slide_day .lesson:last-child {
+  border-bottom: 1px dashed $text_border;
 }
 
 .slide_day.active .time_lesson {
@@ -165,12 +171,36 @@ div.slide_day {
     background: none;
 }
 
-.empty-holder svg{
-    fill: $text_border;
-    stroke: none;
+.empty-holder svg,
+.container_month__list .slide_month_day .lesson-list__empty svg {
+  fill: $text_border;
+  stroke: none;
 }
 
 .slide_day .lesson .rooms svg,
-.slide .rooms svg{
-    stroke: $text_border;
+.slide .rooms svg {
+  fill: $text_border;
+}
+
+.container_month__list .slide_month_day .lesson {
+  border-bottom: 1px dashed $text_border;
+}
+
+.container_month__list .slide_month_day .lesson:last-child {
+  border-bottom: 0;
+}
+
+.tools_block svg {
+  stroke: $text_border;
+  fill: none;
+}
+
+.tools_block .now_day {
+  background: $background;
+  border: 3px solid $text_border;
+  color: $text_border;
+}
+
+.container_month__list .slide_month_day.now {
+  background: $background;
 }

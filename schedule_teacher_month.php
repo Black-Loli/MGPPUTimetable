@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Месяц | Расписание для группы </title>
+    <title> Месяц | Расписание для преподавателя </title>
     <?php include 'header.php'; ?>
     <style>
 
@@ -13,7 +13,7 @@
 
     <?php include 'menu.php'; ?>
 
-    <div class="technical_values">
+    <div class="tools_block">
 
     </div>
     <!--    <div class="container_month container_month__calendar">-->
@@ -39,7 +39,7 @@
     }
 
     $('.container_month__calendar').addClass(first_day())
-    $('.technical_values').append(`<h1 class="container_month_name"> ${moment(currentDateObject, 'DD.MM.YYYY').lang('ru').format('MMMM')} </h1>`);
+    $('.tools_block').append(`<h1 class="container_month_name"> ${moment(currentDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
     // $(`.slide_day[data-date="${timeTableHandler.currentDate()}"]`).addClass('now active')
 
 
@@ -157,9 +157,9 @@
                     </div>
                     <h2 class="lesson_name">${lesson.Discipline}</h2>
                 </div>
-                <div class="professor">
+                <div class="groups">
                     <h2> Группа: </h2>
-                    <h2 class="prof_name">${groups}</h2>
+                    <h2 class="group_name">${groups}</h2>
                 </div>
                 <div class="room">
                     <h2> Аудитория: </h2>
@@ -184,7 +184,7 @@
 
             for (let i = 0; i < amount; i++) {
                 let dateObject = getDatesInMonth(currentDateObject().year(), currentDateObject().month())[i]
-                let dateSignature = dateObject.lang('ru').format('D.MM dddd')
+                let dateSignature = dateObject.locale('ru').format('D.MM dddd')
                 // let DateSignature = getDatesInMonth(currentDateObject().year(), currentDateObject().month())[i].format('dddd')
                 $(` <div class="slide_month_day" data-date="${dateObject.format('DD.MM.YYYY')}">
                         <h1 class="date">${dateSignature}</h1>

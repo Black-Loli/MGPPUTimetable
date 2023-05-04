@@ -689,9 +689,11 @@ select:hover {
     grid-column: 6/7;
 }
 
-.technical_values {
+.tools_block {
     display: flex;
-    margin: 3% 10px 0 130px;
+    margin: 3% 25px 0 130px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .container_month__list .slide_month_day .lesson{
@@ -749,6 +751,25 @@ select:hover {
     margin: 20px 0;
 }
 
-.technical_values .container_month_name {
+.tools_block .container_month_name {
     text-transform: capitalize;
+}
+
+.tools_block svg{
+    width: 60px;
+    stroke-width: 1;
+    cursor: pointer;
+}
+
+.tools_block svg.left_arrow{
+    margin-left: auto;
+}
+
+
+.tools_block .now_day {
+    border-radius: 10px;
+    height: 45px;
+    width: 100px;
+    font-size: 19px;
+    margin: 0 10px;
 }

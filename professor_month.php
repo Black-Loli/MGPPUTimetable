@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Месяц | Расписание для группы </title>
+    <title> Месяц | Преподаватели в корпусе </title>
     <?php include 'header.php'; ?>
     <style>
 
@@ -39,10 +39,8 @@
     }
 
     $('.container_month__calendar').addClass(first_day())
-
-    var optionsBlock = $('.tools_block')
-    optionsBlock.append(`<h1 class="container_month_name"> ${moment(currentDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
-    optionsBlock.append(`<h1 class="container_group"> ${getGroupData().name} </h1>`);
+    $('.tools_block').append(`<h1 class="container_month_name"> ${moment(currentDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
+    // $(`.slide_day[data-date="${timeTableHandler.currentDate()}"]`).addClass('now active')
 
 
     // $('.slide_day').click(slide_dayClicked);
@@ -146,26 +144,23 @@
             </div>`)
         }
         console.log(lessons)
-        lessons.sort(function (lesson1, lesson2) {
+        _(lessons.sort(function (lesson1, lesson2) {
             return (lesson1.Number > lesson2.Number) ? 1 : -1
-        }).forEach(function (lesson) {
+        })).groupBy('Number').forEach(function (lessonRangeForLessonNumber, lessonNumber) {
+            const lesson = lessonRangeForLessonNumber[0];
+            const professors = _(lessonRangeForLessonNumber).map('TeacherFIO').uniq().value().map(function(professor){
+                return `<h2 class="prof_name">${convertInitials(professor)}</h2>`;
+            })
+            console.log("lesson", lesson);
             $(`<div class="lesson" data-index="${lesson.Number.replace(' пара', '')}">
                 <div class="time_lesson">
-                    <h2 class="lesson_index">${lesson.Number}</h2>
+                    <h2 class="lesson_index">${lessonNumber}</h2>
                     <div class="lesson_range">
                         <h2>${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}</h2>
                     </div>
-                    <h2 class="lesson_name">${lesson.Discipline}</h2>
                 </div>
-                <div class="professor">
-                    <h2> Преподаватель: </h2>
-                    <h2 class="prof_name">${lesson.TeacherFIO}</h2>
-                </div>
-                <div class="room">
-                    <h2> Аудитория: </h2>
-                    <h2 class="room_number">${lesson.Room}</h2>
-                </div>
-            </div>`).appendTo(rootEmptyTag)
+                <div class="professor">${professors.join('')}</div>
+                </div>`).appendTo(rootEmptyTag)
         })
 
         return rootEmptyTag;
@@ -193,7 +188,7 @@
                     .appendTo(slide)
                     .append(generateLessons(
                         dateObject.format('DD.MM.YYYY'),
-                        lessons.filtrateByGroup().getTable().filter(function (lesson) {
+                        lessons.trimSession().trimDistant().getTable().filter(function (lesson) {
                             return lesson.dayDate === dateObject.format('DD.MM.YYYY');
                         })
                     ));
@@ -201,8 +196,5 @@
             }
         })
     }
-
-    document.title += getGroupData().name
-
 </script>
 </html>

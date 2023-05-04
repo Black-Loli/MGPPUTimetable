@@ -34,7 +34,7 @@ function getDatesInMonth(year = 2023, month) {
 }
 
 function getDaysCountInMonth() {
-    return moment(currentDateObject, "YYYY-MM").daysInMonth()
+    return moment(currentDate(), "YYYY-MM").daysInMonth()
 }
 
 function currentTimeObject() {
@@ -46,8 +46,28 @@ function currentTime() {
     return currentTimeObject().format(timeFormat)
 }
 
+function incrementMonth() {
+    localStorage.setItem('date', currentDateObject().add(1, 'months').format(dateFormat))
+}
+
+function decrementMonth() {
+    localStorage.setItem('date', currentDateObject().subtract(1, 'months').format(dateFormat))
+}
+
+function returnNow() {
+    localStorage.removeItem('date')
+}
+
+function decrementDay() {
+}
+
+function incrementDay() {
+}
+
 function currentDateObject() {
-    return moment()
+    return localStorage.keyExists('date') ?
+        moment(localStorage.getItem('date'), dateFormat) :
+        moment()
     // return moment('5.04.2023', dateFormat)
 }
 
@@ -97,13 +117,13 @@ let getTimeTable = function (callbackfn) {
     // })
 }
 
+function getGroupData() {
+    return JSON.parse(localStorage.getItem('group'))
+}
+
 function timetableHandlerConstructor(allTimetable) {
     console.log("Время сейчас", currentTime())
     console.log("День сегодня", currentDate())
-
-    function getGroupData() {
-        return JSON.parse(localStorage.getItem('group'))
-    }
 
     function filtration(type, lesson) {
         const startTime = moment(lesson.TimeStart, timeFormat);
@@ -186,6 +206,12 @@ function timetableHandlerConstructor(allTimetable) {
         },
         getCurrentTimeLessons: function () {
             this.getCurrentDayLessons.filter(this.currentTimeLessonsMapper);
+        },
+        trimSession: function () {
+            this.timetable = this.timetable.filter(function (lesson) {
+                return !lesson.isSession;
+            })
+            return this;
         },
         getSeparateTimeRanges: function () {
             let past, current, future;

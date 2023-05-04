@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Месяц | Расписание для группы </title>
+    <title> Месяц | Занятые кабинеты </title>
     <?php include 'header.php'; ?>
     <style>
 
@@ -15,6 +15,24 @@
 
     <div class="tools_block">
 
+        <svg class="left_arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"/>
+            <path d="M8 12L16 12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 9L8.08704 11.913V11.913C8.03897 11.961 8.03897 12.039 8.08704 12.087V12.087L11 15"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <button class="now_day">Сегодня</button>
+
+        <svg class="right_arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"/>
+            <path d="M16 12L8 12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 15L15.913 12.087V12.087C15.961 12.039 15.961 11.961 15.913 11.913V11.913L13 9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
     </div>
     <!--    <div class="container_month container_month__calendar">-->
     <!--    </div>-->
@@ -39,10 +57,8 @@
     }
 
     $('.container_month__calendar').addClass(first_day())
-
-    var optionsBlock = $('.tools_block')
-    optionsBlock.append(`<h1 class="container_month_name"> ${moment(currentDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
-    optionsBlock.append(`<h1 class="container_group"> ${getGroupData().name} </h1>`);
+    $('.tools_block').prepend(`<h1 class="container_month_name"> ${moment(currentDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
+    // $(`.slide_day[data-date="${timeTableHandler.currentDate()}"]`).addClass('now active')
 
 
     // $('.slide_day').click(slide_dayClicked);
@@ -52,6 +68,20 @@
         return `${array[0]} ${array[1][0]}. ${array[2][0]}.`;
     }
 
+    $('.now_day').click(function () {
+        returnNow()
+        location.reload()
+    })
+
+    $('.tools_block .left_arrow').click(function () {
+        decrementMonth()
+        location.reload()
+    })
+
+    $('.tools_block .right_arrow').click(function () {
+        incrementMonth()
+        location.reload()
+    })
     /*function fillSlideWithLessons(slide_day, lessons, i) {
         lessons.forEach(function (lesson) {
             const index = parseInt(lesson.Number) - 1;
@@ -146,25 +176,22 @@
             </div>`)
         }
         console.log(lessons)
-        lessons.sort(function (lesson1, lesson2) {
+        _(lessons.sort(function (lesson1, lesson2) {
             return (lesson1.Number > lesson2.Number) ? 1 : -1
-        }).forEach(function (lesson) {
+        })).groupBy('Number').forEach(function (lessonRangeForLessonNumber, lessonNumber) {
+            const lesson = lessonRangeForLessonNumber[0];
+            const rooms = _(lessonRangeForLessonNumber).sortBy(['Room']).uniqBy('TeacherFIO').map('Room').value().map(function (room) {
+                return `<h2 class="room_number">${room}</h2>`;
+            })
+            console.log("lesson", lesson);
             $(`<div class="lesson" data-index="${lesson.Number.replace(' пара', '')}">
                 <div class="time_lesson">
-                    <h2 class="lesson_index">${lesson.Number}</h2>
+                    <h2 class="lesson_index">${lessonNumber}</h2>
                     <div class="lesson_range">
                         <h2>${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}</h2>
                     </div>
-                    <h2 class="lesson_name">${lesson.Discipline}</h2>
                 </div>
-                <div class="professor">
-                    <h2> Преподаватель: </h2>
-                    <h2 class="prof_name">${lesson.TeacherFIO}</h2>
-                </div>
-                <div class="room">
-                    <h2> Аудитория: </h2>
-                    <h2 class="room_number">${lesson.Room}</h2>
-                </div>
+                <div class="room">${rooms.join('')}</div>
             </div>`).appendTo(rootEmptyTag)
         })
 
@@ -193,16 +220,15 @@
                     .appendTo(slide)
                     .append(generateLessons(
                         dateObject.format('DD.MM.YYYY'),
-                        lessons.filtrateByGroup().getTable().filter(function (lesson) {
+                        lessons.trimSession().trimDistant().getTable().filter(function (lesson) {
                             return lesson.dayDate === dateObject.format('DD.MM.YYYY');
                         })
                     ));
+
+                $(`.slide_month_day[data-date="${currentDate()}"]`).addClass('now')
                 // slide.append(slide_day)
             }
         })
     }
-
-    document.title += getGroupData().name
-
 </script>
 </html>

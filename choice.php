@@ -1,7 +1,7 @@
 <div id="profile_selection_overlay" class="overlay">
     <div class="modal">
         <div class="tab-list">
-            <input type="radio" name="profile_selector" id="student_tab" class="tab_selector" checked>
+            <input type="radio" name="profile_selector" id="student_tab" class="tab_selector">
             <label for="student_tab" class="tab_selector_label">
                 Студент
             </label>
