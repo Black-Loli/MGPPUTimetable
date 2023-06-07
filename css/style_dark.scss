@@ -64,7 +64,7 @@ input[type='checkbox'].checkbox + label:after {
 }
 
 div.color input[type='checkbox'].checkbox + label:before {
-  background: gray;
+  background: $text_border;
 }
 
 div.color input[type='checkbox'].checkbox:checked + label:before {
@@ -203,4 +203,18 @@ div.slide_day,
 
 .container_month__list .slide_month_day.now {
   background: $background;
+}
+
+.tools_block .container_month_name,
+.container_month__list .slide_month_day .professor .prof_name__month,
+.container_month__list .slide_month_day .room .room_number__month,
+.container_month__list .slide_month_day .groups .group_name__month{
+  border-right: 1px solid $text_border;
+}
+
+.tools_block .container_month_name__not_border,
+.container_month__list .slide_month_day .professor .prof_name__month:last-child,
+.container_month__list .slide_month_day .room .room_number__month:last-child,
+.container_month__list .slide_month_day .groups .group_name__month:last-child{
+  border-right: 0;
 }

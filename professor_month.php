@@ -39,7 +39,7 @@
     }
 
     $('.container_month__calendar').addClass(first_day())
-    $('.tools_block').append(`<h1 class="container_month_name"> ${moment(currentDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
+    $('.tools_block').append(`<h1 class="container_month_name container_month_name__not_border"> ${moment(activeDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
     // $(`.slide_day[data-date="${timeTableHandler.currentDate()}"]`).addClass('now active')
 
 
@@ -149,7 +149,7 @@
         })).groupBy('Number').forEach(function (lessonRangeForLessonNumber, lessonNumber) {
             const lesson = lessonRangeForLessonNumber[0];
             const professors = _(lessonRangeForLessonNumber).map('TeacherFIO').uniq().value().map(function(professor){
-                return `<h2 class="prof_name">${convertInitials(professor)}</h2>`;
+                return `<h2 class="prof_name prof_name__month">${convertInitials(professor)}</h2>`;
             })
             console.log("lesson", lesson);
             $(`<div class="lesson" data-index="${lesson.Number.replace(' пара', '')}">
@@ -169,8 +169,8 @@
     function generateDays(amount, slide) {
         console.log(
             getDatesInMonth(
-                currentDateObject().year(),
-                currentDateObject().month() + 1
+                activeDateObject().year(),
+                activeDateObject().month() + 1
             )
         )
         console.log("AMOUNT", amount)
@@ -178,7 +178,7 @@
         getTimeTable(function (lessons) {
 
             for (let i = 0; i < amount; i++) {
-                let dateObject = getDatesInMonth(currentDateObject().year(), currentDateObject().month())[i]
+                let dateObject = getDatesInMonth(activeDateObject().year(), activeDateObject().month())[i]
                 let dateSignature = dateObject.locale('ru').format('D.MM dddd')
                 // let DateSignature = getDatesInMonth(currentDateObject().year(), currentDateObject().month())[i].format('dddd')
                 $(` <div class="slide_month_day" data-date="${dateObject.format('DD.MM.YYYY')}">

@@ -14,7 +14,24 @@
     <?php include 'menu.php'; ?>
 
     <div class="tools_block">
+        <svg class="left_arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"/>
+            <path d="M8 12L16 12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 9L8.08704 11.913V11.913C8.03897 11.961 8.03897 12.039 8.08704 12.087V12.087L11 15"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
 
+        <button class="now_day">Сегодня</button>
+
+        <svg class="right_arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"/>
+            <path d="M16 12L8 12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 15L15.913 12.087V12.087C15.961 12.039 15.961 11.961 15.913 11.913V11.913L13 9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
     </div>
     <!--    <div class="container_month container_month__calendar">-->
     <!--    </div>-->
@@ -41,9 +58,23 @@
     $('.container_month__calendar').addClass(first_day())
 
     var optionsBlock = $('.tools_block')
-    optionsBlock.append(`<h1 class="container_month_name"> ${moment(currentDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
-    optionsBlock.append(`<h1 class="container_group"> ${getGroupData().name} </h1>`);
+    optionsBlock.prepend(`<h1 class="container_group"> ${getGroupData().name} </h1>`);
+    optionsBlock.prepend(`<h1 class="container_month_name"> ${moment(activeDate(), 'DD.MM.YYYY').locale('ru').format('MMMM')} </h1>`);
 
+    $('.now_day').click(function () {
+        returnNow()
+        location.reload()
+    })
+
+    $('.tools_block .left_arrow').click(function () {
+        decrementMonth()
+        location.reload()
+    })
+
+    $('.tools_block .right_arrow').click(function () {
+        incrementMonth()
+        location.reload()
+    })
 
     // $('.slide_day').click(slide_dayClicked);
 
@@ -174,8 +205,8 @@
     function generateDays(amount, slide) {
         console.log(
             getDatesInMonth(
-                currentDateObject().year(),
-                currentDateObject().month() + 1
+                activeDateObject().year(),
+                activeDateObject().month() + 1
             )
         )
         console.log("AMOUNT", amount)
@@ -183,7 +214,7 @@
         getTimeTable(function (lessons) {
 
             for (let i = 0; i < amount; i++) {
-                let dateObject = getDatesInMonth(currentDateObject().year(), currentDateObject().month())[i]
+                let dateObject = getDatesInMonth(activeDateObject().year(), activeDateObject().month())[i]
                 let dateSignature = dateObject.locale('ru').format('D.MM dddd')
                 // let DateSignature = getDatesInMonth(currentDateObject().year(), currentDateObject().month())[i].format('dddd')
                 $(` <div class="slide_month_day" data-date="${dateObject.format('DD.MM.YYYY')}">
@@ -193,10 +224,11 @@
                     .appendTo(slide)
                     .append(generateLessons(
                         dateObject.format('DD.MM.YYYY'),
-                        lessons.filtrateByGroup().getTable().filter(function (lesson) {
+                        lessons.filtrateByGroup().trimSession().getTable().filter(function (lesson) {
                             return lesson.dayDate === dateObject.format('DD.MM.YYYY');
                         })
                     ));
+                $(`.slide_month_day[data-date="${activeDate()}"]`).addClass('now')
                 // slide.append(slide_day)
             }
         })

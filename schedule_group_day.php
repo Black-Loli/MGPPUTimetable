@@ -10,8 +10,30 @@
 
     <?php include 'menu.php'; ?>
 
-    <div class="container">
+    <div class="tools_block">
         <h2 class="date"></h2>
+        <h2 class="group_name"></h2>
+
+        <svg class="left_arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"/>
+            <path d="M8 12L16 12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 9L8.08704 11.913V11.913C8.03897 11.961 8.03897 12.039 8.08704 12.087V12.087L11 15"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <button class="now_day">Сегодня</button>
+
+        <svg class="right_arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"/>
+            <path d="M16 12L8 12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 15L15.913 12.087V12.087C15.961 12.039 15.961 11.961 15.913 11.913V11.913L13 9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <div class="container">
 
         <div class="empty-holder">
             <h2 class=""> Пёся отправляет на отдых </h2>
@@ -79,13 +101,29 @@
 <script src="js/common.js"></script>
 <script src="js/timeTableHandler.js"></script>
 <script>
-	$(`.container`).find('.date').html(moment().locale('ru').format('LLLL'))
+	$(`.tools_block`).find('.date').html(activeDateObject().locale('ru').format('dddd, D MMMM YYYY')+' г.,')
+    $(`.tools_block`).find('.group_name').html(`${getGroupData().name}`)
+
+    $('.now_day').click(function () {
+        returnNow()
+        location.reload()
+    })
+
+    $('.tools_block .left_arrow').click(function () {
+        decrementDay()
+        location.reload()
+    })
+
+    $('.tools_block .right_arrow').click(function () {
+        incrementDay()
+        location.reload()
+    })
 
 	function fillSlideWithLesson(slide, lesson) {
 
-		if (lesson.current) {
-			slide.addClass('now active')
-		}
+        if (lesson.current) {
+            slide.addClass('now active');
+        }
 		slide.find('.lesson_range').append(`<h2>${moment(lesson.TimeStart, 'HH:mm').format('HH:mm')} - ${moment(lesson.TimeEnd, 'HH:mm').format('HH:mm')}</h2>`);
 		slide.find('.lesson_index').html(`${lesson.Number}`);
 		slide.find('.lesson_name').html(`${lesson.Discipline}`);

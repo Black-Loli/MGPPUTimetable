@@ -4,7 +4,7 @@ Storage.prototype.keyExists = function (key) {
     return localStorage.getItem(key) !== null
 }
 
-function getDaysArray(initialDate = currentDateObject()) {
+function getDaysArray(initialDate = activeDateObject()) {
     let days = []
     for (let i = 1; i < 7; i++) {
         days.push(initialDate.day(i).format('DD.MM.YYYY'))
@@ -12,7 +12,7 @@ function getDaysArray(initialDate = currentDateObject()) {
     return days;
 }
 
-function getDaysArrayMonth(initialDate = currentDateObject()) {
+function getDaysArrayMonth(initialDate = activeDateObject()) {
     let days = []
     for (let i = 1; i < getDaysCountInMonth; i++) {
         days.push(initialDate.day(i).format('DD.MM.YYYY'))
@@ -20,7 +20,7 @@ function getDaysArrayMonth(initialDate = currentDateObject()) {
     return days;
 }
 
-function getDatesInMonth(year = 2023, month) {
+const getDatesInMonth = (year = moment(activeDateObject(), "YYYY"), month) => {
     var monthIndex = month; // 0..11 instead of 1..12
     // var names = ['Воскресенье', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
     var date = new Date(year, monthIndex, 1);
@@ -31,15 +31,15 @@ function getDatesInMonth(year = 2023, month) {
         date.setDate(date.getDate() + 1);
     }
     return result;
-}
+};
 
 function getDaysCountInMonth() {
-    return moment(currentDate(), "YYYY-MM").daysInMonth()
+    return moment(activeDate(), "YYYY-MM").daysInMonth()
 }
 
 function currentTimeObject() {
-    return moment()
-    // return moment('14:00:20', timeFormat)
+    // return moment()
+    return moment('14:00:20', timeFormat)
 }
 
 function currentTime() {
@@ -47,11 +47,11 @@ function currentTime() {
 }
 
 function incrementMonth() {
-    localStorage.setItem('date', currentDateObject().add(1, 'months').format(dateFormat))
+    localStorage.setItem('date', activeDateObject().add(1, 'months').format(dateFormat))
 }
 
 function decrementMonth() {
-    localStorage.setItem('date', currentDateObject().subtract(1, 'months').format(dateFormat))
+    localStorage.setItem('date', activeDateObject().subtract(1, 'months').format(dateFormat))
 }
 
 function returnNow() {
@@ -59,20 +59,42 @@ function returnNow() {
 }
 
 function decrementDay() {
+    localStorage.setItem('date', activeDateObject().subtract(1, 'day').format(dateFormat))
 }
 
 function incrementDay() {
+    localStorage.setItem('date', activeDateObject().add(1, 'day').format(dateFormat))
 }
 
-function currentDateObject() {
+function decrementWeek() {
+    localStorage.setItem('date', activeDateObject().subtract(1, 'week').format(dateFormat))
+}
+
+function incrementWeek() {
+    localStorage.setItem('date', activeDateObject().add(1, 'week').format(dateFormat))
+}
+
+function activeDateObject() {
+    //Активная дата - та которую хотим наблюдать
     return localStorage.keyExists('date') ?
         moment(localStorage.getItem('date'), dateFormat) :
         moment()
+
+}
+
+function activeDate() {
+    return activeDateObject().format(dateFormat)
+}
+
+function currentDateObject() {
+    //Сегодняшняя дата
+    return moment()
     // return moment('5.04.2023', dateFormat)
 }
 
 function currentDate() {
     return currentDateObject().format(dateFormat)
+
 }
 
 function getData() {
@@ -120,10 +142,13 @@ let getTimeTable = function (callbackfn) {
 function getGroupData() {
     return JSON.parse(localStorage.getItem('group'))
 }
+function getTeacherData() {
+    return JSON.parse(localStorage.getItem('professor'))
+}
 
 function timetableHandlerConstructor(allTimetable) {
     console.log("Время сейчас", currentTime())
-    console.log("День сегодня", currentDate())
+    console.log("День сегодня", activeDate())
 
     function filtration(type, lesson) {
         const startTime = moment(lesson.TimeStart, timeFormat);
@@ -145,7 +170,7 @@ function timetableHandlerConstructor(allTimetable) {
         timeFormat: timeFormat,
         dateFormat: dateFormat,
         currentTime,
-        currentDate,
+        currentDate: activeDate,
         getTable: function () {
             return this.timetable.map(function (lesson, index) {
                 return lesson;
@@ -153,7 +178,7 @@ function timetableHandlerConstructor(allTimetable) {
         },
         getCurrentDayLessons: function () {
             this.timetable = this.filtrateByDepartment().getTable().filter(function (lesson) {
-                return lesson.dayDate === currentDate();
+                return lesson.dayDate === activeDate();
             }).sort(function (lesson1, lesson2) {
                 return lesson1.TimeStart.localeCompare(lesson2.TimeStart);
             }).map((lesson, index, lessons) => {
@@ -195,7 +220,7 @@ function timetableHandlerConstructor(allTimetable) {
         },
         filtrateByTeacher: function (teacher) {
             this.timetable = this.timetable.filter(function (lesson) {
-                return lesson.TeacherFIO === (teacher ?? JSON.parse(localStorage.getItem('professor')).name);
+                return lesson.TeacherFIO === (teacher ?? getTeacherData().name);
             })
             return this;
         },

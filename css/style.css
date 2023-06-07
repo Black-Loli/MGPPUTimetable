@@ -242,7 +242,7 @@ input#time_table_04:checked ~ ul.sub-items {
 }
 
 li input[type="radio"],
-.slide_day .lesson input[type="radio"]{
+.slide_day .lesson input[type="radio"] {
     display: none;
 }
 
@@ -438,7 +438,7 @@ select:hover {
 }
 
 .slide div.time_lesson, .slide h2.building,
-.container_month__list .slide_month_day .time_lesson{
+.container_month__list .slide_month_day .time_lesson {
     padding: 30px;
     display: flex;
     justify-content: space-between;
@@ -458,7 +458,7 @@ select:hover {
     padding: 10px 20px;
 }
 
-.slide_day.active .lesson{
+.slide_day.active .lesson {
     padding: 20px 0 30px;
 }
 
@@ -469,7 +469,7 @@ select:hover {
     min-height: 52px;
 }
 
-.slide_day div.time_lesson .lesson_range h2{
+.slide_day div.time_lesson .lesson_range h2 {
     display: none;
 }
 
@@ -477,12 +477,12 @@ select:hover {
     display: flex;
 }
 
-.slide_day.active .lesson.empty, .empty-holder.empty  {
+.slide_day.active .lesson.empty, .empty-holder.empty {
     display: none;
 }
 
 
-.empty-holder.dn  {
+.empty-holder.dn {
     display: none;
 }
 
@@ -492,7 +492,7 @@ select:hover {
 .slide_day.active .time_lesson,
 .slide_day.active .lesson_name,
 .slide_day.active .room,
-.slide_day.active .prof_name{
+.slide_day.active .prof_name {
     padding: 3% 3% 0;
     display: flex;
     justify-content: space-between;
@@ -555,7 +555,7 @@ select:hover {
 }
 
 .slide_day.active h2.lesson_name,
-.slide_day.active h2.prof_name{
+.slide_day.active h2.prof_name {
     display: flex;
 }
 
@@ -564,7 +564,7 @@ select:hover {
     justify-content: flex-start;
 }
 
-.slide_day.active div.room .room_number{
+.slide_day.active div.room .room_number {
     margin-left: 30px;
 }
 
@@ -592,13 +592,13 @@ select:hover {
     margin: 0 auto;
 }
 
-.slide_day .empty-holder svg{
+.slide_day .empty-holder svg {
     width: 90%;
     display: flex;
     margin: 20px auto;
 }
 
-.empty-holder svg{
+.empty-holder svg {
     width: 30%;
     display: flex;
     margin: 20px auto;
@@ -610,7 +610,7 @@ select:hover {
     width: 10%;
 }
 
-.slide_day.active .rooms{
+.slide_day.active .rooms {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px 0;
@@ -618,12 +618,12 @@ select:hover {
 
 }
 
-.slide_day.active .rooms .lesson_name{
+.slide_day.active .rooms .lesson_name {
     padding: 0;
 }
 
 .slide_day.active .lesson .rooms svg,
-.slide .rooms svg{
+.slide .rooms svg {
     margin: 0;
     width: 30px;
 }
@@ -645,7 +645,7 @@ select:hover {
     flex-direction: column;
 }
 
-.container_month__calendar .slide_month_day{
+.container_month__calendar .slide_month_day {
     height: 250px;
 }
 
@@ -661,15 +661,15 @@ select:hover {
     padding: 10px 20px;
 }
 
-.container_month__calendar.Sunday .slide_month_day:first-child{
+.container_month__calendar.Sunday .slide_month_day:first-child {
     grid-column: 7/8;
 }
 
-.container_month__calendar.Monday{
+.container_month__calendar.Monday {
     grid-column: 1/2;
 }
 
-.container_month__calendar.Tuesday{
+.container_month__calendar.Tuesday {
     grid-column: 2/3;
 }
 
@@ -677,15 +677,15 @@ select:hover {
     grid-column: 3/4;
 }
 
-.container_month__calendar.Thursday{
+.container_month__calendar.Thursday {
     grid-column: 4/5;
 }
 
-.container_month__calendar.Friday{
+.container_month__calendar.Friday {
     grid-column: 5/6;
 }
 
-.container_month__calendar.Saturday .slide_month_day:first-child{
+.container_month__calendar.Saturday .slide_month_day:first-child {
     grid-column: 6/7;
 }
 
@@ -696,44 +696,56 @@ select:hover {
     align-items: center;
 }
 
-.container_month__list .slide_month_day .lesson{
+.container_month__list .slide_month_day .lesson {
     border-bottom: 1px dashed #d1ecff;
     padding: 20px 0;
 }
 
-.container_month__list .slide_month_day .lesson:first-child{
+.container_month__list .slide_month_day .lesson:first-child {
     padding: 10px 0;
 }
 
 .container_month__list .slide_month_day .time_lesson,
 .container_month__list .slide_month_day .professor,
-.container_month__list .slide_month_day .room{
+.container_month__list .slide_month_day .groups,
+.container_month__list .slide_month_day .room {
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
 }
 
-.container_month__list .slide_month_day .date{
+.container_month__list .slide_month_day .date {
     padding: 30px 15px 20px;
     text-transform: capitalize;
 }
 
 .container_month__list .slide_month_day .professor,
+.container_month__list .slide_month_day .groups,
 .container_month__list .slide_month_day .room {
     display: flex;
     justify-content: left;
+    flex-wrap: wrap;
 }
 
 .container_month__list .slide_month_day .professor .prof_name,
+.container_month__list .slide_month_day .groups .group_name,
 .container_month__list .slide_month_day .room_number {
     padding-left: 10px;
 }
 
-.container_month__list .slide_month_day .professor{
+.container_month__list .slide_month_day .professor .prof_name__month,
+.container_month__list .slide_month_day .room .room_number__month,
+.container_month__list .slide_month_day .groups .group_name__month {
+    margin-right: 10px;
+    padding-right: 10px;
+    padding-left: 0;
+}
+
+.container_month__list .slide_month_day .professor {
     padding-bottom: 0;
 }
 
-.container_month__list .slide_month_day .lesson_range{
+.container_month__list .slide_month_day .lesson_range {
     margin: 0 auto 0 20px;
 }
 
@@ -753,15 +765,17 @@ select:hover {
 
 .tools_block .container_month_name {
     text-transform: capitalize;
+    margin-right: 10px;
+    padding-right: 10px;
 }
 
-.tools_block svg{
+.tools_block svg {
     width: 60px;
     stroke-width: 1;
     cursor: pointer;
 }
 
-.tools_block svg.left_arrow{
+.tools_block svg.left_arrow {
     margin-left: auto;
 }
 
@@ -773,3 +787,28 @@ select:hover {
     font-size: 19px;
     margin: 0 10px;
 }
+
+.tools_block .date {
+    padding-right: 10px;
+}
+
+ul.sub-items li div#time_today,
+ul.sub-items li div#time_week,
+ul.sub-items li div#time_term{
+    margin-bottom: 1.5rem;
+}
+
+#time_today div,
+#time_week div,
+#time_term div {
+    font-size: 24px;
+}
+
+#time_today div a,
+#time_week div a,
+#time_term div a {
+    margin-left: 1em;
+    text-transform: lowercase;
+    font-size: 0.9em;
+}
+

@@ -30,20 +30,26 @@
             <ul class="sub-items">
                 <li>
                     <div id="time_today"> На сегодня
-                        <a href="schedule_group_day.php" data-tab-target="student_tab">На группу</a>
-                        <a href="schedule_group_day.php" data-tab-target="professor_tab">Преподу</a>
+                        <div>
+                            <a href="schedule_group_day.php" data-tab-target="student_tab">На группу</a>
+                            <a href="schedule_teacher_day.php" data-tab-target="professor_tab">Преподу</a>
+                        </div>
                     </div>
                 </li>
                 <li>
                     <div id="time_week"> На неделю
-                        <a href="schedule_group_week.php" data-tab-target="student_tab">На группу</a>
-                        <a href="schedule_group_week.php" data-tab-target="professor_tab">Преподу</a>
+                        <div>
+                            <a href="schedule_group_week.php" data-tab-target="student_tab">На группу</a>
+                            <a href="schedule_teacher_week.php" data-tab-target="professor_tab">Преподу</a>
+                        </div>
                     </div>
                 </li>
                 <li>
                     <div id="time_term"> На семестр
-                        <a href="schedule_group_month.php" data-tab-target="student_tab">На группу</a>
-                        <a href="schedule_group_month.php" data-tab-target="professor_tab">Преподу</a>
+                        <div>
+                            <a href="schedule_group_month.php" data-tab-target="student_tab">На группу</a>
+                            <a href="schedule_teacher_month.php" data-tab-target="professor_tab">Преподу</a>
+                        </div>
                     </div>
                 </li>
             </ul>

@@ -412,7 +412,7 @@
         getDaysArray().forEach(function (date, index) {
             $(`.slide_day:eq(${index})`).get(0).dataset.date = date
             $(`.slide_day:eq(${index})`).find('.day_week_name').html(moment(date, 'DD.MM.YYYY').locale('ru').format('dddd'))
-            $(`.slide_day:eq(${index})`).find('.date').html(moment(date, 'DD.MM.YYYY').locale('ru').format('DD MMMM'))
+            $(`.slide_day:eq(${index})`).find('.date').html(moment(date, 'D.MM.YYYY').locale('ru').format('D MMMM'))
         })
         _(lessonsArray).filter(function (lesson) {
             return getDaysArray().includes(lesson.dayDate);

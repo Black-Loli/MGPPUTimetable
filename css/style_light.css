@@ -43,7 +43,7 @@ input[type='checkbox'].checkbox + label:after {
   border: 1px solid #006cb7; }
 
 div.color input[type='checkbox'].checkbox + label:before {
-  background: gray; }
+  background: #006cb7; }
 
 div.color input[type='checkbox'].checkbox:checked + label:before {
   background: #006cb7;
@@ -152,3 +152,15 @@ div.slide_day,
 
 .container_month__list .slide_month_day.now {
   background: #f9fdff; }
+
+.tools_block .container_month_name,
+.container_month__list .slide_month_day .professor .prof_name__month,
+.container_month__list .slide_month_day .room .room_number__month,
+.container_month__list .slide_month_day .groups .group_name__month {
+  border-right: 1px solid #006cb7; }
+
+.tools_block .container_month_name__not_border,
+.container_month__list .slide_month_day .professor .prof_name__month:last-child,
+.container_month__list .slide_month_day .room .room_number__month:last-child,
+.container_month__list .slide_month_day .groups .group_name__month:last-child {
+  border-right: 0; }
